@@ -1,7 +1,7 @@
 USE myproject;
 
 CREATE TABLE Courses(
-	Id int NOT NULL,
+	Id varchar(17) NOT NULL,
 	End_Date varchar(10) NOT NULL,
 	Term varchar(20) NOT NULL,
 	Description varchar(1000) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE Courses(
 	Instruction_Mode varchar(100) NOT NULL,
 	Campus varchar(100) NOT NULL,
 	PRIMARY KEY (Id)
-)
+);
 
 CREATE TABLE Students(
 	Id int NOT NULL,
@@ -30,12 +30,11 @@ CREATE TABLE Students(
 	Email varchar(200) NOT NULL,
 	Password varchar(32) NOT NULL,
 	PRIMARY KEY (Id)
-)
+);
 
 CREATE TABLE Evaluation(
 	Id int NOT NULL,
-	CourseID int NOT NULL,
-	ProfessorID int NOT NULL,
+	CourseID varchar(17) NOT NULL,
 	StudentID int NOT NULL,
 	Recommended decimal(2,1) NOT NULL,
 	TimeSpent decimal(3,1) NOT NULL,
@@ -45,4 +44,4 @@ CREATE TABLE Evaluation(
 	PRIMARY KEY (Id),
 	FOREIGN KEY(CourseID) REFERENCES Courses(Id),
 	FOREIGN KEY(StudentID) REFERENCES Students(Id)
-)
+);
