@@ -6,7 +6,7 @@
 
     server with default setting (user 'root' with no password) */
 
-    define('DB_SERVER', 'localhost');
+    define('DB_SERVER', 'localhost:3306');
 
     define('DB_USERNAME', 'root');
 
