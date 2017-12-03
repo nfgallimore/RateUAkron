@@ -8,7 +8,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 require_once '../includes/config.php';
 $cid = $_GET['id'];
 
-$sql = 'SELECT Id, CourseId, UserId, Recommended, TimeSpent, Reason, Grade, GPA, Created_At FROM Evaluations WHERE Cid =' . $cid;
+$sql = 'SELECT Id, CourseId, UserId, Recommended, TimeSpent, Reason, Grade, GPA, Created_At FROM Evaluations WHERE CourseId =' . $cid;
 $evals = [];
 
 if ($result = mysqli_query($link, $sql)) {
