@@ -6,10 +6,11 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 }
 
 require_once '../includes/config.php';
-$id = $_GET['id'];
+$cid = $_GET['id'];
 
-$sql = 'SELECT * FROM Courses WHERE Cid = \' . $id . \'';
+$sql = 'SELECT Id FROM Courses WHERE Cid =' . $cid;
 $evals = [];
+
 if ($result = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($result) > 0) {
 		while($row = mysqli_fetch_array($result)){
