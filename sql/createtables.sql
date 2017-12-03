@@ -1,6 +1,5 @@
 USE myproject;
 
-
 CREATE TABLE Courses(
     Cid varchar(100) NOT NULL UNIQUE,
     Id varchar(100) NOT NULL,
