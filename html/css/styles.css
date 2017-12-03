@@ -20,3 +20,7 @@
 .results tr[visible='true']{
   	display:table-row;
 }
+
+.header {
+	margin: auto;
+}
