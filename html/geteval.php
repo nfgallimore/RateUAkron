@@ -8,7 +8,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 require_once '../includes/config.php';
 $cid = $_GET['id'];
 
-$sql = 'SELECT Id FROM Courses WHERE Cid =' . $cid;
+$sql = 'SELECT Id, CourseId, UserId, Recommended, TimeSpent, Reason, Grade, GPA, Created_At FROM Evaluations WHERE Cid =' . $cid;
 $evals = [];
 
 if ($result = mysqli_query($link, $sql)) {
@@ -16,9 +16,9 @@ if ($result = mysqli_query($link, $sql)) {
 		while($row = mysqli_fetch_array($result)){
 		    $evals[] = [
 		        'Id' => $row['Id']
+		        'CourseId' => $row['CourseId']
+		        'Recommended' => $row['Recommended']
 		    ];
-			echo $row['Id'];
-			echo $row['CourseID'];
 		}
 		mysqli_free_result($result);
 	}
@@ -31,6 +31,17 @@ else {
 }
 mysqli_close($link);
 echo $evals['Id'];
+
+$RecommendedCount;
+$RecommendedSum;
+
+foreach ($evals as $eval):
+	$RecomendedSum += $eval["Recommended"];
+	$RecommendedCount++;
+endforeach
+
+$RecommendedAvg = $ReccomendedSum / $RecommendedCount;
+
 ?>
 
 <!DOCTYPE html>
@@ -38,3 +49,6 @@ echo $evals['Id'];
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+<body>
+<?php echo $RecommendedAvg ?>
+</body>
