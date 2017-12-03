@@ -1,11 +1,16 @@
 <?php
+
 require_once '../includes/config.php';
+
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
 	if (empty(trim($_POST["username"]))) {
 		$username_err = "Please enter a username.";
 	} 
+
 	else {
 		$sql = "SELECT id FROM users WHERE username = ?";
 		if ($stmt = mysqli_prepare($link, $sql)) {
@@ -29,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 if (empty(trim($_POST['password']))) {
 	$password_err = "Please enter a password.";
-} 
+}
 else if (strlen(trim($_POST['password'])) < 6) {
 	$password_err = "Password must have atleast 6 characters.";
 } 
@@ -65,13 +70,10 @@ if (empty($username_err) && empty($password_err) && empty($confirm_password_err)
 			echo "Something went wrong. Please try again later.";
 		}
 	}
-
-	// Close statement
 	mysqli_stmt_close($stmt);
 }
-
-// Close connection
 mysqli_close($link);
+
 ?>
 
 <!DOCTYPE html>
@@ -80,8 +82,10 @@ mysqli_close($link);
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sign Up</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
-<link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+<style type="text/css">
+	body{ font: 14px sans-serif; }
+</style>
 </head>
 <body>
 	<div class="wrapper">
