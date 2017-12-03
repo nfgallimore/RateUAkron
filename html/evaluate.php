@@ -29,9 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 	if (empty($recommended_err) && empty($timespent_err) && empty($reason_err) && empty($grade_err) && empty($gpa_err))) {
 
-		$id = $_GET['id'];
+		$cid = $_GET['id'];
 
-		$sql = "INSERT INTO Evaluations (CourseID, UserID, Recommended, TimeSpent, Reason, Grade, GPA) VALUES (\'" . $cid . "\', " . $id . ", ?, ?, \'?\', \'?\', ?);";
+		$sql = "INSERT INTO Evaluations (CourseID, UserID, Recommended, TimeSpent, Reason, Grade, GPA) VALUES (\'" . $cid . "\', " . $_SESSION['userid'] . ", ?, ?, \'?\', \'?\', ?);";
 
 		echo $sql;
 		if ($stmt = mysqli_prepare($link, $sql)) {

@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$password = trim($_POST['password']);
 	}
 	if (empty($username_err) && empty($password_err)) {
-		$sql = "SELECT username, password FROM users WHERE username = ?";
+		$sql = "SELECT username, password, id FROM users WHERE username = ?";
 
 		if ($stmt = mysqli_prepare($link, $sql)) {
 			mysqli_stmt_bind_param($stmt, "s", $param_username);
@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						if (password_verify($password, $hashed_password)) {
 							session_start();
 							$_SESSION['username'] = $username;
+							$_SESSION['userid'] = $userid;
 							header("location: welcome.php");
 						}
 						else {
