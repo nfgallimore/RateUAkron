@@ -65,14 +65,14 @@ mysqli_close($link);
 			</tr>
 		</thead>
 		<tbody>
+			<?php foreach ($courses as $course): ?>
 			<tr>
-				<?php foreach ($courses as $course): ?>
 				<td><?= $course["Id"]?></td>
 				<td><?= $course["Title"]?></td>
 				<td><?= $course["Instructor"]?></td>
 				<td><?= $course["Description"]?></td>
-				<?php endforeach ?>
 			</tr>
+			<?php endforeach ?>
 		</tbody>
 	</table>
 </body>
