@@ -1,16 +1,11 @@
 <?php
-
 require_once '../includes/config.php';
-
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
 	if (empty(trim($_POST["username"]))) {
 		$username_err = "Please enter a username.";
 	} 
-
 	else {
 		$sql = "SELECT id FROM users WHERE username = ?";
 		if ($stmt = mysqli_prepare($link, $sql)) {
@@ -34,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 if (empty(trim($_POST['password']))) {
 	$password_err = "Please enter a password.";
-}
+} 
 else if (strlen(trim($_POST['password'])) < 6) {
 	$password_err = "Password must have atleast 6 characters.";
 } 
@@ -84,7 +79,8 @@ mysqli_close($link);
 <title>Sign Up</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
 <style type="text/css">
-	body{ font: 14px sans-serif; }
+body{ font: 14px sans-serif; }
+	.wrapper{ width: 350px; padding: 20px; }
 </style>
 </head>
 <body>
