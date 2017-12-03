@@ -8,8 +8,9 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 require_once '../includes/config.php';
 $cid = $_GET['id'];
 
-$sql = 'SELECT Id, CourseId, UserId, Recommended, TimeSpent, Reason, Grade, GPA, Created_At FROM Evaluations WHERE CourseId =' . $cid;
+$sql = 'SELECT Title, Instructor, Description, Id, CourseId, UserId, Recommended, TimeSpent, Reason, Grade, GPA, Created_At FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Id WHERE CourseId =' . $cid;
 $evals = [];
+$sql = 'SELECT Name FROM Courses WHERE CourseID =' . $cid;
 
 if ($result = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($result) > 0) {
@@ -17,7 +18,15 @@ if ($result = mysqli_query($link, $sql)) {
 		    $evals[] = [
 		        'Id' => $row['Id'],
 		        'CourseId' => $row['CourseId'],
-		        'Recommended' => $row['Recommended']
+		        'Recommended' => $row['Recommended'],
+		        'TimeSpent' => $row['TimeSpent'],
+		        'Reason' => $row['Reason'],
+		        'Grade' => $row['Grade'],
+		        'GPA' => $row['GPA'],
+		        'Created_At' => $row['CreatedAt'],
+		        'Title' => $row['Title'],
+		        'Instructor' => $row['Instructor'],
+		        'Description' => $row['Description']
 		    ];
 		}
 		mysqli_free_result($result);
@@ -31,19 +40,22 @@ else {
 }
 mysqli_close($link);
 
-$RecommendedSum = 0;
-foreach ($evals as $eval) {
-	$RecomendedSum += $eval["Recommended"];
-}
-$RecommendedAvg = $RecomendedSum / count($evals["Recommended"]);
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<title>Evaluations for <?= $evals['Title']
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
+
 </head>
 <body>
-<?= $RecommendedAvg ?>
+<
+<?= $array_sum($eval["Recommended"]) / count($eval["Recommended"]) ?>
 </body>
