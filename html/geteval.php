@@ -36,7 +36,7 @@ if ($result = mysqli_query($link, $sql)) {
 	}
 } 
 else {
-	echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+	echo "ERROR: Could not able to execute database query";
 }
 mysqli_close($link);
 
