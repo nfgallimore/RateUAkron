@@ -15,8 +15,8 @@ if ($result = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($result) > 0) {
 		while($row = mysqli_fetch_array($result)){
 		    $evals[] = [
-		        'Id' => $row['Id']
-		        'CourseId' => $row['CourseId']
+		        'Id' => $row['Id'],
+		        'CourseId' => $row['CourseId'],
 		        'Recommended' => $row['Recommended']
 		    ];
 		}
@@ -31,7 +31,7 @@ else {
 }
 mysqli_close($link);
 
-$RecommendedSum;
+$RecommendedSum = 0;
 foreach ($evals as $eval) {
 	$RecomendedSum += $eval["Recommended"];
 }
