@@ -8,7 +8,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 require_once '../includes/config.php';
 $cid = $_GET['id'];
 
-$sql = 'SELECT Title, Instructor, Description, Courses.Id, CourseId, UserId, Recommended, TimeSpent, Reason, Grade, GPA, Created_At FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Id WHERE CourseId =' . $cid;
+$sql = 'SELECT Title, Instructor, Description, Courses.Id, CourseId, UserId, Recommended, TimeSpent, Reason, Grade, GPA, Created_At FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE CourseId = ' . $cid;
 $evals = [];
 
 if ($result = mysqli_query($link, $sql)) {
@@ -46,7 +46,7 @@ mysqli_close($link);
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
-	<title>Evaluations for <?= $evals['Title']
+	<title>Evaluations for <?= $evals['Title'] ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -55,6 +55,5 @@ mysqli_close($link);
 
 </head>
 <body>
-<
 <?= $array_sum($eval["Recommended"]) / count($eval["Recommended"]) ?>
 </body>
