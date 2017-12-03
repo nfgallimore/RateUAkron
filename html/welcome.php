@@ -33,7 +33,8 @@ mysqli_close($link);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
         <title>Welcome</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
@@ -74,7 +75,14 @@ mysqli_close($link);
     <style type="text/css">
             body{ font: 14px sans-serif; text-align: center; padding:20px 20px; }
 
-        .results tr[visible='false'],
+@media only screen and (max-width: 480px) {
+    /* horizontal scrollbar for tables if mobile screen */
+        .tablemobile {
+	        overflow-x: auto;
+		        display: block;
+			    }
+			    }
+.results tr[visible='false'],
 
         .no-result{
 	          display:none;
@@ -92,7 +100,7 @@ mysqli_close($link);
 					</head>
 					<body>
 					    <div class="page-header">
-					            <h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br>Welcome to the University of Akron Course Catalog.</h1>
+					            <center><h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br>Welcome to the University of Akron Course Catalog.</h1></center>
 						            <p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 							            <div class="form-group pull-right">
 								                <input type="text" class="search form-control" placeholder="What you looking for?">
