@@ -8,9 +8,8 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 require_once '../includes/config.php';
 $cid = $_GET['id'];
 
-$sql = 'SELECT Title, Instructor, Description, Id, CourseId, UserId, Recommended, TimeSpent, Reason, Grade, GPA, Created_At FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Id WHERE CourseId =' . $cid;
+$sql = 'SELECT Title, Instructor, Description, Courses.Id, CourseId, UserId, Recommended, TimeSpent, Reason, Grade, GPA, Created_At FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Id WHERE CourseId =' . $cid;
 $evals = [];
-$sql = 'SELECT Name FROM Courses WHERE CourseID =' . $cid;
 
 if ($result = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($result) > 0) {
