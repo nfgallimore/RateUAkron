@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		$cid = $_GET['id'];
 
-		$sql = "INSERT INTO Evaluations (CourseID, UserID, Recommended, TimeSpent, Reason, Grade, GPA) VALUES (\'" . $cid . "\', " . $_SESSION['userid'] . ", ?, ?, \'?\', \'?\', ?);";
+		$sql = 'INSERT INTO Evaluations (CourseID, UserID, Recommended, TimeSpent, Reason, Grade, GPA) VALUES (\'' . $cid . '\', ' . $_SESSION['userid'] . ', ?, ?, \'?\', \'?\', ?);';
 
 		echo $sql;
 		// if ($stmt = mysqli_prepare($link, $sql)) {
