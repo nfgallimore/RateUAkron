@@ -30,17 +30,12 @@ else {
 	echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 }
 mysqli_close($link);
-echo $evals['Id'];
 
-$RecommendedCount;
 $RecommendedSum;
-
-foreach ($evals as $eval):
+foreach ($evals as $eval) {
 	$RecomendedSum += $eval["Recommended"];
-	$RecommendedCount++;
-endforeach
-
-$RecommendedAvg = $ReccomendedSum / $RecommendedCount;
+}
+$RecommendedAvg = $RecomendedSum / count($evals["Recommended"]);
 
 ?>
 
@@ -50,5 +45,5 @@ $RecommendedAvg = $ReccomendedSum / $RecommendedCount;
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<?php echo $RecommendedAvg ?>
+<?= $RecommendedAvg ?>
 </body>
