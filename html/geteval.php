@@ -39,6 +39,17 @@ else {
 }
 mysqli_close($link);
 
+$RecommendedSum = 0;
+$RecommendedCount = 0;
+$title = "";
+
+foreach ($evals as $eval) {
+    $RecommendedSum += $eval["Recommended"];
+    $RecommendedCount++;
+    $title = $eval["Title"];
+}
+$RecommendedAvg = $RecommendedSum / $RecommendedCount;
+
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +57,7 @@ mysqli_close($link);
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
-	<title>Evaluations for <?= $evals['Title'] ?>
+	<title>Evaluations for <?php echo $title ?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -55,5 +66,12 @@ mysqli_close($link);
 
 </head>
 <body>
-<?= $array_sum($eval["Recommended"]) / count($eval["Recommended"]) ?>
+    <content>
+        <div class="page-header">
+            <?php echo $title ?>
+        </div>
+        <p>
+            <?php echo $RecommendedAvg ?>
+        </p>
+    </content>
 </body>
