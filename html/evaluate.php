@@ -41,12 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		if ($stmt = mysqli_prepare($link, $sql)) {
 			mysqli_stmt_bind_param($stmt, "iiddssd", $courseid, $userid, $recommended, $timespent, $reason, $grade, $gpa);
-			if (mysqli_stmt_execute($stmt)) {
-				echo "Success!";
-			}
-			else {
-				echo "Something went wrong. Please try again later.";
-            }
+			mysqli_stmt_execute($stmt);
 			mysqli_stmt_close($stmt);
 		}
 	}
