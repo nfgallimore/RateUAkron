@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	</style>
 </head>
 <body>
-	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+	<form action="<?php echo "evaluate.php/q?id=" . $courseid; ?>" method="post">
 	<div class="form-group <?php echo (!empty($recommended_err)) ? 'has-error' : ''; ?>">
 		<label>Recommended:<sup>*</sup></label>
 		<input type="text" name="recommended" class="form-control bfh-number" data-min="1" data-max="10" value="<?php echo $recommended; ?>">
