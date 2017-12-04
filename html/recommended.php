@@ -17,9 +17,6 @@ if ($result = mysqli_query($link, $sql)) {
 		while($row = mysqli_fetch_array($result)){
 		    $evals[] = [
 		        'CourseId' => $row['CourseId'],
-		        'Recommended' => $row['Recommended'],
-		        'Title' => $row['Title'],
-				'UserId' => $row['UserId']
 		    ];
 		}
 		mysqli_free_result($result);
