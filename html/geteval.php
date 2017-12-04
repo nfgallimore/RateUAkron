@@ -37,9 +37,7 @@ if ($result = mysqli_query($link, $sql)) {
 
 //-------------------------------------------------------------------
 $usrn = $_SESSION['username'];
-echo "sessuser:$usrn";
 $sqe = "SELECT id from users WHERE username like '$usrn'";
-echo $sqe;
 $evee = [];
 
 if($result = mysqli_query($link, $sqe)) {
@@ -61,10 +59,8 @@ else {
 
 mysqli_close($link);
 foreach ($evee as $eve) {
-	echo $eve['ids'];
 	$check = $eve['ids'];
 }
-echo $check;
 //-------------------------------------------------------------------
 $RecommendedSum = 0;
 $RecommendedCount = 0;
