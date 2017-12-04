@@ -47,23 +47,25 @@ mysqli_close($link);
 		<div class="nav-bar">
 			<a href="../welcome.php" class="btn btn-info">Home</a>
 			<a href="../recommended.php" class="btn btn-info">Recommended Courses</a>
-		</div>
-		<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
-			<thead>
-				<tr>
-					<th data-field="cid" data-sortable="true" class="col-md-2 col-xs-2"> Instructor </th>
-				</tr>
-				<tr class="warning no-result">
-					<td colspan="4"><i class="fa fa-warning"></i> No result</td>
-				</tr>
-			</thead>
-			<tbody>
-				<?php foreach ($evals as $eval): ?>
+		</div><br><br>
+		<div class="wrapper">
+			<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
+				<thead>
 					<tr>
-						<td><?= $eval["Instructor"]?></td>
+						<th data-field="cid" data-sortable="true" class="col-md-2 col-xs-2"> Instructor </th>
 					</tr>
-				<?php endforeach ?>
-			</tbody>
-		</table>
+					<tr class="warning no-result">
+						<td colspan="4"><i class="fa fa-warning"></i> No result</td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($evals as $eval): ?>
+						<tr>
+							<td><?= $eval["Instructor"]?></td>
+						</tr>
+					<?php endforeach ?>
+				</tbody>
+			</table>
+		</div>
     </content>
 </body>
