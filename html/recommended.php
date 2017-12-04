@@ -8,7 +8,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
 require_once '../includes/config.php';
 
-$sql = 'SELECT * FROM Evaluations WHERE Recommended >= 3 AND UserID IN (SELECT UserID FROM Evaluations WHERE Recommended >= 3) AND CourseID IN (SELECT CourseId FROM Evaluations WHERE Recommended >= 3 AND UserID = ' . $_SESSION["userid"] . ';';
+$sql = 'SELECT * FROM Evaluations WHERE Recommended >= 3 AND UserID IN (SELECT UserID FROM Evaluations WHERE Recommended >= 3) AND CourseID IN (SELECT CourseId FROM Evaluations WHERE Recommended >= 3 AND UserID = ' . $_SESSION["userid"] . ');';
 
 $evals = [];
 
