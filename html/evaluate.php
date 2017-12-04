@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<meta charset="UTF-8">
 	<title>Evaluate Course></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <style type="text/css">
 		body{ font: 14px sans-serif; }
@@ -75,9 +75,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<p>Please enter your responses below.</p>
 		</div>
 		<div class="nav-bar">
-			<a href="../welcome.php" class="btn btn-info">Home</a>
-			<a href="../recommended.php" class="btn btn-info">Recommended Courses</a>
-			<a href="../recommendedprofs.php" class="btn btn-info">Recommended Professors</a>
+			<a href="../welcome.php" class="thin btn btn-info">Home</a>
+			<a href="../recommended.php" class="thin btn btn-info">Recommended Courses</a>
+			<a href="../recommendedprofs.php" class="thin btn btn-info">Recommended Professors</a>
 		</div>
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?id=" . $courseid; ?>" method="post">
 			<div class="form-group <?php echo (!empty($recommended_err)) ? 'has-error' : ''; ?>">
