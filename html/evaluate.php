@@ -29,25 +29,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$gpa_err = "Please enter your GPA.";
 	}
 	if (empty($recommended_err) && empty($timespent_err) && empty($reason_err) && empty($grade_err) && empty($gpa_err)) {
-		$cid = $_GET['id'];
-		$sql = 'INSERT INTO Evaluations (CourseID, UserID, Recommended, TimeSpent, Reason, Grade, GPA) VALUES (' . $cid . ', ' . $_SESSION['userid'] . ', ?, ?, ?, ?, ?)';
-
+		$sql = 'INSERT INTO Evaluations (CourseID, UserID, Recommended, TimeSpent, Reason, Grade, GPA) VALUES (?, ?, ?, ?, ?, ?, ?)';
+		$courseid = $_GET['id'];
+		$userid = $_SESSION["userid"];
 		$recommended = trim($_POST['recommended'])
 		$timespent = trim($_POST['timespent']);
 		$reason = trim($_POST['reason']);
 		$grade = trim($_POST['grade']);
 		$gpa = trim($_POST['gpa']);
 
-		$param_recommended = $recommended;
-		$param_timespent = $timespent;
-		$param_reason = $reason;
-		$param_grade = $grade;
-		$param_gpa = $gpa;
-
 		if ($stmt = mysqli_prepare($link, $sql)) {
-			mysqli_stmt_bind_param($stmt, "sssss", $param_recommended, $param_timespent, $param_reason, $param_grade, $param_gpa);
+			mysqli_stmt_bind_param($stmt, "sssssss", $courseid, $userid, $recommended, $timespent, $reason, $grade, $gpa);
 
-			if !(mysqli_stmt_execute($stmt)) {
+			if (mysqli_stmt_execute($stmt)) {
+				echo $sql;
+			}
+			else {
 				echo "Something went wrong. Please try again later.";
 			}
 			mysqli_stmt_close($stmt);
