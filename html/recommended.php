@@ -8,7 +8,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
 require_once '../includes/config.php';
 
-$sql = 'SELECT DISTINCT CourseID FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE Recommended >= 3 AND UserID IN (SELECT UserID FROM Evaluations WHERE Recommended >= 3) AND CourseID IN (SELECT CourseId FROM Evaluations WHERE Recommended >= 3 AND UserID = ' . $_SESSION["userid"] . ');';
+$sql = 'SELECT DISTINCT CourseID, Title FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE Recommended >= 3 AND UserID IN (SELECT UserID FROM Evaluations WHERE Recommended >= 3) AND CourseID IN (SELECT CourseId FROM Evaluations WHERE Recommended >= 3 AND UserID = ' . $_SESSION["userid"] . ');';
 
 $evals = [];
 
@@ -17,6 +17,7 @@ if ($result = mysqli_query($link, $sql)) {
 		while($row = mysqli_fetch_array($result)){
 		    $evals[] = [
 		        'CourseID' => $row['CourseID'],
+		        'Title' => $row['Title']
 		    ];
 		}
 		mysqli_free_result($result);
@@ -47,15 +48,14 @@ mysqli_close($link);
 <body>
     <content>
 		<div class="page-header">
-		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br><?php echo $title ?> Evaluations.</h1>	
-		<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
+			<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br><?php echo $title ?> Welcome to your recommended courses.</h1>	
+			<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 		</div>
 		<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 			<thead>
 				<tr>
 					<th data-field="name" data-sortable="true" class="col-md-2 col-xs-2"> Course ID </th>
 					<th data-field="name" data-sortable="true" class="col-md-2 col-xs-2"> Course Name </th>
-
 				</tr>
 				<tr class="warning no-result">
 					<td colspan="4"><i class="fa fa-warning"></i> No result</td>
