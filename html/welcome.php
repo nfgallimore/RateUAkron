@@ -55,7 +55,7 @@ mysqli_close($link);
 		<a href="recommendedprofs.php" class="btn btn-info">Recommended Professors</a>
 	</div>
 	<div class="form-group pull-right">
-			<input type="text" class="search form-control" placeholder="What you looking for?">
+		<input type="text" class="search form-control" placeholder="What you looking for?">
 	</div>
 	<span class="counter pull-right"></span>
 	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">

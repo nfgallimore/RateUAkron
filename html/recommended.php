@@ -53,7 +53,6 @@ mysqli_close($link);
 		</div>
 		<div class="nav-bar">
 			<a href="../welcome.php" class="btn btn-info">Home</a>
-			<a href="../recommended.php" class="btn btn-info">Recommended Courses</a>
 			<a href="../recommendedprofs.php" class="btn btn-info">Recommended Professors</a>
 		</div>
 		<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
