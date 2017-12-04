@@ -64,8 +64,8 @@ mysqli_close($link);
 			<tbody>
 				<?php foreach ($evals as $eval): ?>
 					<tr>
-						<td><?= $eval["CourseID"]?></td>
-						<td><?= $eval["Title"]?></td>
+						<td><a href="geteval.php/q?id=" <?= $eval["CourseID"]?>><?= $eval["CourseID"]?></a></td>
+						<td><a href="geteval.php/q?id=" <?= $eval["CourseID"]?>><?= $eval["Title"]?></a></td>
 					</tr>
 				<?php endforeach ?>
 			</tbody>
