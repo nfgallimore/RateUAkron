@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <style type="text/css">
 		body{ font: 14px sans-serif; }
-		.wrapper{ width: 350px; padding: 20px; }
+		.wrapper{ width: 350px; padding: 20px; text-align: left;}
 	</style>
 </head>
 <body>
