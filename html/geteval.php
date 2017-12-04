@@ -131,7 +131,7 @@ $RecommendedAvg = $RecommendedSum / $RecommendedCount;
 				<td><?= $eval["GPA"]?></td>	
 				<?php if($eval["Userid"] == $check) : ?>
 					<td>
-						<a href="deleval.php/q?id=<?php echo $eval['Eds']?>" class="btn btn-danger">X</a>
+						<a href="../deleval.php/q?id=<?php echo $eval['Eds']?>" class="btn btn-danger">X</a>
 					</td>
 				<?php endif; ?>
 			</tr>
