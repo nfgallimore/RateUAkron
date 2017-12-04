@@ -75,9 +75,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<p>Please enter your responses below.</p>
 		</div>
 		<div class="nav-bar">
-			<a href="welcome.php" class="btn btn-info">Home</a>
-			<a href="recommended.php" class="btn btn-info">Recommended Courses</a>
-			<a href="recommendedprofs.php" class="btn btn-info">Recommended Professors</a>
+			<a href="../welcome.php" class="btn btn-info">Home</a>
+			<a href="../recommended.php" class="btn btn-info">Recommended Courses</a>
+			<a href="../recommendedprofs.php" class="btn btn-info">Recommended Professors</a>
 		</div>
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?id=" . $courseid; ?>" method="post">
 			<div class="form-group <?php echo (!empty($recommended_err)) ? 'has-error' : ''; ?>">
