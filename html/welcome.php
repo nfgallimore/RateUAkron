@@ -26,6 +26,8 @@ else {
 	echo "ERROR: Could not able to execute $sql. ";
 }
 
+$sql = "DROP TABLE coursestwo";
+
 mysqli_close($link);
 ?>
 
