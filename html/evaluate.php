@@ -68,6 +68,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	</style>
 </head>
 <body>
+	<div class="page-header">
+		<h1>Course Evaluation</h1>
+		<p>Please enter your responses below.</p>
+	</div>
 	<div class="wrapper">
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?id=" . $courseid; ?>" method="post">
 			<div class="form-group <?php echo (!empty($recommended_err)) ? 'has-error' : ''; ?>">
