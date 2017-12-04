@@ -8,7 +8,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
 require_once '../includes/config.php';
 
-$sql = 'SELECT * FROM Evaluations WHERE Recommended >= 3 AND UserID IN (SELECT UserID FROM Evaluations WHERE Recommended >= 3) AND CourseID IN (SELECT CourseId FROM Evaluations WHERE Recommended >= 3 AND UserID = ' . $_SESSION["userid"] . ');';
+$sql = 'SELECT DISTINCT CourseID FROM Evaluations WHERE Recommended >= 3 AND UserID IN (SELECT UserID FROM Evaluations WHERE Recommended >= 3) AND CourseID IN (SELECT CourseId FROM Evaluations WHERE Recommended >= 3 AND UserID = ' . $_SESSION["userid"] . ');';
 
 $evals = [];
 
@@ -16,7 +16,7 @@ if ($result = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($result) > 0) {
 		while($row = mysqli_fetch_array($result)){
 		    $evals[] = [
-		        'CourseId' => $row['CourseId'],
+		        'CourseID' => $row['CourseID'],
 		    ];
 		}
 		mysqli_free_result($result);
@@ -50,11 +50,6 @@ mysqli_close($link);
 		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br><?php echo $title ?> Evaluations.</h1>	
 		<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 		</div>
-
-        <p>
-            <?php echo $RecommendedAvg ?>
-        </p>
-		
 		<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 			<thead>
 				<tr>
@@ -67,7 +62,7 @@ mysqli_close($link);
 			<tbody>
 				<?php foreach ($evals as $eval): ?>
 				<tr>
-					<td><?= $eval["CourseId"]?></td>
+					<td><?= $eval["CourseID"]?></td>
 				</tr>
 				<?php endforeach ?>
 			</tbody>
