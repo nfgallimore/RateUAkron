@@ -54,8 +54,8 @@ mysqli_close($link);
 		<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 			<thead>
 				<tr>
-					<th data-field="name" data-sortable="true" class="col-md-2 col-xs-2"> Course ID </th>
-					<th data-field="name" data-sortable="true" class="col-md-2 col-xs-2"> Course Name </th>
+					<th data-field="cid" data-sortable="true" class="col-md-2 col-xs-2"> Course ID </th>
+					<th data-field="title" data-sortable="true" class="col-md-2 col-xs-2"> Course Name </th>
 				</tr>
 				<tr class="warning no-result">
 					<td colspan="4"><i class="fa fa-warning"></i> No result</td>
