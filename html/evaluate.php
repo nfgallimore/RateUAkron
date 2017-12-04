@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<center>
 				<a href="../welcome.php" class="btn btn-info">Home</a>
 			</center>
-		</div><br>
+		</div>
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?id=" . $courseid; ?>" method="post">
 			<div class="form-group <?php echo (!empty($recommended_err)) ? 'has-error' : ''; ?>">
 				<label>Recommended:<sup>*</sup></label>
