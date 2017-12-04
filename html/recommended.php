@@ -16,7 +16,7 @@ if ($result = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($result) > 0) {
 		while($row = mysqli_fetch_array($result)){
 		    $evals[] = [
-		        'CourseID' => $row['CourseID'],
+		        'CourseID' => $row['C'],
 		        'Title' => $row['Title']
 		    ];
 		}
@@ -64,7 +64,8 @@ mysqli_close($link);
 			<tbody>
 				<?php foreach ($evals as $eval): ?>
 					<tr>
-						<td>$eval["CourseID"]</td>
+						<td><?$eval["CourseID"]?></td>
+						<td><?$eval["Title"]?></td>
 					</tr>
 				<?php endforeach ?>
 			</tbody>
