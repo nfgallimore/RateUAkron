@@ -51,6 +51,11 @@ mysqli_close($link);
 			<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br><?php echo $title ?> Welcome to your recommended courses.</h1>	
 			<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 		</div>
+		<div class="nav-bar">
+			<a href="welcome.php" class="btn btn-info">Home</a>
+			<a href="recommended.php" class="btn btn-info">Recommended Courses</a>
+			<a href="recommendedprofs.php" class="btn btn-info">Recommended Professors</a>
+		</div>
 		<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 			<thead>
 				<tr>

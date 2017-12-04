@@ -73,11 +73,11 @@ $RecommendedAvg = $RecommendedSum / $RecommendedCount;
 		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br><?php echo $title ?> Evaluations.</h1>	
 		<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 		</div>
-
-        <p>
-            <?php echo $RecommendedAvg ?>
-        </p>
-		
+		<div class="nav-bar">
+			<a href="welcome.php" class="btn btn-info">Home</a>
+			<a href="recommended.php" class="btn btn-info">Recommended Courses</a>
+			<a href="recommendedprofs.php" class="btn btn-info">Recommended Professors</a>
+		</div>
 		<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 			<thead>
 				<tr>

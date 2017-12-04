@@ -50,7 +50,11 @@ mysqli_close($link);
 		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br>Welcome to the University of Akron Course Catalog.</h1>	
 		<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 	</div>
-	<a href="recommended.php" class="btn btn-info">Recommended Courses</a>
+	<div class="nav-bar">
+		<a href="welcome.php" class="btn btn-info">Home</a>
+		<a href="recommended.php" class="btn btn-info">Recommended Courses</a>
+		<a href="recommendedprofs.php" class="btn btn-info">Recommended Professors</a>
+	</div>
 	<div class="form-group pull-right">
 			<input type="text" class="search form-control" placeholder="What you looking for?">
 	</div>
@@ -77,8 +81,8 @@ mysqli_close($link);
 				<td><?= $course["Title"]?></td>
 				<td><?= $course["Instructor"]?></td>
 				<td><?= $course["Description"]?></td>
-				<td><a href="evaluate.php/q?id=<?php Echo $course['Cid']?>" class="btn btn-success">Evaluate</a>
-				<td><a href="geteval.php/q?id=<?php Echo $course['Cid']?>" class="btn btn-info">View Evaluations</a>
+				<td><a href="evaluate.php/q?id=<?php echo $course['Cid']?>" class="btn btn-success">Evaluate</a>
+				<td><a href="geteval.php/q?id=<?php echo $course['Cid']?>" class="btn btn-info">View Evaluations</a>
 			</tr>
 			<?php endforeach ?>
 		</tbody>
