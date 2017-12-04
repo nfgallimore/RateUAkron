@@ -5,6 +5,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
   header("location: login.php");
     exit;
 }
+$courseid = $_GET['id'];
 
 require_once '../includes/config.php';
 
@@ -30,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 	if (empty($recommended_err) && empty($timespent_err) && empty($reason_err) && empty($grade_err) && empty($gpa_err)) {
 		$sql = 'INSERT INTO Evaluations (CourseID, UserID, Recommended, TimeSpent, Reason, Grade, GPA) VALUES (?, ?, ?, ?, ?, ?, ?);';
-		$courseid = $_GET['id'];
 		$userid = $_SESSION["userid"];
 		$recommended = trim($_POST['recommended']);
 		$timespent = trim($_POST['timespent']);
