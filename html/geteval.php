@@ -9,7 +9,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 require_once '../includes/config.php';
 $cid = $_GET['id'];
 
-$sql = 'SELECT Title, Instructor, Description, Courses.Id, CourseId, UserId, Recommended, TimeSpent, Reason, Grade, GPA, Created_At FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE CourseId = ' . $cid;
+$sql = 'SELECT Title, Instructor, Description, Courses.Id, CourseId, UserId, Recommended, TimeSpent, Reason, Grade, GPA, Created_At, Evaluations.Id as Eid FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE CourseId = ' . $cid;
 $evals = [];
 
 if ($result = mysqli_query($link, $sql)) {
@@ -27,14 +27,44 @@ if ($result = mysqli_query($link, $sql)) {
 		        'Title' => $row['Title'],
 		        'Instructor' => $row['Instructor'],
 		        'Description' => $row['Description'],
-				'Userid' => $row['UserId']
+				'Userid' => $row['UserId'],
+				'Eds' => $row['Eid']
 		    ];
 		}
 		mysqli_free_result($result);
 	}
 }
-mysqli_close($link);
 
+//-------------------------------------------------------------------
+$usrn = $_SESSION['username'];
+echo "sessuser:$usrn";
+$sqe = "SELECT id from users WHERE username like '$usrn'";
+echo $sqe;
+$evee = [];
+
+if($result = mysqli_query($link, $sqe)) {
+    if(mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_array($result)) {
+            $evee[] = [
+				'ids' => $row['id']
+            ];
+        }
+	    mysqli_free_result($result);
+    } 
+    else {
+		echo "No records matching your query were found.";
+    }
+} 
+else {
+	echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+}
+mysqli_close($link);
+foreach ($evee as $eve) {
+	echo $eve['ids'];
+	$check = $eve['ids'];
+}
+echo $check;
+//-------------------------------------------------------------------
 $RecommendedSum = 0;
 $RecommendedCount = 0;
 $title = "";
@@ -73,12 +103,16 @@ $RecommendedAvg = $RecommendedSum / $RecommendedCount;
 	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 		<thead>
 			<tr>
+				<th data-field="EID" data-sortable="true" class="col-md-2 col-xs-2"> EID </th>
 				<th data-field="id" data-sortable="true" class="col-md-2 col-xs-2"> Reviewer </th>
 				<th data-field="name" data-sortable="true" class="col-md-2 col-xs-2"> Course ID </th>
 				<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2"> Recommend </th>
 				<th data-field="description" data-sortable="true" class="col-md-2 col-xs-2"> Time Spent </th>
 				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Grade </th>
 				<th data-field="viewevals" data-sortable="true" class ="col-md-2 col-xs-2"> GPA </th>
+				<th data-field="DEL" data-sortable="true" class ="col-md-2 col-xs-2"> DELETE </th>
+
+
 			</tr>
 			<tr class="warning no-result">
 				<td colspan="4"><i class="fa fa-warning"></i> No result</td>
@@ -87,12 +121,18 @@ $RecommendedAvg = $RecommendedSum / $RecommendedCount;
 		<tbody>
 			<?php foreach ($evals as $eval): ?>
 			<tr>
+				<td><?= $eval["Eds"]?></td>
 				<td><?= $eval["Userid"]?></td>
 				<td><?= $eval["CourseId"]?></td>
 				<td><?= $eval["Recommended"]?></td>
 				<td><?= $eval["TimeSpent"]?></td>
 				<td><?= $eval["Grade"]?></td>
 				<td><?= $eval["GPA"]?></td>	
+				<?php if($eval["Userid"] == $check) : ?>
+					<form action="<?php echo htmlspecialchars($_SERVER["../deleval.php"]); ?>" method="post">
+					<td><a href="deleval.php/q?id=<?php echo $eval['Eds']?>" class="btn btn-danger">X</a></td>
+					</form>
+				<?php endif; ?>
 			</tr>
 			<?php endforeach ?>
 		</tbody>
