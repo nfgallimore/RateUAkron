@@ -8,7 +8,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
 require_once '../includes/config.php';
 
-$sql = 'SELECT DISTINCT CourseID, Title, Cid FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE Recommended >= 3 AND UserID IN (SELECT UserID FROM Evaluations WHERE Recommended >= 3) AND CourseID IN (SELECT CourseId FROM Evaluations WHERE Recommended >= 3 AND UserID = ' . $_SESSION["userid"] . ');';
+$sql = 'SELECT DISTINCT CourseID, Title FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE Recommended >= 3 AND UserID IN (SELECT UserID FROM Evaluations WHERE Recommended >= 3) AND CourseID IN (SELECT CourseId FROM Evaluations WHERE Recommended >= 3 AND UserID = ' . $_SESSION["userid"] . ');';
 
 $evals = [];
 
@@ -16,7 +16,7 @@ if ($result = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($result) > 0) {
 		while($row = mysqli_fetch_array($result)){
 		    $evals[] = [
-		        'CourseID' => $row['Cid'],
+		        'CourseID' => $row['CourseID'],
 		        'Title' => $row['Title']
 		    ];
 		}
@@ -64,8 +64,7 @@ mysqli_close($link);
 			<tbody>
 				<?php foreach ($evals as $eval): ?>
 					<tr>
-						<td><a href="../geteval/q?id="<?= echo $eval["Cid"]; ?>><?= $eval["CourseID"]?></a></td>
-						<td><a href="../geteval/q?id="<?= echo $eval["Cid"]; ?>><?= $eval["Title"]?></a></td>
+						<td>$eval["CourseID"]</td>
 					</tr>
 				<?php endforeach ?>
 			</tbody>
