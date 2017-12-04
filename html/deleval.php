@@ -7,8 +7,13 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 }
 
 require_once '../includes/config.php';
-$did = $_GET['id'];
+$id = $_GET['id'];
+$sql = "DELETE FROM Evaluations WHERE Id = " . $id . ";";
 
-echo $did;
+mysqli_query($link, $sql);
+
+mysqli_close($link);
+header("location: welcome.php");
+exit;
 
 ?>
