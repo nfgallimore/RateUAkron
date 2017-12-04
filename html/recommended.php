@@ -8,7 +8,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
 require_once '../includes/config.php';
 
-$sql = 'SELECT DISTINCT CourseID FROM Evaluations WHERE Recommended >= 3 AND UserID IN (SELECT UserID FROM Evaluations WHERE Recommended >= 3) AND CourseID IN (SELECT CourseId FROM Evaluations WHERE Recommended >= 3 AND UserID = ' . $_SESSION["userid"] . ');';
+$sql = 'SELECT DISTINCT CourseID FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE Recommended >= 3 AND UserID IN (SELECT UserID FROM Evaluations WHERE Recommended >= 3) AND CourseID IN (SELECT CourseId FROM Evaluations WHERE Recommended >= 3 AND UserID = ' . $_SESSION["userid"] . ');';
 
 $evals = [];
 
@@ -54,6 +54,8 @@ mysqli_close($link);
 			<thead>
 				<tr>
 					<th data-field="name" data-sortable="true" class="col-md-2 col-xs-2"> Course ID </th>
+					<th data-field="name" data-sortable="true" class="col-md-2 col-xs-2"> Course Name </th>
+
 				</tr>
 				<tr class="warning no-result">
 					<td colspan="4"><i class="fa fa-warning"></i> No result</td>
@@ -63,6 +65,7 @@ mysqli_close($link);
 				<?php foreach ($evals as $eval): ?>
 				<tr>
 					<td><?= $eval["CourseID"]?></td>
+					<td><?= $eval["Title"]?></td>
 				</tr>
 				<?php endforeach ?>
 			</tbody>
