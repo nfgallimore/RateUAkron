@@ -51,8 +51,7 @@ mysqli_close($link);
 		<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 	</div>
 	<div class="form-group pull-right">
-		<tr><a href="recommended.php" class="btn btn-info">Recommended Courses</a>
-		<input type="text" class="search form-control" placeholder="What you looking for?"></tr>
+		<input type="text" class="search form-control" placeholder="What you looking for?">
 	</div>
 	<span class="counter pull-right"></span>
 	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
@@ -62,9 +61,8 @@ mysqli_close($link);
 				<th data-field="name" data-sortable="true" class="col-md-3 col-xs-3"> Name </th>
 				<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2"> Instructor </th>
 				<th data-field="description" data-sortable="true" class="col-md-5 col-xs-5"> Description </th>
-				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Evaluate Course </th>
-				<th data-field="viewevals" data-sortable="true" class ="col-md-2 col-xs-2"> View Evaluations </th>
-				
+				<th data-field="evaluations" data-sortable="true" class="col-md-5 col-xs-5"> Evaluate Course </th>
+				<th data-field="viewevals" data-sortable="true" class ="col-md-5 col-xs-5"> View Evaluations </th>
 			</tr>
 			<tr class="warning no-result">
 				<td colspan="4"><i class="fa fa-warning"></i> No result</td>

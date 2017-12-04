@@ -26,8 +26,7 @@ if ($result = mysqli_query($link, $sql)) {
 		        'Created_At' => $row['CreatedAt'],
 		        'Title' => $row['Title'],
 		        'Instructor' => $row['Instructor'],
-		        'Description' => $row['Description'],
-				'Userid' => $row['UserId']
+		        'Description' => $row['Description']
 		    ];
 		}
 		mysqli_free_result($result);
@@ -69,42 +68,11 @@ $RecommendedAvg = $RecommendedSum / $RecommendedCount;
 </head>
 <body>
     <content>
-		<div class="page-header">
-		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br><?php echo $title ?> Evaluations.</h1>	
-		<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
-		</div>
-
+        <div class="page-header">
+            <?php echo $title ?>
+        </div>
         <p>
             <?php echo $RecommendedAvg ?>
         </p>
-		
-		<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
-			<thead>
-				<tr>
-					<th data-field="id" data-sortable="true" class="col-md-2 col-xs-2"> Reviewer </th>
-					<th data-field="name" data-sortable="true" class="col-md-2 col-xs-2"> Course ID </th>
-					<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2"> Recommend </th>
-					<th data-field="description" data-sortable="true" class="col-md-2 col-xs-2"> Time Spent </th>
-					<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Grade </th>
-					<th data-field="viewevals" data-sortable="true" class ="col-md-2 col-xs-2"> GPA </th>
-				</tr>
-				<tr class="warning no-result">
-					<td colspan="4"><i class="fa fa-warning"></i> No result</td>
-				</tr>
-			</thead>
-			<tbody>
-				<?php foreach ($evals as $eval): ?>
-				<tr>
-					<td><?= $eval["Userid"]?></td>
-					<td><?= $eval["CourseId"]?></td>
-					<td><?= $eval["Recommended"]?></td>
-					<td><?= $eval["TimeSpent"]?></td>
-					<td><?= $eval["Grade"]?></td>
-					<td><?= $eval["GPA"]?></td>	
-				</tr>
-				<?php endforeach ?>
-			</tbody>
-		</table>
-	
     </content>
 </body>
