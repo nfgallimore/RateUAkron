@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$sql = 'INSERT INTO Evaluations (CourseID, UserID, Recommended, TimeSpent, Reason, Grade, GPA) VALUES (?, ?, ?, ?, ?, ?, ?)';
 		$courseid = $_GET['id'];
 		$userid = $_SESSION["userid"];
-		$recommended = trim($_POST['recommended'])
+		$recommended = trim($_POST['recommended']);
 		$timespent = trim($_POST['timespent']);
 		$reason = trim($_POST['reason']);
 		$grade = trim($_POST['grade']);
@@ -46,7 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			}
 			else {
 				echo "Something went wrong. Please try again later.";
-			}
+                echo $sql;
+            }
 			mysqli_stmt_close($stmt);
 		}
 	}

@@ -6,12 +6,13 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 	exit;
 }
 require_once '../includes/config.php';
-$sql = "SELECT Id, Title, Description, Instructor FROM Courses";
+$sql = "SELECT Cid, Id, Title, Description, Instructor FROM Courses";
 $courses = [];
 if($result = mysqli_query($link, $sql)) {
     if(mysqli_num_rows($result) > 0) {
         while($row = mysqli_fetch_array($result)) {
             $courses[] = [
+				'Cid' => $row['Cid'],
 	            'Id' => $row['Id'],
                 'Title' => $row['Title'],
                 'Description' => $row['Description'],
@@ -60,6 +61,8 @@ mysqli_close($link);
 				<th data-field="name" data-sortable="true" class="col-md-3 col-xs-3"> Name </th>
 				<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2"> Instructor </th>
 				<th data-field="description" data-sortable="true" class="col-md-5 col-xs-5"> Description </th>
+				<th data-field="evaluations" data-sortable="true" class="col-md-5 col-xs-5"> Evaluate Course </th>
+				<th data-field="viewevals" data-sortable="true" class ="col-md-5 col-xs-5"> View Evaluations </th>
 			</tr>
 			<tr class="warning no-result">
 				<td colspan="4"><i class="fa fa-warning"></i> No result</td>
@@ -72,6 +75,8 @@ mysqli_close($link);
 				<td><?= $course["Title"]?></td>
 				<td><?= $course["Instructor"]?></td>
 				<td><?= $course["Description"]?></td>
+				<td><a href="evaluate.php/q?id=<?php Echo $course['Cid']?>" class="btn btn-success">Evaluate</a>
+				<td><a href="geteval.php/q?id=<?php Echo $course['Cid']?>" class="btn btn-info">View Evaluations</a>
 			</tr>
 			<?php endforeach ?>
 		</tbody>
