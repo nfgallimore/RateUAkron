@@ -1,7 +1,7 @@
 <?php
 require_once '../includes/config.php';
 
-$username = $password = "";
+$username = $password = $userid = "";
 $username_err = $password_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if (mysqli_stmt_execute($stmt)) {
 				mysqli_stmt_store_result($stmt);
 				if (mysqli_stmt_num_rows($stmt) == 1) {
-					mysqli_stmt_bind_result($stmt, $username, $hashed_password);
+					mysqli_stmt_bind_result($stmt, $username, $hashed_password, $userid);
 					if (mysqli_stmt_fetch($stmt)) {
 						if (password_verify($password, $hashed_password)) {
 							session_start();
