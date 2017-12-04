@@ -14,3 +14,10 @@ mysqli_query($link, $sql);
 
 mysqli_close($link);
 ?>
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+	<img src="https://www.askideas.com/media/37/Funny-Laughing-Gif-Dr.-Evil-Image.gif">
+</body>
+</html>
