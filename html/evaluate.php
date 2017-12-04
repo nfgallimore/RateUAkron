@@ -32,20 +32,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$cid = $_GET['id'];
 		$sql = 'INSERT INTO Evaluations (CourseID, UserID, Recommended, TimeSpent, Reason, Grade, GPA) VALUES (' . $cid . ', ' . $_SESSION['userid'] . ', ?, ?, ?, ?, ?)';
 
+		$recommended = trim($_POST['recommended'])
+		$timespent = trim($_POST['timespent']);
+		$reason = trim($_POST['reason']);
+		$grade = trim($_POST['grade']);
+		$gpa = trim($_POST['gpa']);
+
+		$param_recommended = $recommended;
+		$param_timespent = $timespent;
+		$param_reason = $reason;
+		$param_grade = $grade;
+		$param_gpa = $gpa;
+
 		if ($stmt = mysqli_prepare($link, $sql)) {
 			mysqli_stmt_bind_param($stmt, "sssss", $param_recommended, $param_timespent, $param_reason, $param_grade, $param_gpa);
-
-			$recommended = trim($_POST['recommended'])
-			$timespent = trim($_POST['timespent']);
-			$reason = trim($_POST['reason']);
-			$grade = trim($_POST['grade']);
-			$gpa = trim($_POST['gpa']);
-
-			$param_recommended = $recommended;
-			$param_timespent = $timespent;
-			$param_reason = $reason;
-			$param_grade = $grade;
-			$param_gpa = $gpa;
 
 			if !(mysqli_stmt_execute($stmt)) {
 				echo "Something went wrong. Please try again later.";
