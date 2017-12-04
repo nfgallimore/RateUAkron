@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (empty($recommended_err) && empty($timespent_err) && empty($reason_err) && empty($grade_err) && empty($gpa_err)) {
 		$cid = $_GET['id'];
 		$sql = 'INSERT INTO Evaluations (CourseID, UserID, Recommended, TimeSpent, Reason, Grade, GPA) VALUES (' . $cid . ', ' . $_SESSION['userid'] . ', ?, ?, ?, ?, ?)';
-		/*
+
 		if ($stmt = mysqli_prepare($link, $sql)) {
 			mysqli_stmt_bind_param($stmt, "sssss", $param_recommended, $param_timespent, $param_reason, $param_grade, $param_gpa);
 
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if !(mysqli_stmt_execute($stmt)) {
 				echo "Something went wrong. Please try again later.";
 			}
-			mysqli_stmt_close($stmt); */
+			mysqli_stmt_close($stmt);
 		}
 	}
 	mysqli_close($link);
@@ -68,15 +68,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="css/styles.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
+    <style type="text/css">
+		body{ font: 14px sans-serif; }
+		.wrapper{ width: 350px; padding: 20px; }
+	</style>
 </head>
 <body>
 	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 	<div class="form-group <?php echo (!empty($recommended_err)) ? 'has-error' : ''; ?>">
 		<label>Recommended:<sup>*</sup></label>
-		<input type="text" class="form-control bfh-number" data-min="1" data-max="10">
+		<input type="text" name="recommended" class="form-control bfh-number" data-min="1" data-max="10">
+	</div>
+	<div class="form-group <?php echo (!empty($timespent_err)) ? 'has-error' : ''; ?>">
+		<label>Hours spent per week:<sup>*</sup></label>
+		<input type="text" name="timespent" class="form-control bfh-number" data-min="1" data-max="10">
+	</div>
+	<div class="form-group <?php echo (!empty($reason_err)) ? 'has-error' : ''; ?>">
+		<label>Reason for taking course:<sup>*</sup></label>
+		<input type="text" name="reason" class="form-control bfh-number" data-min="1" data-max="10">
+	</div>
+	<div class="form-group <?php echo (!empty($grade_err)) ? 'has-error' : ''; ?>">
+		<label>Grade received:<sup>*</sup></label>
+		<input type="text" name="grade" class="form-control bfh-number" data-min="1" data-max="10">
+	</div>
+	<div class="form-group <?php echo (!empty($gpa_err)) ? 'has-error' : ''; ?>">
+		<label>Current GPA:<sup>*</sup></label>
+		<input type="text" name="gpa" class="form-control bfh-number" data-min="1" data-max="10">
 	</div>
 	<div class="form-group">
 		<input type="submit" class="btn btn-primary" value="Submit">
 		<input type="reset" class="btn btn-default" value="Reset">
 	</div>
+	</form>
 </body>
