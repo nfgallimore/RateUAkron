@@ -58,6 +58,7 @@ if($result = mysqli_query($link, $sqe)) {
 else {
 	echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 }
+
 mysqli_close($link);
 foreach ($evee as $eve) {
 	echo $eve['ids'];
@@ -129,9 +130,9 @@ $RecommendedAvg = $RecommendedSum / $RecommendedCount;
 				<td><?= $eval["Grade"]?></td>
 				<td><?= $eval["GPA"]?></td>	
 				<?php if($eval["Userid"] == $check) : ?>
-					<form action="<?php echo htmlspecialchars($_SERVER["../deleval.php"]); ?>" method="post">
-					<td><a href="deleval.php/q?id=<?php echo $eval['Eds']?>" class="btn btn-danger">X</a></td>
-					</form>
+					<td>
+						<a href="deleval.php/q?id=<?php echo $eval['Eds']?>" class="btn btn-danger">X</a>
+					</td>
 				<?php endif; ?>
 			</tr>
 			<?php endforeach ?>
