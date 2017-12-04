@@ -48,7 +48,7 @@ mysqli_close($link);
 			<a href="../welcome.php" class="btn btn-info">Home</a>
 			<a href="../recommended.php" class="btn btn-info">Recommended Courses</a>
 		</div><br><br>
-		<div class="wrapper">
+		<div class="prof-table">
 			<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 				<thead>
 					<tr>
