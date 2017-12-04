@@ -40,13 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		if ($stmt = mysqli_prepare($link, $sql)) {
 			mysqli_stmt_bind_param($stmt, "iiddssd", $courseid, $userid, $recommended, $timespent, $reason, $grade, $gpa);
-
 			if (mysqli_stmt_execute($stmt)) {
-				echo $sql;
 			}
 			else {
 				echo "Something went wrong. Please try again later.";
-                echo $sql;
             }
 			mysqli_stmt_close($stmt);
 		}
@@ -72,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	</style>
 </head>
 <body>
-	<form action="<?php echo "evaluate.php/q?id=" . $courseid; ?>" method="post">
+	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?id=" . $courseid; ?>" method="post">
 	<div class="form-group <?php echo (!empty($recommended_err)) ? 'has-error' : ''; ?>">
 		<label>Recommended:<sup>*</sup></label>
 		<input type="text" name="recommended" class="form-control bfh-number" data-min="1" data-max="10" value="<?php echo $recommended; ?>">
