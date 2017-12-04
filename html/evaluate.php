@@ -10,6 +10,7 @@ require_once '../includes/config.php';
 
 $recommended = $timespent = $reason = $grade = $gpa = "";
 $recommended_err = $timespent_err = $reason_err = $grade_err = $gpa_err = "";
+$courseid = $_GET['id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -30,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 	if (empty($recommended_err) && empty($timespent_err) && empty($reason_err) && empty($grade_err) && empty($gpa_err)) {
 		$sql = 'INSERT INTO Evaluations (CourseID, UserID, Recommended, TimeSpent, Reason, Grade, GPA) VALUES (?, ?, ?, ?, ?, ?, ?);';
-		$courseid = $_GET['id'];
 		$userid = $_SESSION["userid"];
 		$recommended = trim($_POST['recommended']);
 		$timespent = trim($_POST['timespent']);
