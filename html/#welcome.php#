@@ -26,7 +26,7 @@ if($result = mysqli_query($link, $sql)) {
     }
 } 
 else {
-	echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+	echo "ERROR: Could not able to execute $sql. ";
 }
 
 mysqli_close($link);
@@ -50,9 +50,11 @@ mysqli_close($link);
 		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br>Welcome to the University of Akron Course Catalog.</h1>	
 		<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 	</div>
-	<a href="recommended.php" class="btn btn-info">Recommended Courses</a>
 	<div class="form-group pull-right">
+		<span
+			<a href="recommended.php" class="btn btn-info">Recommended Courses</a>
 			<input type="text" class="search form-control" placeholder="What you looking for?">
+		</span
 	</div>
 	<span class="counter pull-right"></span>
 	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
