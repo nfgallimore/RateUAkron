@@ -8,7 +8,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
 require_once '../includes/config.php';
 
-$sql = 'SELECT DISTINCT CourseID, Title FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE Recommended >= 3 AND UserID IN (SELECT UserID FROM Evaluations WHERE Recommended >= 3) AND CourseID IN (SELECT CourseId FROM Evaluations WHERE Recommended >= 3 AND UserID = ' . $_SESSION["userid"] . ');';
+$sql = 'SELECT DISTINCT CourseID, Title FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE Recommended >= 3 AND UserID IN (SELECT UserID FROM Evaluations WHERE Recommended >= 3) AND CourseID IN (SELECT CourseId FROM Evaluations WHERE Recommended >= 3 AND UserID = ' . $_SESSION["userid"] . ') AND Evaluations.UserID != ' . $_SESSION["userid"] . ';';
 
 $evals = [];
 
