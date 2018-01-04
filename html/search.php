@@ -14,8 +14,6 @@ $sql = 'SELECT Cid, Title, Instructor, Description FROM Courses WHERE INSTR(Desc
 
 $courses = [];
 
-echo $sql;
-
 if ($result = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($result) > 0) {
 		while($row = mysqli_fetch_array($result)){
