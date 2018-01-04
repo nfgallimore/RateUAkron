@@ -10,7 +10,7 @@ require_once '../includes/config.php';
 
 $keyword = $_GET['keyword'];
 
-$sql = 'SELECT Cid, Title, Instructor FROM Courses WHERE INSTR(Description, \''. $keyword . '\')';
+$sql = 'SELECT Cid, Title, Instructor, Description FROM Courses WHERE INSTR(Description, \''. $keyword . '\')';
 
 $courses = [];
 
@@ -20,7 +20,8 @@ if ($result = mysqli_query($link, $sql)) {
 		    $courses[] = [
 		        'Cid' => $row['Cid'],
 		        'Title' => $row['Title'],
-		        'Instructor' => $row['Instructor']
+		        'Instructor' => $row['Instructor'],
+		        'Description' => $row['Description']
 		    ];
 		}
 		mysqli_free_result($result);
@@ -58,6 +59,8 @@ mysqli_close($link);
 				<tr>
 					<th data-field="cid" data-sortable="true" class="col-md-2 col-xs-2">Course ID</th>
 					<th data-field="title" data-sortable="true" class="col-md-2 col-xs-2">Course Name</th>
+					<th data-field="description" data-sortable="true" class="col-md-2 col-xs-2">Instructor</th>
+					<th data-field="description" data-sortable="true" class="col-md-2 col-xs-2">Description</th>
 				</tr>
 				<tr class="warning no-result">
 					<td colspan="4"><i class="fa fa-warning"></i>No result</td>
@@ -66,8 +69,10 @@ mysqli_close($link);
 			<tbody>
 				<?php foreach ($courses as $course): ?>
 					<tr>
-						<td><a href="geteval.php/q?id=<?= $eval["CourseID"]?>"><?= $course["Cid"]?></a></td>
-						<td><a href="geteval.php/q?id= <?= $eval["CourseID"]?>"><?= $course["Title"]?></a></td>
+						<td><a href="../geteval.php/q?id=<?= $course["Cid"]?>"><?= $course["Cid"]?></a></td>
+						<td><a href="../geteval.php/q?id= <?= $course["Cid"]?>"><?= $course["Title"]?></a></td>
+						<td><?= $course["Instructor"]?>"></td>
+						<td><?= $course["Description"]?></td>
 					</tr>
 				<?php endforeach ?>
 			</tbody>
