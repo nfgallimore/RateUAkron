@@ -10,9 +10,11 @@ require_once '../includes/config.php';
 
 $keyword = $_GET['keyword'];
 
-$sql = 'SELECT Cid, Title, Instructor, Description FROM Courses WHERE INSTR(Description, \''. $keyword . '\')';
+$sql = 'SELECT Cid, Title, Instructor, Description FROM Courses WHERE INSTR(Description, \''. $keyword . '\') OR INSTR(Instructor, \''. $keyword . '\') OR INSTR(Title, \''. $keyword . '\') OR Cid = \'' . $keyword . '\'';
 
 $courses = [];
+
+echo $sql;
 
 if ($result = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($result) > 0) {
@@ -70,7 +72,7 @@ mysqli_close($link);
 				<?php foreach ($courses as $course): ?>
 					<tr>
 						<td><a href="../geteval.php/q?id=<?= $course["Cid"]?>"><?= $course["Cid"]?></a></td>
-						<td><a href="../geteval.php/q?id= <?= $course["Cid"]?>"><?= $course["Title"]?></a></td>
+						<td><a href="../geteval.php/q?id=<?= $course["Cid"]?>"><?= $course["Title"]?></a></td>
 						<td><?= $course["Instructor"]?></td>
 						<td><?= $course["Description"]?></td>
 					</tr>
