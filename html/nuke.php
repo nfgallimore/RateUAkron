@@ -11,8 +11,8 @@ require_once '../includes/config.php';
 $sql = "DROP TABLE coursestwo";
 
 mysqli_query($link, $sql);
-
 mysqli_close($link);
+
 ?>
 <!DOCTYPE html>
 <head>

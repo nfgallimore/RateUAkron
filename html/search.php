@@ -8,16 +8,20 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
 require_once '../includes/config.php';
 
-$sql = 'SELECT CourseID, Title FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE Evaluations.UserID = ' . $_SESSION["userid"] . ';';
+$cid = $_GET['id'];
+$keyword = $_GET['keyword'];
 
-$evals = [];
+$sql = 'SELECT Cid, Title, Instructor FROM Courses WHERE Cid = ' . $cid . ' OR CONTAINS(Description, '. $keyword . ')';
+
+$courses = [];
 
 if ($result = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($result) > 0) {
 		while($row = mysqli_fetch_array($result)){
 		    $evals[] = [
-		        'CourseID' => $row['CourseID'],
-		        'Title' => $row['Title']
+		        'Cid' => $row['Cid'],
+		        'Title' => $row['Title'],
+		        'Instructor' => $row['Instructor']
 		    ];
 		}
 		mysqli_free_result($result);
@@ -41,12 +45,13 @@ mysqli_close($link);
 </head>
 <body>
 	<div class="page-header">
-		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br><?php echo $title ?> Welcome to your recommended courses.</h1>	
+		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br><?php echo $title ?> Here are your search results</h1>	
 		<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 	</div>
 	<div class="nav-bar">
 		<a href="../welcome.php" class="btn btn-info">Home</a>
 		<a href="../recommendedprofs.php" class="btn btn-info">Recommended Professors</a>
+		<a href="../recommended.php" class="btn btn-info">Recommended Courses</a>
 	</div><br><br>
 	<div class="container">
 		<table class="course-table" data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
@@ -60,10 +65,10 @@ mysqli_close($link);
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($evals as $eval): ?>
+				<?php foreach ($courses as $course): ?>
 					<tr>
-						<td><a href="geteval.php/q?id=<?= $eval["CourseID"]?>"><?= $eval["CourseID"]?></a></td>
-						<td><a href="geteval.php/q?id= <?= $eval["CourseID"]?>"><?= $eval["Title"]?></a></td>
+						<td><a href="geteval.php/q?id=<?= $eval["CourseID"]?>"><?= $course["Cid"]?></a></td>
+						<td><a href="geteval.php/q?id= <?= $eval["CourseID"]?>"><?= $course["Title"]?></a></td>
 					</tr>
 				<?php endforeach ?>
 			</tbody>
