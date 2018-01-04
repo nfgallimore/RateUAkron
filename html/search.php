@@ -8,17 +8,16 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
 require_once '../includes/config.php';
 
-$cid = $_GET['id'];
 $keyword = $_GET['keyword'];
 
-$sql = 'SELECT Cid, Title, Instructor FROM Courses WHERE INSTR(Description, '\'. $keyword . '\')';
+$sql = 'SELECT Cid, Title, Instructor FROM Courses WHERE INSTR(Description, \''. $keyword . '\')';
 
 $courses = [];
 
 if ($result = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($result) > 0) {
 		while($row = mysqli_fetch_array($result)){
-		    $evals[] = [
+		    $courses[] = [
 		        'Cid' => $row['Cid'],
 		        'Title' => $row['Title'],
 		        'Instructor' => $row['Instructor']
