@@ -11,7 +11,7 @@ require_once '../includes/config.php';
 $cid = $_GET['id'];
 $keyword = $_GET['keyword'];
 
-$sql = 'SELECT Cid, Title, Instructor FROM Courses WHERE Cid = ' . $cid . ' OR CONTAINS(Description, '. $keyword . ')';
+$sql = 'SELECT Cid, Title, Instructor FROM Courses WHERE INSTR(Description, '\'. $keyword . '\')';
 
 $courses = [];
 
