@@ -59,7 +59,7 @@ mysqli_close($link);
 				<tr>
 					<th data-field="cid" data-sortable="true" class="col-md-2 col-xs-2">Course ID</th>
 					<th data-field="title" data-sortable="true" class="col-md-2 col-xs-2">Course Name</th>
-					<th data-field="description" data-sortable="true" class="col-md-2 col-xs-2">Instructor</th>
+					<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2">Instructor</th>
 					<th data-field="description" data-sortable="true" class="col-md-2 col-xs-2">Description</th>
 				</tr>
 				<tr class="warning no-result">
