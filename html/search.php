@@ -71,7 +71,7 @@ mysqli_close($link);
 					<tr>
 						<td><a href="../geteval.php/q?id=<?= $course["Cid"]?>"><?= $course["Cid"]?></a></td>
 						<td><a href="../geteval.php/q?id= <?= $course["Cid"]?>"><?= $course["Title"]?></a></td>
-						<td><?= $course["Instructor"]?>"></td>
+						<td><?= $course["Instructor"]?></td>
 						<td><?= $course["Description"]?></td>
 					</tr>
 				<?php endforeach ?>
