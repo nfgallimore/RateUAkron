@@ -10,7 +10,7 @@ require_once 'includes/config.php';
 
 $keyword = $_GET['keyword'];
 
-$sql = 'SELECT Cid, Title, Instructor, Description FROM Courses WHERE INSTR(Description, \''. $keyword . '\') OR INSTR(Instructor, \''. $keyword . '\') OR INSTR(Title, \''. $keyword . '\') OR Cid = \'' . $keyword . '\'';
+$sql = 'SELECT Id, Title, Instructor, Description FROM Courses WHERE INSTR(Description, \''. $keyword . '\') OR INSTR(Instructor, \''. $keyword . '\') OR INSTR(Title, \''. $keyword . '\') OR Id = \'' . $keyword . '\'';
 
 $courses = [];
 
@@ -18,7 +18,7 @@ if ($result = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($result) > 0) {
 		while($row = mysqli_fetch_array($result)){
 		    $courses[] = [
-		        'Cid' => $row['Cid'],
+		        'Id' => $row['Id'],
 		        'Title' => $row['Title'],
 		        'Instructor' => $row['Instructor'],
 		        'Description' => $row['Description']
@@ -69,8 +69,8 @@ mysqli_close($link);
 			<tbody>
 				<?php foreach ($courses as $course): ?>
 					<tr>
-						<td><a href="../geteval.php/q?id=<?= $course["Cid"]?>"><?= $course["Cid"]?></a></td>
-						<td><a href="../geteval.php/q?id=<?= $course["Cid"]?>"><?= $course["Title"]?></a></td>
+						<td><a href="../geteval.php/q?id=<?= $course["Id"]?>"><?= $course["Id"]?></a></td>
+						<td><a href="../geteval.php/q?id=<?= $course["Id"]?>"><?= $course["Title"]?></a></td>
 						<td><?= $course["Instructor"]?></td>
 						<td><?= $course["Description"]?></td>
 					</tr>

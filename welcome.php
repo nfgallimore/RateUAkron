@@ -6,7 +6,7 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 	exit;
 }
 require_once 'includes/config.php';
-$sql = "SELECT Cid, Id, Title, Description, Instructor FROM Courses";
+$sql = "SELECT Id, Title, Description, Instructor FROM Courses";
 $courses = [];
 if($result = mysqli_query($link, $sql)) {
     if(mysqli_num_rows($result) > 0) {

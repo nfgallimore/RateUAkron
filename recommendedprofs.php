@@ -41,12 +41,12 @@ mysqli_close($link);
 <body>
     <content>
 		<div class="page-header">
-			<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br><?php echo $title ?> Welcome to your recommended professors.</h1>	
+			<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br>Welcome to your recommended professors.</h1>	
 			<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 		</div>
 		<div class="nav-bar">
-			<a href="../welcome.php" class="btn btn-info">Home</a>
-			<a href="../recommended.php" class="btn btn-info">Your Evals</a>
+			<a href="welcome.php" class="btn btn-info">Home</a>
+			<a href="recommended.php" class="btn btn-info">Your Evals</a>
 		</div><br><br>
 		<div class="prof-table">
 			<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">

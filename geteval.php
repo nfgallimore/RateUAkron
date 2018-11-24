@@ -37,7 +37,7 @@ if ($result = mysqli_query($link, $sql)) {
 
 //-------------------------------------------------------------------
 $usrn = $_SESSION['username'];
-$sqe = "SELECT id from users WHERE username like '$usrn'";
+$sqe = "SELECT id from Users WHERE username like '$usrn'";
 $evee = [];
 
 if($result = mysqli_query($link, $sqe)) {
