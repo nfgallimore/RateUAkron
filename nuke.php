@@ -8,7 +8,7 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 
 require_once 'includes/config.php';
 
-$sql = "DROP TABLE courses";
+$sql = "DELETE FROM Courses";
 
 mysqli_query($link, $sql);
 mysqli_close($link);
