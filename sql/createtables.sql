@@ -1,4 +1,4 @@
-USE myproject;
+USE ISP_nfg3;
 
 CREATE TABLE Courses(
     Cid varchar(100) NOT NULL UNIQUE,
@@ -24,18 +24,26 @@ CREATE TABLE Courses(
     PRIMARY KEY (Id)
 );
 
+CREATE TABLE Users(
+    Id int(11) NOT NULL,
+    Username varchar(50),
+    Password varchar(255) NOT NULL,
+    Created_At DATETIME DEFAULT CURRENT_TIMESTAMP
+    PRIMARY KEY (Id)
+);
+
 CREATE TABLE Evaluations(
-	Id int NOT NULL,
-	CourseID varchar(100) NOT NULL,
-	UserID int(11) NOT NULL,
-	Recommended decimal(2,1) NOT NULL,
-	TimeSpent decimal(3,1) NOT NULL,
-	Reason char NOT NULL,
-	Grade varchar(2) NOT NULL,
-	GPA decimal(3,2) NOT NULL,
-	Created_At DATETIME DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (Id),
-	FOREIGN KEY(CourseID) REFERENCES Courses(Cid),
-	FOREIGN KEY(UserID) REFERENCES users(id)
+    Id int NOT NULL,
+    CourseID varchar(100) NOT NULL,
+    UserID int(11) NOT NULL,
+    Recommended decimal(2,1) NOT NULL,
+    TimeSpent decimal(3,1) NOT NULL,
+    Reason char NOT NULL,
+    Grade varchar(2) NOT NULL,
+    GPA decimal(3,2) NOT NULL,
+    Created_At TimeStamp DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (Id),
+    FOREIGN KEY(CourseID) REFERENCES Courses(Cid),
+    FOREIGN KEY(UserID) REFERENCES users(id)
 );
 

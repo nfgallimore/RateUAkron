@@ -1,8 +1,8 @@
 <?php
-define('DB_SERVER', 'localhost:3306');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'wecandowhatever');
-define('DB_NAME', 'myproject');
+define('DB_SERVER', 'db1.cs.uakron.edu:3306');
+define('DB_USERNAME', 'nfg3');
+define('DB_PASSWORD', 'Dax82wur');
+define('DB_NAME', 'ISP_nfg3');
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 if($link === false){
