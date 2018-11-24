@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$password = trim($_POST['password']);
 	}
 	if (empty($username_err) && empty($password_err)) {
-		$sql = "SELECT username, password, id FROM users WHERE username = ?";
+		$sql = "SELECT Username, Password, Id FROM Users WHERE Username = ?";
 
 		if ($stmt = mysqli_prepare($link, $sql)) {
 			mysqli_stmt_bind_param($stmt, "s", $param_username);
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				echo "Oops! Something went wrong. Please try again later.";
 			}
 		}
-	mysqli_stmt_close($stmt);
+		mysqli_stmt_close($stmt);
 	}
 	mysqli_close($link);
 }
