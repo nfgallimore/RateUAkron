@@ -41,7 +41,7 @@ mysqli_close($link);
 </head>
 <body>
 	<div class="page-header">
-		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br><?php echo $title ?> Welcome to your recommended courses.</h1>	
+		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br>Welcome to your recommended courses.</h1>	
 		<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 	</div>
 	<div class="nav-bar">
