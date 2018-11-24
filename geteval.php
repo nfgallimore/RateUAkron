@@ -64,6 +64,7 @@ foreach ($evee as $eve) {
 //-------------------------------------------------------------------
 $RecommendedSum = 0;
 $RecommendedCount = 0;
+$RecommendedAvg = 0;
 $title = "";
 
 foreach ($evals as $eval) {
@@ -71,8 +72,9 @@ foreach ($evals as $eval) {
     $RecommendedCount++;
     $title = $eval["Title"];
 }
-$RecommendedAvg = $RecommendedSum / $RecommendedCount;
-
+if ($RecommendedCount > 0) {
+	$RecommendedAvg = $RecommendedSum / $RecommendedCount;
+}
 ?>
 
 <!DOCTYPE html>
