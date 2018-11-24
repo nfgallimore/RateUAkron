@@ -6,7 +6,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     exit;
 }
 
-require_once '../includes/config.php';
+require_once 'includes/config.php';
 
 $sql = 'SELECT DISTINCT Instructor FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Cid WHERE Recommended >= 3 AND UserID IN (SELECT UserID FROM Evaluations WHERE Recommended >= 3) AND Instructor IN (SELECT Instructor FROM Evaluations WHERE Recommended >= 3 AND UserID = ' . $_SESSION["userid"] . ');';
 

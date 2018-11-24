@@ -8,7 +8,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
 $courseid = $_GET['id'];
 
-require_once '../includes/config.php';
+require_once 'includes/config.php';
 
 $recommended = $timespent = $reason = $grade = $gpa = "";
 $recommended_err = $timespent_err = $reason_err = $grade_err = $gpa_err = "";

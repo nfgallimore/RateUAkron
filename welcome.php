@@ -5,7 +5,7 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 	header("location: login.php");
 	exit;
 }
-require_once '../includes/config.php';
+require_once 'includes/config.php';
 $sql = "SELECT Cid, Id, Title, Description, Instructor FROM Courses";
 $courses = [];
 if($result = mysqli_query($link, $sql)) {

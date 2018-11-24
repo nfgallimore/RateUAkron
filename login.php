@@ -1,5 +1,5 @@
 <?php
-require_once '../includes/config.php';
+require_once 'includes/config.php';
 
 $username = $password = $userid = "";
 $username_err = $password_err = "";
