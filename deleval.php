@@ -6,7 +6,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     exit;
 }
 
-require_once '../includes/config.php';
+require_once 'includes/config.php';
 $id = $_GET['id'];
 $sql = "DELETE FROM Evaluations WHERE Id = " . $id . ";";
 
