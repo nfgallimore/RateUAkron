@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	if (empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
 
-		$sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+		$sql = "INSERT INTO Users (username, password) VALUES (?, ?)";
 
 		if ($stmt = mysqli_prepare($link, $sql)) {
 
