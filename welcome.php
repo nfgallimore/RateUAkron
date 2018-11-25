@@ -6,7 +6,8 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 	exit;
 }
 require_once 'includes/config.php';
-$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time FROM Courses";
+$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses";
+
 $courses = [];
 if($result = mysqli_query($link, $sql)) {
     if(mysqli_num_rows($result) > 0) {
@@ -17,7 +18,8 @@ if($result = mysqli_query($link, $sql)) {
                 'Title' => $row['Title'],
                 'Description' => $row['Description'],
 	            'Instructor' => $row['Instructor'],
-	            'Start_Time' => $row['Start_Time']
+	            'Start_Time' => $row['Start_Time'],
+	            'End_Time' => $row['End_Time']
             ];
         }
 	    mysqli_free_result($result);
@@ -64,6 +66,7 @@ mysqli_close($link);
 				<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2"> Instructor </th>
 				<th data-field="description" data-sortable="true" class="col-md-5 col-xs-5"> Description </th>
 				<th data-field="start-time" data-sortable="true" class="col-md-5 col-xs-5"> Start Time </th>
+				<th data-field="end-time" data-sortable="true" class="col-md-5 col-xs-5"> End Time </th>
 				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Evaluate Course </th>
 				<th data-field="viewevals" data-sortable="true" class ="col-md-2 col-xs-2"> View Evaluations </th>
 				
@@ -80,6 +83,7 @@ mysqli_close($link);
 				<td><?= $course["Instructor"]?></td>
 				<td><?= $course["Description"]?></td>
 				<td><?= $course["Start_Time"]?></td>
+				<td><?= $course["End_Time"]?></td>
 				<td><a href="evaluate.php/q?id=<?php echo $course['Cid']?>" class="btn btn-success">Evaluate</a>
 				<td><a href="geteval.php/q?id=<?php echo $course['Cid']?>" class="btn btn-info">View Evaluations</a>
 			</tr>
