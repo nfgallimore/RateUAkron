@@ -16,7 +16,8 @@ if($result = mysqli_query($link, $sql)) {
 	            'Id' => $row['Id'],
                 'Title' => $row['Title'],
                 'Description' => $row['Description'],
-	            'Instructor' => $row['Instructor']
+	            'Instructor' => $row['Instructor'],
+	            'Start_Time' => $row['Start_Time']
             ];
         }
 	    mysqli_free_result($result);
@@ -62,6 +63,7 @@ mysqli_close($link);
 				<th data-field="name" data-sortable="true" class="col-md-3 col-xs-3"> Name </th>
 				<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2"> Instructor </th>
 				<th data-field="description" data-sortable="true" class="col-md-5 col-xs-5"> Description </th>
+				<th data-field="start-time" data-sortable="true" class="col-md-5 col-xs-5"> Start Time </th>
 				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Evaluate Course </th>
 				<th data-field="viewevals" data-sortable="true" class ="col-md-2 col-xs-2"> View Evaluations </th>
 				
@@ -77,6 +79,7 @@ mysqli_close($link);
 				<td><?= $course["Title"]?></td>
 				<td><?= $course["Instructor"]?></td>
 				<td><?= $course["Description"]?></td>
+				<td><?= $course["Start_Time"]?></td>
 				<td><a href="evaluate.php/q?id=<?php echo $course['Cid']?>" class="btn btn-success">Evaluate</a>
 				<td><a href="geteval.php/q?id=<?php echo $course['Cid']?>" class="btn btn-info">View Evaluations</a>
 			</tr>
