@@ -21,7 +21,7 @@ CREATE TABLE Courses(
     Instructor varchar(255),
     Instruction_Mode varchar(100),
     Campus varchar(100),
-    PRIMARY KEY (Id)
+    PRIMARY KEY (Cid)
 );
 
 CREATE TABLE Users(
