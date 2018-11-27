@@ -51,7 +51,7 @@ mysqli_close($link);
 		<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 	</div>
 	<div class="nav-bar">
-		<a href="recommended.php" class="btn btn-info">Your Evals</a>
+		<a href="recommended.php" class="btn btn-info">Your Evaluations</a>
 		<!--a href="recommendedprofs.php" class="btn btn-info">Recommended Professors</a-->
 	</div>
 	<div class="form-group pull-right">
