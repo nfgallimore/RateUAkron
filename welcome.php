@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
@@ -24,7 +24,7 @@ if($result = mysqli_query($link, $sql)) {
         }
 	    mysqli_free_result($result);
     }
-} 
+}
 else {
 	echo "ERROR: Could not able to execute $sql. ";
 }
@@ -47,12 +47,12 @@ mysqli_close($link);
 </head>
 <body>
 	<div class="page-header">
-		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br>Welcome to the University of Akron Course Catalog.</h1>	
+		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br>Welcome to the University of Akron Course Catalog.</h1>
 		<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 	</div>
 	<div class="nav-bar">
 		<a href="recommended.php" class="btn btn-info">Your Evals</a>
-		<a href="recommendedprofs.php" class="btn btn-info">Recommended Professors</a>
+		<!--a href="recommendedprofs.php" class="btn btn-info">Recommended Professors</a-->
 	</div>
 	<div class="form-group pull-right">
 		<input type="text" class="search form-control" placeholder="What you looking for?">
@@ -69,7 +69,7 @@ mysqli_close($link);
 				<th data-field="end-time" data-sortable="true" class="col-md-5 col-xs-5"> End Time </th>
 				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Evaluate Course </th>
 				<th data-field="viewevals" data-sortable="true" class ="col-md-2 col-xs-2"> View Evaluations </th>
-				
+
 			</tr>
 			<tr class="warning no-result">
 				<td colspan="4"><i class="fa fa-warning"></i> No result</td>
