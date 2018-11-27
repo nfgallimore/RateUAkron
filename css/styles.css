@@ -32,7 +32,13 @@ body {
 
 .nav-bar {
 	padding: 20px;
+	padding-left: 72px;
 }
+
+.page-header {
+	padding-left: 72px;
+}
+
 .course-table {
 	width:700px;
 	padding: 20px;
