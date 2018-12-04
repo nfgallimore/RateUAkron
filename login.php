@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 	<div class="wrapper">
 		<div class = "onlineHelp">
-			<a href="onlineHelp.docx">Online Help</a>
+			<a href="onlineHelp.html">Click here for Online Help</a>
 		</div>
 		<h2>Login</h2>
 		<p>Please fill in your credentials to login.</p>
@@ -101,18 +101,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 		.link a:link, a:visited {
 			background-color: #f44336;
-			color: black;
+			color: white;
 			padding: 14px 25px;
 			text-align: center;
 			display: inline-block;
 			border-radius: 5px;
 		}
-		.onlineHelp {
-			background-color: blue;
-			color: black;
-			padding: 14px 25px;
+		.onlineHelp{
+			text-align: center;
 			display: inline-block;
 			border-radius: 5px;
+			padding: 14px 25px;
+			background-color: #f44336;
 		}
 	</style>
 

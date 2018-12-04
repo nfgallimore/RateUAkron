@@ -50,10 +50,6 @@ body {
   font-weight: bold;
 }
 
-.onlinehelp{
-  padding-left: 10px;
-}
-
 .course-table {
 	width:700px;
 	padding: 20px;
@@ -69,10 +65,22 @@ table th{
 	width: 500px;
 	padding: 20px;
 }
-.onlineHelp {
-  background-color: #f44336;
+
+.onelinehelp-file ul{
+  text-align: left;
+}
+.onelinehelp-file p{
+  text-align: left;
+  padding-left: 30px;
+}
+
+.onelinehelp-file button{
+  height: 40px;
+  width: 200px;
+  font-size: 30px;
+  font-weight: bold;
   color: white;
-  padding: 14px 25px;
-  text-align: center;
-  display: inline-block;
+  border-radius: 5px;
+  font-family:fantasy;
+  background-color: #1c4254;
 }
