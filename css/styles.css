@@ -1,6 +1,5 @@
 body {
     font: 14px sans-serif;
-    text-align: center;
     padding:20px 20px;
 }
 
@@ -64,16 +63,16 @@ table th {
     padding: 20px;
 }
 
-.onelinehelp-file ul{
+.onlinehelp-file ul {
     text-align: left;
 }
 
-.onelinehelp-file p{
+.onlinehelp-file p {
     text-align: left;
     padding-left: 30px;
 }
 
-.onelinehelp-file button{
+.onlinehelp-file button {
     height: 40px;
     width: 200px;
     font-size: 30px;
@@ -82,25 +81,4 @@ table th {
     border-radius: 5px;
     font-family:fantasy;
     background-color: #1c4254;
-}
-
-.link {
-    padding-left: 20px;
-}
-
-.link a:link, a:visited {
-    background-color: #f44336;
-    color: white;
-    padding: 14px 25px;
-    text-align: center;
-    display: inline-block;
-    border-radius: 5px;
-}
-
-.onlineHelp{
-    text-align: center;
-    display: inline-block;
-    border-radius: 5px;
-    padding: 14px 25px;
-    background-color: #f44336;
 }

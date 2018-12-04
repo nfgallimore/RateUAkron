@@ -62,16 +62,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<meta charset="UTF-8">
 	<title>Login</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+	<link rel="stylesheet" href="css/styles.css">
 	<style type="text/css">
-		body{ font: 14px sans-serif; }
-		.wrapper{ width: 350px; padding: 20px; }
+
 	</style>
 </head>
 <body>
 	<div class="wrapper">
-		<div class = "onlineHelp">
-			<a href="onlineHelp.html">Click here for Online Help</a>
-		</div>
+		<a href="help.html">Click here for Online Help</a>
 		<h2>Login</h2>
 		<p>Please fill in your credentials to login.</p>
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -90,11 +88,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</div>
 			<p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
 		</form>
+		<br />
+		<a href="report.docx">Click here to download report.</a><br /><br />
+		<a href="presentation.pptx">Click here to download presentation.</a>
 	</div>
-		<div class="link">
-			<a href="ISP_Project_Progress_Report.docx">Click here to download the Final Report.</a><br><br>
-			<a href="ISP_Project.pptx">Click here to download the Presentation slide.</a>
-		</div>
-	</body>
 </body>
 </html>
