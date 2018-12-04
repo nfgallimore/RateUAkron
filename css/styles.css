@@ -1,104 +1,106 @@
 body {
- 	font: 14px sans-serif;
- 	text-align: center;
- 	padding:20px 20px;
+    font: 14px sans-serif;
+    text-align: center;
+    padding:20px 20px;
 }
 
 @media only screen and (max-width: 480px) {
-  .tablemobile {
-    overflow-x: auto;
-    display: block;
-  }
+    .tablemobile {
+        overflow-x: auto;
+        display: block;
+    }
 }
 
 .results tr[visible='false'], .no-result {
-  display:none;
+    display:none;
 }
 
 .results tr[visible='true'] {
-  display:table-row;
+    display:table-row;
 }
 
 .header {
-	margin: auto;
+    margin: auto;
 }
 
 .wrapper {
-	width: 350px;
-	padding: 20px;
+    width: 350px;
+    padding: 20px;
 }
 
 .nav-bar {
-	padding: 20px;
-	padding-left: 72px;
+    padding: 20px;
+    padding-left: 72px;
 }
 
 .page-header {
-  padding-top: 25px;
-	padding-left: 72px;
-  background-color: #1c4254;
-  border-radius: 5px;
-  height:300px;
-  color: white;
+    padding-top: 25px;
+    padding-left: 72px;
+    background-color: #1c4254;
+    border-radius: 5px;
+    height:300px;
+    color: white;
 }
 
 .page-header span {
-  color: red;
-  font-size: 50px;
-  font-weight: bold;
+    color: red;
+    font-size: 50px;
+    font-weight: bold;
 }
 
 .course-table {
-	width:700px;
-	padding: 20px;
+    width:700px;
+    padding: 20px;
 }
 
 table th {
-  font-weight: bold;
-  background-color: #1c4254;
-  color: white;
+    font-weight: bold;
+    background-color: #1c4254;
+    color: white;
 }
 
 .prof-table {
-	width: 500px;
-	padding: 20px;
+    width: 500px;
+    padding: 20px;
 }
 
 .onelinehelp-file ul{
-  text-align: left;
+    text-align: left;
 }
+
 .onelinehelp-file p{
-  text-align: left;
-  padding-left: 30px;
+    text-align: left;
+    padding-left: 30px;
 }
 
 .onelinehelp-file button{
-  height: 40px;
-  width: 200px;
-  font-size: 30px;
-  font-weight: bold;
-  color: white;
-  border-radius: 5px;
-  font-family:fantasy;
-  background-color: #1c4254;
+    height: 40px;
+    width: 200px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    font-family:fantasy;
+    background-color: #1c4254;
 }
 
 .link {
-  padding-left: 20px;
+    padding-left: 20px;
 }
 
 .link a:link, a:visited {
-  background-color: #f44336;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  display: inline-block;
-  border-radius: 5px;
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px;
 }
+
 .onlineHelp{
-  text-align: center;
-  display: inline-block;
-  border-radius: 5px;
-  padding: 14px 25px;
-  background-color: #f44336;
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 14px 25px;
+    background-color: #f44336;
 }
