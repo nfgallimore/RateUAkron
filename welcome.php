@@ -6,24 +6,24 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 	exit;
 }
 require_once 'includes/config.php';
-$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses";
+$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses LIMIT 50";
 
 $courses = [];
 if($result = mysqli_query($link, $sql)) {
-    if(mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_array($result)) {
-            $courses[] = [
+	if(mysqli_num_rows($result) > 0) {
+		while($row = mysqli_fetch_array($result)) {
+			$courses[] = [
 				'Cid' => $row['Cid'],
-	            'Id' => $row['Id'],
-                'Title' => $row['Title'],
-                'Description' => $row['Description'],
-	            'Instructor' => $row['Instructor'],
-	            'Start_Time' => $row['Start_Time'],
-	            'End_Time' => $row['End_Time']
-            ];
-        }
-	    mysqli_free_result($result);
-    }
+				'Id' => $row['Id'],
+				'Title' => $row['Title'],
+				'Description' => $row['Description'],
+				'Instructor' => $row['Instructor'],
+				'Start_Time' => $row['Start_Time'],
+				'End_Time' => $row['End_Time']
+			];
+		}
+		mysqli_free_result($result);
+	}
 }
 else {
 	echo "ERROR: Could not able to execute $sql. ";
@@ -37,13 +37,13 @@ mysqli_close($link);
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
-    <title>Welcome</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
-    <script src="js/search.js"></script>
+	<title>Welcome</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
+	<script src="js/search.js"></script>
 </head>
 <body>
 	<div class="page-header">
@@ -69,7 +69,6 @@ mysqli_close($link);
 				<th data-field="end-time" data-sortable="true" class="col-md-5 col-xs-5"> End Time </th>
 				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Evaluate Course </th>
 				<th data-field="viewevals" data-sortable="true" class ="col-md-2 col-xs-2"> View Evaluations </th>
-
 			</tr>
 			<tr class="warning no-result">
 				<td colspan="4"><i class="fa fa-warning"></i> No result</td>
@@ -89,6 +88,25 @@ mysqli_close($link);
 			</tr>
 			<?php endforeach ?>
 		</tbody>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+				<li class="page-item">
+					<a class="page-link" href="#" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+						<span class="sr-only">Previous</span>
+					</a>
+				</li>
+				<li class="page-item"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item">
+					<a class="page-link" href="#" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+						<span class="sr-only">Next</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
 	</table>
 </body>
 </html>
