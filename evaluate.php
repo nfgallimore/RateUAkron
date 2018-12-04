@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
-  	header("location: ../login.php");
+  	header("location: login.php");
     exit;
 }
 
@@ -43,11 +43,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			mysqli_stmt_bind_param($stmt, "iiddssd", $courseid, $userid, $recommended, $timespent, $reason, $grade, $gpa);
 			mysqli_stmt_execute($stmt);
 			mysqli_stmt_close($stmt);
+			echo "<script> location.href='../welcome.php'; </script>";
+			exit;
 		}
 	}
 	mysqli_close($link);
-  	header("Location: welcome.php");
-  	exit();
 }
 ?>
 
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
-	<title>Evaluate Course></title>
+	<title>Evaluate Course</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
     <link rel="stylesheet" href="../css/styles.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
