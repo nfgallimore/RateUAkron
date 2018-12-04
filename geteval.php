@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
@@ -48,11 +48,11 @@ if($result = mysqli_query($link, $sqe)) {
             ];
         }
 	    mysqli_free_result($result);
-    } 
+    }
     else {
 		echo "No records matching your query were found.";
     }
-} 
+}
 else {
 	echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 }
@@ -96,8 +96,7 @@ if ($RecommendedCount > 0) {
 	</div>
 	<div class="nav-bar">
 		<a href="../welcome.php" class="btn btn-info">Home</a>
-		<a href="../recommended.php" class="btn btn-info">Your Evals</a>
-		<a href="../recommendedprofs.php" class="btn btn-info">Recommended Professors</a>
+		<a href="../recommended.php" class="btn btn-info">Your Evaluation</a>
 	</div><br>
 	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 		<thead>
@@ -126,7 +125,7 @@ if ($RecommendedCount > 0) {
 				<td><?= $eval["Recommended"]?></td>
 				<td><?= $eval["TimeSpent"]?></td>
 				<td><?= $eval["Grade"]?></td>
-				<td><?= $eval["GPA"]?></td>	
+				<td><?= $eval["GPA"]?></td>
 				<?php if($eval["Userid"] == $check) : ?>
 					<td>
 						<a href="../deleval.php/q?id=<?php echo $eval['Eds']?>" class="btn btn-danger">X</a>

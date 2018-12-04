@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	if (empty(trim($_POST["username"]))) {
 		$username_err = 'Please enter username.';
-	} 
+	}
 	else {
 		$username = trim($_POST["username"]);
 	}
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				else {
 					$username_err = 'No account found with that username.';
 				}
-			} 
+			}
 			else {
 				echo "Oops! Something went wrong. Please try again later.";
 			}
@@ -69,6 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 	<div class="wrapper">
+		<div class = "onlineHelp">
+			<a href="onlineHelp.docx">Online Help</a>
+		</div>
 		<h2>Login</h2>
 		<p>Please fill in your credentials to login.</p>
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -88,5 +91,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
 		</form>
 	</div>
+		<div class="link">
+			<a href="ISP_Project_Progress_Report.docx">Click here to download the Final Report.</a><br><br>
+			<a href="ISP_Project.pptx">Click here to download the Presentation slide.</a>
+		</div>
+	<style>
+		 .link {
+			padding-left: 20px;
+		}
+		.link a:link, a:visited {
+			background-color: #f44336;
+			color: black;
+			padding: 14px 25px;
+			text-align: center;
+			display: inline-block;
+			border-radius: 5px;
+		}
+		.onlineHelp {
+			background-color: blue;
+			color: black;
+			padding: 14px 25px;
+			display: inline-block;
+			border-radius: 5px;
+		}
+	</style>
+
 </body>
 </html>

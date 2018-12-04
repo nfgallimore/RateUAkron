@@ -1,4 +1,4 @@
-body { 
+body {
  	font: 14px sans-serif;
  	text-align: center;
  	padding:20px 20px;
@@ -25,7 +25,7 @@ body {
 	margin: auto;
 }
 
-.wrapper { 
+.wrapper {
 	width: 350px;
 	padding: 20px;
 }
@@ -36,7 +36,22 @@ body {
 }
 
 .page-header {
+  padding-top: 25px;
 	padding-left: 72px;
+  background-color: #1c4254;
+  border-radius: 5px;
+  height:300px;
+  color: white;
+}
+
+.page-header span{
+  color: red;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.onlinehelp{
+  padding-left: 10px;
 }
 
 .course-table {
@@ -44,7 +59,20 @@ body {
 	padding: 20px;
 }
 
+table th{
+  font-weight: bold;
+  background-color: #1c4254;
+  color: white;
+}
+
 .prof-table {
 	width: 500px;
 	padding: 20px;
+}
+.onlineHelp {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  display: inline-block;
 }
