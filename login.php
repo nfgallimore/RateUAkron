@@ -95,26 +95,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<a href="ISP_Project_Progress_Report.docx">Click here to download the Final Report.</a><br><br>
 			<a href="ISP_Project.pptx">Click here to download the Presentation slide.</a>
 		</div>
-	<style>
-		 .link {
-			padding-left: 20px;
-		}
-		.link a:link, a:visited {
-			background-color: #f44336;
-			color: white;
-			padding: 14px 25px;
-			text-align: center;
-			display: inline-block;
-			border-radius: 5px;
-		}
-		.onlineHelp{
-			text-align: center;
-			display: inline-block;
-			border-radius: 5px;
-			padding: 14px 25px;
-			background-color: #f44336;
-		}
-	</style>
-
+	</body>
 </body>
 </html>

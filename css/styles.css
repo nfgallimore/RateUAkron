@@ -84,3 +84,22 @@ table th{
   font-family:fantasy;
   background-color: #1c4254;
 }
+
+.link {
+  padding-left: 20px;
+}
+.link a:link, a:visited {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 5px;
+}
+.onlineHelp{
+  text-align: center;
+  display: inline-block;
+  border-radius: 5px;
+  padding: 14px 25px;
+  background-color: #f44336;
+}
