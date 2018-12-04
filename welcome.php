@@ -5,9 +5,19 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 	header("location: login.php");
 	exit;
 }
-require_once 'includes/config.php';
-$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses LIMIT 50";
 
+if (!isset($_GET['page']) || empty($_GET['page'])) {
+	$page = 1;
+}
+else {
+	$page = htmlspecialchars($_GET['page']);
+}
+
+
+require_once 'includes/config.php';
+$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses LIMIT " . ($page - 1) * 25 . "," . (($page - 1) * 25 + 25);
+
+echo $sql;
 $courses = [];
 if($result = mysqli_query($link, $sql)) {
 	if(mysqli_num_rows($result) > 0) {
@@ -38,12 +48,14 @@ mysqli_close($link);
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
 	<title>Welcome</title>
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css" />
 	<link rel="stylesheet" href="css/styles.css" />
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
-	<script src="js/search.js"></script>
+	<!--<script src="js/search.js"></script>-->
 </head>
 <body>
 	<div class="page-header">
@@ -54,9 +66,9 @@ mysqli_close($link);
 		<a href="recommended.php" class="btn btn-info">Your Evaluations</a>
 		<!--a href="recommendedprofs.php" class="btn btn-info">Recommended Professors</a-->
 	</div>
-	<div class="form-group pull-right">
+	<form class="form-group pull-right">
 		<input type="text" class="search form-control" placeholder="What you looking for?">
-	</div>
+	</form>
 	<span class="counter pull-right"></span>
 	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 		<thead>
@@ -91,16 +103,22 @@ mysqli_close($link);
 		<nav aria-label="Page navigation example">
 			<ul class="pagination">
 				<li class="page-item">
-					<a class="page-link" href="#" aria-label="Previous">
+					<a class="page-link" href="?page=<?php echo ($page - 1 == 0) ? $page : $page + 1?>" aria-label="Previous">
 						<span aria-hidden="true">&laquo;</span>
 						<span class="sr-only">Previous</span>
 					</a>
 				</li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
 				<li class="page-item">
-					<a class="page-link" href="#" aria-label="Next">
+					<a class="page-link" href="?page=<?php echo $page?>"><?php echo $page?></a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="?page=<?php echo $page + 1?>"><?php echo $page + 1?></a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="?page=<?php echo $page + 2?>"><?php echo $page + 2?></a>
+				</li>				
+				<li class="page-item">
+					<a class="page-link" href="?page=<?php echo $page + 1?>" aria-label="Next">
 						<span aria-hidden="true">&raquo;</span>
 						<span class="sr-only">Next</span>
 					</a>
