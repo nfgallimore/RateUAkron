@@ -2,23 +2,21 @@ body {
  	font: 14px sans-serif;
  	text-align: center;
  	padding:20px 20px;
- }
+}
 
 @media only screen and (max-width: 480px) {
-    /* horizontal scrollbar for tables if mobile screen */
-    .tablemobile {
-        overflow-x: auto;
-        display: block;
-    }
-}
-.results tr[visible='false'],
-
-.no-result{
-  	display:none;
+  .tablemobile {
+    overflow-x: auto;
+    display: block;
+  }
 }
 
-.results tr[visible='true']{
-  	display:table-row;
+.results tr[visible='false'], .no-result {
+  display:none;
+}
+
+.results tr[visible='true'] {
+  display:table-row;
 }
 
 .header {
@@ -44,7 +42,7 @@ body {
   color: white;
 }
 
-.page-header span{
+.page-header span {
   color: red;
   font-size: 50px;
   font-weight: bold;
@@ -55,7 +53,7 @@ body {
 	padding: 20px;
 }
 
-table th{
+table th {
   font-weight: bold;
   background-color: #1c4254;
   color: white;
@@ -88,6 +86,7 @@ table th{
 .link {
   padding-left: 20px;
 }
+
 .link a:link, a:visited {
   background-color: #f44336;
   color: white;
