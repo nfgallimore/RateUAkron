@@ -64,7 +64,6 @@ mysqli_close($link);
 	</div>
 	<div class="nav-bar">
 		<a href="recommended.php" class="btn btn-info">Your Evaluations</a>
-		<!--a href="recommendedprofs.php" class="btn btn-info">Recommended Professors</a-->
 	</div>
 	<form class="form-group pull-right">
 		<input type="text" class="search form-control" placeholder="What you looking for?">

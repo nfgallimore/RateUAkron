@@ -7,8 +7,8 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 }
 
 require_once 'includes/config.php';
-$id = $_GET['id'];
-$sql = "DELETE FROM Evaluations WHERE Id = " . $id . ";";
+$courseId = $_GET['CourseID'];
+$sql = "DELETE FROM Evaluations WHERE CourseId = " . $courseId . ";";
 
 mysqli_query($link, $sql);
 

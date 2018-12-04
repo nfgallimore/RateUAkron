@@ -53,6 +53,8 @@ mysqli_close($link);
 				<tr>
 					<th data-field="cid" data-sortable="true" class="col-md-2 col-xs-2">Course ID</th>
 					<th data-field="title" data-sortable="true" class="col-md-2 col-xs-2">Course Name</th>
+					<th data-field="delete" data-sortable="false" class="col-md-2 col-xs-2">Delete Evaluation</th>
+
 				</tr>
 				<tr class="warning no-result">
 					<td colspan="4"><i class="fa fa-warning"></i>No result</td>
@@ -63,6 +65,7 @@ mysqli_close($link);
 					<tr>
 						<td><a href="geteval.php/q?id=<?= $eval["CourseID"]?>"><?= $eval["CourseID"]?></a></td>
 						<td><a href="geteval.php/q?id= <?= $eval["CourseID"]?>"><?= $eval["Title"]?></a></td>
+						<td><a href="deleval.php/q?id=<?php echo $eval["CourseID"]?>" class="btn btn-danger">Delete</a></td>
 					</tr>
 				<?php endforeach ?>
 			</tbody>
