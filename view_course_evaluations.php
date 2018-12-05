@@ -40,19 +40,44 @@ if ($result = mysqli_query($link, $sql)) {
 	}
 }
 
-$RecommendedSum = 0;
-$RecommendedCount = 0;
-$RecommendedAvg = 0;
-$title = "";
+if ($loggedIn) {
+	$usrn = $_SESSION['username'];
+	$sqe = "SELECT id from Users WHERE username like '$usrn'";
+	$evee = [];
+	if($result = mysqli_query($link, $sqe)) {
+	    if(mysqli_num_rows($result) > 0) {
+	        while($row = mysqli_fetch_array($result)) {
+	            $evee[] = [
+					'ids' => $row['id']
+	            ];
+	        }
+		    mysqli_free_result($result);
+	    }
+	    else {
+			echo "No records matching your query were found.";
+	    }
+	}
+	else {
+		echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+	}
+	mysqli_close($link);
+	foreach ($evee as $eve) {
+		$check = $eve['ids'];
+	}
+}
+// $RecommendedSum = 0;
+// $RecommendedCount = 0;
+// $RecommendedAvg = 0;
+// $title = "";
 
-foreach ($evals as $eval) {
-    $RecommendedSum += $eval["Recommended"];
-    $RecommendedCount++;
-    $title = $eval["Title"];
-}
-if ($RecommendedCount > 0) {
-	$RecommendedAvg = $RecommendedSum / $RecommendedCount;
-}
+// foreach ($evals as $eval) {
+//     $RecommendedSum += $eval["Recommended"];
+//     $RecommendedCount++;
+//     $title = $eval["Title"];
+// }
+// if ($RecommendedCount > 0) {
+// 	$RecommendedAvg = $RecommendedSum / $RecommendedCount;
+// }
 ?>
 
 <!DOCTYPE html>
