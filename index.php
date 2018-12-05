@@ -13,8 +13,8 @@ else {
 	$page = htmlspecialchars($_GET['page']);
 }
 
-
 require_once 'includes/config.php';
+
 $sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses LIMIT " . ($page - 1) * 25 . "," . (($page - 1) * 25 + 25);
 
 $courses = [];
@@ -35,7 +35,7 @@ if($result = mysqli_query($link, $sql)) {
 	}
 }
 else {
-	echo "ERROR: Could not able to execute $sql. ";
+	echo "ERROR: Could not execute $sql. ";
 }
 
 mysqli_close($link);
@@ -46,7 +46,19 @@ mysqli_close($link);
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
-	<title>Welcome</title>
+	<title>Course Evaluations</title>
+
+	<!-- Favicons -->
+	<link rel="icon"  type="image/png"  href="favicons/favicon.png" />
+	<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="favicons/android-chrome-192x192.png">
+	<link rel="manifest" href="favicons/site.webmanifest">
+	<link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#0a1f41">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+	<!-- Favicons -->
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css" />
@@ -62,7 +74,7 @@ mysqli_close($link);
 	</div>
 	<div class="nav-bar">
 		<a href="index.php" class="btn btn-info">Home</a>
-		<a href="evaluation_history.php" class="btn btn-info">View Evaluation History</a>
+		<a href="view_evaluation_history.php" class="btn btn-info">View Evaluation History</a>
 		<a href="help.html" class="btn btn-info">Help</a>
 		<a href="logout.php" class="btn btn-danger">Sign Out</a>
 	</div>
@@ -96,7 +108,7 @@ mysqli_close($link);
 				<td><?= $course["Start_Time"]?></td>
 				<td><?= $course["End_Time"]?></td>
 				<td><a href="evaluate_course.php/q?id=<?php echo $course['Cid'] . "?title=" . $course['Title']?>" class="btn btn-success">Evaluate</a>
-				<td><a href="view_course_evals.php/q?id=<?php echo $course['Cid']?>" class="btn btn-info">View Evaluations</a>
+				<td><a href="view_course_evaluations.php/q?id=<?php echo $course['Cid']?>" class="btn btn-success">View Evaluations</a>
 			</tr>
 			<?php endforeach ?>
 		</tbody>

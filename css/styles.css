@@ -39,14 +39,14 @@ body {
 .page-header {
     padding-top: 25px;
     padding-left: 72px;
-    background-color: #1c4254;
+    background-color: #041e42;
     border-radius: 5px;
     height:300px;
     color: white;
 }
 
 .page-header span {
-    color: red;
+    color: #ae9c6e;
     font-size: 50px;
     font-weight: bold;
 }
@@ -58,8 +58,29 @@ body {
 
 table th {
     font-weight: bold;
-    background-color: #1c4254;
+    background-color: #041e42;
     color: white;
+}
+
+.btn-info {
+    background-color: #041e42;
+    border-color: #041e42;
+}
+
+.btn-info:hover, .btn-info:active:focus, .btn-danger:hover, .btn-danger:active:focus {
+    background-color: #ae9c6e;
+    border-color: #ae9c6e;
+}
+
+.btn-success, .btn-danger {
+    background-color: #ae9c6e; 
+    border-color: #ae9c6e;
+}
+
+
+.btn-success:hover, .btn-success:active:focus {
+    background-color: #041e42;
+    border-color: #041e42;
 }
 
 .prof-table {
