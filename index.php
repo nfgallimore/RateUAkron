@@ -27,7 +27,7 @@ if (!isset($_GET['search']) || empty($_GET['search'])) {
 	$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses LIMIT " . ($page - 1) * 25 . "," . (($page - 1) * 25 + 25);
 }
 else {
-	$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses WHERE Title LIKE '%{$search}%' LIMIT " . ($page - 1) * 25 . "," . (($page - 1) * 25 + 25);
+	$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses WHERE Title LIKE '%{$search}%' OR Description LIKE '%{$search}%' OR Course LIKE '%{$search}%' OR Department LIKE '%{$search}%' OR Instructor LIKE '%{$search}%' OR Id LIKE '%{$search}%' LIMIT " . ($page - 1) * 25 . "," . (($page - 1) * 25 + 25);
 }
 
 $courses = [];
