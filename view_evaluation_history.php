@@ -64,7 +64,7 @@ mysqli_close($link);
 	<div class="nav-bar">
 		<a href="index.php" class="btn btn-info">Home</a>
 		<a href="view_evaluation_history.php" class="btn btn-info">View Evaluation History</a>
-		<a href="help.html" class="btn btn-info">Help</a>
+		<a href="help.php" class="btn btn-info">Help</a>
 		<a href="logout.php" class="btn btn-danger">Sign Out</a>
 	</div>
 	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
@@ -76,6 +76,7 @@ mysqli_close($link);
 				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Grade </th>
 				<th data-field="reason" data-sortable="true" class ="col-md-2 col-xs-2"> Reason </th>
 				<th data-field="gpa" data-sortable="true" class ="col-md-2 col-xs-2"> GPA </th>
+				<th data-field="comment" data-sortable="true" class ="col-md-2 col-xs-2"> Comment </th>
 				<th data-field="delete" data-sortable="false" class ="col-md-2 col-xs-2"> Delete </th>
 			</tr>
 			<tr class="warning no-result">
@@ -91,7 +92,8 @@ mysqli_close($link);
 				<td><?= $eval["Reason"]?></td>
 				<td><?= $eval["Grade"]?></td>
 				<td><?= $eval["GPA"]?></td>
-				<td><a href="delete_evaluation.php/q?id=<?php echo $eval['Eid']?>" class="btn btn-danger">X</a></td>
+				<td><?= $eval["Comment"]?></td>
+				<td><a href="delete_evaluation.php/q?id=<?php echo $eval['Eid']?>" class="btn btn-danger">Delete</a></td>
 			</tr>
 			<?php endforeach ?>
 		</tbody

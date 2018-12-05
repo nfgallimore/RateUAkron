@@ -9,7 +9,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 require_once 'includes/config.php';
 $cid = $_GET['id'];
 
-$sql = 'SELECT Title, Instructor, Description, CourseID, UserId, Recommended, TimeSpent, Reason, Grade, GPA, Created_At, Evaluations.Id as Eid FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE CourseID = ' . $cid;
+$sql = 'SELECT Title, Instructor, Description, CourseID, UserId, Comment, Recommended, TimeSpent, Reason, Grade, GPA, Created_At, Evaluations.Id as Eid FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE CourseID = ' . $cid;
 $evals = [];
 
 if ($result = mysqli_query($link, $sql)) {
@@ -28,7 +28,8 @@ if ($result = mysqli_query($link, $sql)) {
 		        'Instructor' => $row['Instructor'],
 		        'Description' => $row['Description'],
 				'Userid' => $row['UserId'],
-				'Eds' => $row['Eid']
+				'Eds' => $row['Eid'],
+				'Comment' => $row['Comment']
 		    ];
 		}
 		mysqli_free_result($result);
@@ -110,7 +111,7 @@ if ($RecommendedCount > 0) {
 	<div class="nav-bar">
 		<a href="../index.php" class="btn btn-info">Home</a>
 		<a href="../view_evaluation_history.php" class="btn btn-info">View Evaluation History</a>
-		<a href="../help.html" class="btn btn-info">Help</a>
+		<a href="../help.php" class="btn btn-info">Help</a>
 		<a href="../logout.php" class="btn btn-danger">Sign Out</a>
 	</div>
 	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
@@ -120,8 +121,9 @@ if ($RecommendedCount > 0) {
 				<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2"> Recommend </th>
 				<th data-field="description" data-sortable="true" class="col-md-2 col-xs-2"> Time Spent </th>
 				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Grade </th>
-				<th data-field="viewevals" data-sortable="true" class ="col-md-2 col-xs-2"> GPA </th>
-				<th data-field="DEL" data-sortable="false" class ="col-md-2 col-xs-2"> Delete </th>
+				<th data-field="gpa" data-sortable="true" class ="col-md-2 col-xs-2"> GPA </th>
+				<th data-field="comment" data-sortable="true" class ="col-md-2 col-xs-2"> Comment </th>
+				<th data-field="del" data-sortable="false" class ="col-md-2 col-xs-2"> Delete </th>
 			</tr>
 			<tr class="warning no-result">
 				<td colspan="4"><i class="fa fa-warning"></i> No result</td>
@@ -135,6 +137,7 @@ if ($RecommendedCount > 0) {
 				<td><?= $eval["TimeSpent"]?></td>
 				<td><?= $eval["Grade"]?></td>
 				<td><?= $eval["GPA"]?></td>
+				<td><?= $eval["Comment"]?></td>
 				<?php if($eval["Userid"] == $check) : ?>
 					<td>
 						<a href="../delete_evaluation.php/q?id=<?php echo $eval['Eds']?>" class="btn btn-danger">X</a>

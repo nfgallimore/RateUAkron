@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<div class="nav-bar">
 			<a href="../index.php" class="btn btn-info">Home</a>
 			<a href="../view_evaluation_history.php" class="btn btn-info">View Evaluation History</a>
-			<a href="../help.html" class="btn btn-info">Help</a>
+			<a href="../help.php" class="btn btn-info">Help</a>
 			<a href="../logout.php" class="btn btn-danger">Sign Out</a>
 		</div>
 		<form id="evalform" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?id=" . $courseid; ?>" method="post">
