@@ -7,13 +7,13 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 }
 
 require_once 'includes/config.php';
-$courseId = $_GET['CourseID'];
-$sql = "DELETE FROM Evaluations WHERE CourseId = " . $courseId . ";";
+$id = $_GET['id'];
+$sql = "DELETE FROM Evaluations WHERE Id = " . $id . ";";
 
 mysqli_query($link, $sql);
 
 mysqli_close($link);
-header("location: ../geteval.php");
+header("location: ../evaluation_history.php");
 exit;
 
 ?>

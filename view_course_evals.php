@@ -92,12 +92,13 @@ if ($RecommendedCount > 0) {
 <body>
 	<div class="page-header">
 		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br><?php echo $title ?> See courses evaluations here.</h1>
-		<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 	</div>
-	<div class="nav-bar">
-		<a href="../welcome.php" class="btn btn-info">Home</a>
-		<a href="../recommended.php" class="btn btn-info">Your Evaluation</a>
-	</div><br>
+		<div class="nav-bar">
+			<a href="../index.php" class="btn btn-info">Home</a>
+			<a href="../evaluation_history.php" class="btn btn-info">View Evaluation History</a>
+			<a href="../help.html" class="btn btn-info">Help</a>
+			<a href="../logout.php" class="btn btn-danger">Sign Out</a>
+		</div>
 	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 		<thead>
 			<tr>
@@ -108,9 +109,7 @@ if ($RecommendedCount > 0) {
 				<th data-field="description" data-sortable="true" class="col-md-2 col-xs-2"> Time Spent </th>
 				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Grade </th>
 				<th data-field="viewevals" data-sortable="true" class ="col-md-2 col-xs-2"> GPA </th>
-				<th data-field="DEL" data-sortable="true" class ="col-md-2 col-xs-2"> DELETE </th>
-
-
+				<th data-field="DEL" data-sortable="false" class ="col-md-2 col-xs-2"> DELETE </th>
 			</tr>
 			<tr class="warning no-result">
 				<td colspan="4"><i class="fa fa-warning"></i> No result</td>

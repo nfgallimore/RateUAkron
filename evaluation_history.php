@@ -41,34 +41,34 @@ mysqli_close($link);
 </head>
 <body>
 	<div class="page-header">
-		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br>Welcome to your recommended courses.</h1>
-		<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
+		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br> <span> Welcome </span> to your course evaluation history!</h1>
 	</div>
 	<div class="nav-bar">
-		<a href="welcome.php" class="btn btn-info">Home</a>
-	</div><br><br>
-	<div class="container">
-		<table class="course-table" data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
-			<thead>
-				<tr>
-					<th data-field="cid" data-sortable="true" class="col-md-2 col-xs-2">Course ID</th>
-					<th data-field="title" data-sortable="true" class="col-md-2 col-xs-2">Course Name</th>
-					<th data-field="delete" data-sortable="false" class="col-md-2 col-xs-2">Delete Evaluation</th>
-
-				</tr>
-				<tr class="warning no-result">
-					<td colspan="4"><i class="fa fa-warning"></i>No result</td>
-				</tr>
-			</thead>
-			<tbody>
-				<?php foreach ($evals as $eval): ?>
-					<tr>
-						<td><a href="geteval.php/q?id=<?= $eval["CourseID"]?>"><?= $eval["CourseID"]?></a></td>
-						<td><a href="geteval.php/q?id= <?= $eval["CourseID"]?>"><?= $eval["Title"]?></a></td>
-						<td><a href="deleval.php/q?id=<?php echo $eval["CourseID"]?>" class="btn btn-danger">Delete</a></td>
-					</tr>
-				<?php endforeach ?>
-			</tbody>
-		</table>
+		<a href="index.php" class="btn btn-info">Home</a>
+		<a href="evaluation_history.php" class="btn btn-info">View Evaluation History</a>
+		<a href="help.html" class="btn btn-info">Help</a>
+		<a href="logout.php" class="btn btn-danger">Sign Out</a>
 	</div>
+	<table class="course-table" data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
+		<thead>
+			<tr>
+				<th data-field="cid" data-sortable="true" class="col-md-2 col-xs-2">Course ID</th>
+				<th data-field="title" data-sortable="true" class="col-md-2 col-xs-2">Course Name</th>
+				<th data-field="delete" data-sortable="false" class="col-md-2 col-xs-2">Delete Evaluation</th>
+
+			</tr>
+			<tr class="warning no-result">
+				<td colspan="4"><i class="fa fa-warning"></i>No result</td>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($evals as $eval): ?>
+				<tr>
+					<td><a href="geteval.php/q?id=<?= $eval["CourseID"]?>"><?= $eval["CourseID"]?></a></td>
+					<td><a href="geteval.php/q?id= <?= $eval["CourseID"]?>"><?= $eval["Title"]?></a></td>
+					<td><a href="deleval.php/q?id=<?php echo $eval["CourseID"]?>" class="btn btn-danger">Delete</a></td>
+				</tr>
+			<?php endforeach ?>
+		</tbody>
+	</table>
 </body>

@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							session_start();
 							$_SESSION['username'] = $username;
 							$_SESSION['userid'] = $userid;
-							header("location: welcome.php");
+							header("location: index.php");
 						}
 						else {
 							$password_err = 'The password you entered was not valid.';
@@ -63,9 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<title>Login</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
 	<link rel="stylesheet" href="css/styles.css">
-	<style type="text/css">
-
-	</style>
 </head>
 <body>
 	<div class="wrapper">

@@ -61,8 +61,8 @@ mysqli_close($link);
 		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br> <span> Welcome </span> to the University of Akron Course Catalog</h1>
 	</div>
 	<div class="nav-bar">
-		<a href="welcome.php" class="btn btn-info">Home</a>
-		<a href="recommended.php" class="btn btn-info">View Evaluation History</a>
+		<a href="index.php" class="btn btn-info">Home</a>
+		<a href="evaluation_history.php" class="btn btn-info">View Evaluation History</a>
 		<a href="help.html" class="btn btn-info">Help</a>
 		<a href="logout.php" class="btn btn-danger">Sign Out</a>
 	</div>
@@ -95,8 +95,8 @@ mysqli_close($link);
 				<td><?= $course["Description"]?></td>
 				<td><?= $course["Start_Time"]?></td>
 				<td><?= $course["End_Time"]?></td>
-				<td><a href="evaluate.php/q?id=<?php echo $course['Cid'] . "?title=" . $course['Title']?>" class="btn btn-success">Evaluate</a>
-				<td><a href="geteval.php/q?id=<?php echo $course['Cid']?>" class="btn btn-info">View Evaluations</a>
+				<td><a href="evaluate_course.php/q?id=<?php echo $course['Cid'] . "?title=" . $course['Title']?>" class="btn btn-success">Evaluate</a>
+				<td><a href="view_course_evals.php/q?id=<?php echo $course['Cid']?>" class="btn btn-info">View Evaluations</a>
 			</tr>
 			<?php endforeach ?>
 		</tbody>

@@ -48,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			mysqli_stmt_bind_param($stmt, "iiddssds", $courseid, $userid, $recommended, $timespent, $reason, $grade, $gpa, $comment);
 			mysqli_stmt_execute($stmt);
 			mysqli_stmt_close($stmt);
-			//echo "<script> location.href='../welcome.php'; </script>";
-			//	exit;
+			echo "<script> location.href='../index.php'; </script>";
+			exit;
 		}
 	}
 	mysqli_close($link);
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
-	<title>Evaluate <?php echo ($title); ?></title>
+	<title>Evaluate <?php echo $title; ?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
     <link rel="stylesheet" href="../css/styles.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -69,14 +69,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 	<div class="wrapper">
 		<div class="page-header">
-			<h1>Evaluate <?php echo ($title); ?></h1>
+			<h1>Evaluate <?php echo $title; ?></h1>
 			<p>Please enter your responses below.</p>
 		</div>
 		<div class="nav-bar">
-			<a href="../welcome.php" class="btn btn-info">Home</a>
-			<a href="recommended.php" class="btn btn-info">View Evaluation History</a>
-			<a href="help.html" class="btn btn-info">Help</a>
-			<a href="logout.php" class="btn btn-danger">Sign Out</a>
+			<a href="../index.php" class="btn btn-info">Home</a>
+			<a href="../evaluation_history.php" class="btn btn-info">View Evaluation History</a>
+			<a href="../help.html" class="btn btn-info">Help</a>
+			<a href="../logout.php" class="btn btn-danger">Sign Out</a>
 		</div>
 		<form id="evalform" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?id=" . $courseid; ?>" method="post">
 			<div class="left input-container">
