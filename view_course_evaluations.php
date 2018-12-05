@@ -13,7 +13,7 @@ else {
 $cid = htmlspecialchars($_GET['id']);
 $courseTitle = htmlspecialchars($_GET['title']);
 
-$sql = 'SELECT Evaluations.Id as Eid, Title, Instructor, Description, CourseID, UserId, Comment, Recommended, TimeSpent, Reason, Grade, GPA, Created_At, Evaluations.Id as Eid FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE CourseID = ' . $cid;
+$sql = 'SELECT Title, Instructor, Description, CourseID, UserId, Comment, Recommended, TimeSpent, Reason, Grade, GPA, Created_At, Evaluations.Id as Eid FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE CourseID = ' . $cid;
 $evals = [];
 
 if ($result = mysqli_query($link, $sql)) {
@@ -41,30 +41,9 @@ if ($result = mysqli_query($link, $sql)) {
 }
 
 if ($loggedIn) {
-	$usrn = $_SESSION['username'];
-	$sqe = "SELECT id from Users WHERE username like '$usrn'";
-	$evee = [];
-	if($result = mysqli_query($link, $sqe)) {
-	    if(mysqli_num_rows($result) > 0) {
-	        while($row = mysqli_fetch_array($result)) {
-	            $evee[] = [
-					'ids' => $row['id']
-	            ];
-	        }
-		    mysqli_free_result($result);
-	    }
-	    else {
-			echo "No records matching your query were found.";
-	    }
-	}
-	else {
-		echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-	}
-	mysqli_close($link);
-	foreach ($evee as $eve) {
-		$check = $eve['ids'];
-	}
+	$loggedInUsersId = $_SESSION['userid'];
 }
+
 // $RecommendedSum = 0;
 // $RecommendedCount = 0;
 // $RecommendedAvg = 0;
@@ -130,7 +109,9 @@ if ($loggedIn) {
 				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Grade </th>
 				<th data-field="gpa" data-sortable="true" class ="col-md-2 col-xs-2"> GPA </th>
 				<th data-field="comment" data-sortable="true" class ="col-md-2 col-xs-2"> Comment </th>
-				<th data-field="del" data-sortable="false" class ="col-md-2 col-xs-2"> Delete </th>
+				<?php if($loggedIn) : ?>
+					<th data-field="del" data-sortable="false" class ="col-md-2 col-xs-2"> Delete </th>
+				<?php endif; ?>
 			</tr>
 			<tr class="warning no-result">
 				<td colspan="4"><i class="fa fa-warning"></i> No result</td>
@@ -145,9 +126,9 @@ if ($loggedIn) {
 				<td><?= $eval["Grade"]?></td>
 				<td><?= $eval["GPA"]?></td>
 				<td><?= $eval["Comment"]?></td>
-				<?php if($eval["Userid"] == $check) : ?>
+				<?php if($loggedIn && $eval["UserId"] == $loggedInUsersId) : ?>
 					<td>
-						<a href="delete_evaluation.php?id=<?php echo $eval['Eid']?>" class="btn btn-danger">Delete</a>
+						<a href="delete_evaluation.php?id=<?php echo $eval['Eds']?>" class="btn btn-danger">Delete</a>
 					</td>
 				<?php endif; ?>
 			</tr>
