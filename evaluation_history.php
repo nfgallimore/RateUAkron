@@ -8,7 +8,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 
 require_once 'includes/config.php';
 
-$sql = 'SELECT CourseID, Title FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE Evaluations.UserID = ' . $_SESSION["userid"] . ';';
+$sql = 'SELECT Courses.Title as Title, Evaluations.Id as Eid, Recommended, TimeSpent, Reason, Grade, GPA, Comment FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE UserID = ' . $_SESSION["userid"] . ' ORDER BY Created_At DESC;';
 
 $evals = [];
 
@@ -16,8 +16,14 @@ if ($result = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($result) > 0) {
 		while($row = mysqli_fetch_array($result)){
 		    $evals[] = [
-		        'CourseID' => $row['CourseID'],
-		        'Title' => $row['Title']
+		        'Title' => $row['Title'],
+		        'Recommended' => $row['Recommended'],
+		        'TimeSpent' => $row['TimeSpent'],
+		        'Reason' => $row['Reason'],
+		        'Grade' => $row['Grade'],
+		        'GPA' => $row['GPA'],
+		        'Comment' => $row['Comment'],
+		        'Eid' => $row['Eid']
 		    ];
 		}
 		mysqli_free_result($result);
@@ -37,7 +43,6 @@ mysqli_close($link);
     <link rel="stylesheet" href="css/styles.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
-
 </head>
 <body>
 	<div class="page-header">
@@ -49,26 +54,32 @@ mysqli_close($link);
 		<a href="help.html" class="btn btn-info">Help</a>
 		<a href="logout.php" class="btn btn-danger">Sign Out</a>
 	</div>
-	<table class="course-table" data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
+	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 		<thead>
 			<tr>
-				<th data-field="cid" data-sortable="true" class="col-md-2 col-xs-2">Course ID</th>
-				<th data-field="title" data-sortable="true" class="col-md-2 col-xs-2">Course Name</th>
-				<th data-field="delete" data-sortable="false" class="col-md-2 col-xs-2">Delete Evaluation</th>
-
+				<th data-field="name" data-sortable="true" class="col-md-2 col-xs-2"> Course Name </th>
+				<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2"> Recommend </th>
+				<th data-field="description" data-sortable="true" class="col-md-2 col-xs-2"> Time Spent </th>
+				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Grade </th>
+				<th data-field="reason" data-sortable="true" class ="col-md-2 col-xs-2"> Reason </th>
+				<th data-field="gpa" data-sortable="true" class ="col-md-2 col-xs-2"> GPA </th>
+				<th data-field="delete" data-sortable="false" class ="col-md-2 col-xs-2"> Delete </th>
 			</tr>
 			<tr class="warning no-result">
-				<td colspan="4"><i class="fa fa-warning"></i>No result</td>
+				<td colspan="4"><i class="fa fa-warning"></i> No result</td>
 			</tr>
 		</thead>
 		<tbody>
 			<?php foreach ($evals as $eval): ?>
-				<tr>
-					<td><a href="geteval.php/q?id=<?= $eval["CourseID"]?>"><?= $eval["CourseID"]?></a></td>
-					<td><a href="geteval.php/q?id= <?= $eval["CourseID"]?>"><?= $eval["Title"]?></a></td>
-					<td><a href="deleval.php/q?id=<?php echo $eval["CourseID"]?>" class="btn btn-danger">Delete</a></td>
-				</tr>
+			<tr>
+				<td><?= $eval["Title"]?></td>
+				<td><?= $eval["Recommended"]?></td>
+				<td><?= $eval["TimeSpent"]?></td>
+				<td><?= $eval["Reason"]?></td>
+				<td><?= $eval["Grade"]?></td>
+				<td><?= $eval["GPA"]?></td>
+				<td><a href="delete_evaluation.php/q?id=<?php echo $eval['Eid']?>" class="btn btn-danger">X</a></td>
+			</tr>
 			<?php endforeach ?>
-		</tbody>
-	</table>
+		</tbody
 </body>

@@ -102,14 +102,12 @@ if ($RecommendedCount > 0) {
 	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 		<thead>
 			<tr>
-				<th data-field="EID" data-sortable="true" class="col-md-2 col-xs-2"> EID </th>
-				<th data-field="id" data-sortable="true" class="col-md-2 col-xs-2"> Reviewer </th>
-				<th data-field="name" data-sortable="true" class="col-md-2 col-xs-2"> Course ID </th>
+				<th data-field="name" data-sortable="true" class="col-md-2 col-xs-2"> Course Name </th>
 				<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2"> Recommend </th>
 				<th data-field="description" data-sortable="true" class="col-md-2 col-xs-2"> Time Spent </th>
 				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Grade </th>
 				<th data-field="viewevals" data-sortable="true" class ="col-md-2 col-xs-2"> GPA </th>
-				<th data-field="DEL" data-sortable="false" class ="col-md-2 col-xs-2"> DELETE </th>
+				<th data-field="DEL" data-sortable="false" class ="col-md-2 col-xs-2"> Delete </th>
 			</tr>
 			<tr class="warning no-result">
 				<td colspan="4"><i class="fa fa-warning"></i> No result</td>
@@ -118,16 +116,14 @@ if ($RecommendedCount > 0) {
 		<tbody>
 			<?php foreach ($evals as $eval): ?>
 			<tr>
-				<td><?= $eval["Eds"]?></td>
-				<td><?= $eval["Userid"]?></td>
-				<td><?= $eval["CourseId"]?></td>
+				<td><?= $eval["Title"]?></td>
 				<td><?= $eval["Recommended"]?></td>
 				<td><?= $eval["TimeSpent"]?></td>
 				<td><?= $eval["Grade"]?></td>
 				<td><?= $eval["GPA"]?></td>
 				<?php if($eval["Userid"] == $check) : ?>
 					<td>
-						<a href="../deleval.php/q?id=<?php echo $eval['Eds']?>" class="btn btn-danger">X</a>
+						<a href="../delete_evaluation.php/q?id=<?php echo $eval['Eds']?>" class="btn btn-danger">X</a>
 					</td>
 				<?php endif; ?>
 			</tr>
