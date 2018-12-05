@@ -13,7 +13,7 @@ $sql = "DELETE FROM Evaluations WHERE CourseId = " . $courseId . ";";
 mysqli_query($link, $sql);
 
 mysqli_close($link);
-header("location: ../welcome.php");
+header("location: ../geteval.php");
 exit;
 
 ?>

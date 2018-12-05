@@ -17,7 +17,6 @@ else {
 require_once 'includes/config.php';
 $sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses LIMIT " . ($page - 1) * 25 . "," . (($page - 1) * 25 + 25);
 
-echo $sql;
 $courses = [];
 if($result = mysqli_query($link, $sql)) {
 	if(mysqli_num_rows($result) > 0) {
@@ -60,10 +59,12 @@ mysqli_close($link);
 <body>
 	<div class="page-header">
 		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br> <span> Welcome </span> to the University of Akron Course Catalog</h1>
-		<p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 	</div>
 	<div class="nav-bar">
-		<a href="recommended.php" class="btn btn-info">Your Evaluations</a>
+		<a href="welcome.php" class="btn btn-info">Home</a>
+		<a href="recommended.php" class="btn btn-info">View Evaluation History</a>
+		<a href="help.html" class="btn btn-info">Help</a>
+		<a href="logout.php" class="btn btn-danger">Sign Out</a>
 	</div>
 	<form class="form-group pull-right">
 		<input type="text" class="search form-control" placeholder="What you looking for?">
@@ -78,8 +79,8 @@ mysqli_close($link);
 				<th data-field="description" data-sortable="true" class="col-md-5 col-xs-5"> Description </th>
 				<th data-field="start-time" data-sortable="true" class="col-md-5 col-xs-5"> Start Time </th>
 				<th data-field="end-time" data-sortable="true" class="col-md-5 col-xs-5"> End Time </th>
-				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Evaluate Course </th>
-				<th data-field="viewevals" data-sortable="true" class ="col-md-2 col-xs-2"> View Evaluations </th>
+				<th data-field="evaluations" data-sortable="false" class="col-md-2 col-xs-2"> Evaluate Course </th>
+				<th data-field="viewevals" data-sortable="false" class ="col-md-2 col-xs-2"> View Evaluations </th>
 			</tr>
 			<tr class="warning no-result">
 				<td colspan="4"><i class="fa fa-warning"></i> No result</td>
@@ -94,7 +95,7 @@ mysqli_close($link);
 				<td><?= $course["Description"]?></td>
 				<td><?= $course["Start_Time"]?></td>
 				<td><?= $course["End_Time"]?></td>
-				<td><a href="evaluate.php/q?id=<?php echo $course['Cid']?>" class="btn btn-success">Evaluate</a>
+				<td><a href="evaluate.php/q?id=<?php echo $course['Cid'] . "?title=" . $course['Title']?>" class="btn btn-success">Evaluate</a>
 				<td><a href="geteval.php/q?id=<?php echo $course['Cid']?>" class="btn btn-info">View Evaluations</a>
 			</tr>
 			<?php endforeach ?>
@@ -102,7 +103,7 @@ mysqli_close($link);
 		<nav aria-label="Page navigation example">
 			<ul class="pagination">
 				<li class="page-item">
-					<a class="page-link" href="?page=<?php echo ($page - 1 == 0) ? $page : $page + 1?>" aria-label="Previous">
+					<a class="page-link" href="?page=<?php echo ($page - 1 == 0) ? $page : $page - 1?>" aria-label="Previous">
 						<span aria-hidden="true">&laquo;</span>
 						<span class="sr-only">Previous</span>
 					</a>
