@@ -24,6 +24,7 @@ body {
 
 .wrapper {
     padding: 20px;
+    width: 100%;
 }
 
 .nav-bar {
@@ -80,4 +81,23 @@ table th {
     border-radius: 5px;
     font-family:fantasy;
     background-color: #1c4254;
+}
+
+.input-container {
+    width: 30%;
+}
+
+.rt-textarea {
+    padding-top: 22px;
+    padding-left: 50px;
+}
+
+.left
+{
+    float: left;
+}
+
+.right 
+{
+    float: right;
 }
