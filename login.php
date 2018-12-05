@@ -8,8 +8,7 @@ $loggedIn = true;
 if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 	$loggedIn = false;
 }
-
-if ($loggedIn) {
+else {
 	header("location: index.php");
 	exit;
 }

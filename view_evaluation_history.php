@@ -6,7 +6,6 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     exit;
 }
 
-
 $sql = 'SELECT Courses.Title as Title, Evaluations.Id as Eid, Recommended, TimeSpent, Reason, Grade, GPA, Comment FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE UserID = ' . $_SESSION["userid"] . ' ORDER BY Created_At DESC;';
 
 $evals = [];

@@ -2,9 +2,14 @@
 require_once 'includes/config.php';
 
 $loggedIn = true;
+
 if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
     $loggedIn = false;
 }
+else {
+    $username = $_SESSION['username'];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +37,12 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 <body>
 	<!-- header start -->
     <div class="page-header">
-        <h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br> <span> Welcome </span> to the help page!</h1>
+        <h1>
+            <?php if($loggedIn) : ?>
+                Hi, <b><?php echo $username; ?>.</b><br>
+            <?php endif; ?>
+            <span> Welcome </span> to the help page!
+        </h1>
     </div>
     </div>
     <div class="nav-bar">

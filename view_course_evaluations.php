@@ -2,8 +2,12 @@
 require_once 'includes/config.php';
 
 $loggedIn = true;
+
 if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 	$loggedIn = false;
+}
+else {
+	$username = $_SESSION['username'];
 }
 
 $cid = htmlspecialchars($_GET['id']);
@@ -36,30 +40,6 @@ if ($result = mysqli_query($link, $sql)) {
 	}
 }
 
-//-------------------------------------------------------------------
-$usrn = $_SESSION['username'];
-$sqe = "SELECT id from Users WHERE username like '$usrn'";
-$evee = [];
-
-if($result = mysqli_query($link, $sqe)) {
-    if(mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_array($result)) {
-            $evee[] = [
-				'ids' => $row['id']
-            ];
-        }
-	    mysqli_free_result($result);
-    }
-}
-else {
-	echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-}
-
-mysqli_close($link);
-foreach ($evee as $eve) {
-	$check = $eve['ids'];
-}
-//-------------------------------------------------------------------
 $RecommendedSum = 0;
 $RecommendedCount = 0;
 $RecommendedAvg = 0;
@@ -103,7 +83,12 @@ if ($RecommendedCount > 0) {
 <body>
 <body>
 	<div class="page-header">
-		<h1><span> <?php echo $courseTitle?> </span> course evaluations</h1>
+		<h1>
+			<?php if($loggedIn) : ?>
+				Hi, <b><?php echo $username; ?></b><br>
+			<?php endif; ?>
+			<span> <?php echo $courseTitle?> </span> course evaluations		
+		</h1>
 	</div>
 	<div class="nav-bar">
 		<a href="index.php" class="btn btn-info">Home</a>

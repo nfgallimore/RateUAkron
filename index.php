@@ -2,8 +2,12 @@
 require_once 'includes/config.php';
 
 $loggedIn = true;
+
 if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 	$loggedIn = false;
+}
+else {
+	$username = $_SESSION['username'];
 }
 
 if (!isset($_GET['page']) || empty($_GET['page'])) {
@@ -19,7 +23,6 @@ if (!isset($_GET['search']) || empty($_GET['search'])) {
 else {
 	$search = htmlspecialchars($_GET['search']);
 }
-
 
 
 if (!isset($_GET['search']) || empty($_GET['search'])) {
@@ -81,7 +84,12 @@ mysqli_close($link);
 </head>
 <body>
 	<div class="page-header">
-		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b><br> <span> Welcome </span> to the University of Akron Course Catalog</h1>
+		<h1>
+			<?php if($loggedIn) : ?>
+				Hi, <b><?php echo $username; ?></b>.<br>
+			<?php endif; ?>
+			<span> Welcome </span> to the University of Akron Course Catalog
+		</h1>
 	</div>
 	<div class="nav-bar">
 		<a href="index.php" class="btn btn-info">Home</a>
