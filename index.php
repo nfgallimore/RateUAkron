@@ -13,9 +13,22 @@ else {
 	$page = htmlspecialchars($_GET['page']);
 }
 
+if (!isset($_GET['search']) || empty($_GET['search'])) {
+	$search = "";
+}
+else {
+	$search = htmlspecialchars($_GET['search']);
+}
+
 require_once 'includes/config.php';
 
-$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses LIMIT " . ($page - 1) * 25 . "," . (($page - 1) * 25 + 25);
+
+if (!isset($_GET['search']) || empty($_GET['search'])) {
+	$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses LIMIT " . ($page - 1) * 25 . "," . (($page - 1) * 25 + 25);
+}
+else {
+	$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses WHERE Title LIKE '%{$search}%' LIMIT " . ($page - 1) * 25 . "," . (($page - 1) * 25 + 25);
+}
 
 $courses = [];
 if($result = mysqli_query($link, $sql)) {
@@ -49,7 +62,7 @@ mysqli_close($link);
 	<title>Course Evaluations</title>
 
 	<!-- Favicons -->
-	<link rel="icon"  type="image/png"  href="favicons/favicon.png" />
+	<link rel="icon" type="image/png" href="favicons/favicon.png" />
 	<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
@@ -107,12 +120,12 @@ mysqli_close($link);
 				<td><?= $course["Description"]?></td>
 				<td><?= $course["Start_Time"]?></td>
 				<td><?= $course["End_Time"]?></td>
-				<td><a href="evaluate_course.php/q?id=<?php echo $course['Cid'] . "?title=" . $course['Title']?>" class="btn btn-success">Evaluate</a>
-				<td><a href="view_course_evaluations.php/q?id=<?php echo $course['Cid']?>" class="btn btn-success">View Evaluations</a>
+				<td><a href="evaluate_course.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title']?>" class="btn btn-success">Evaluate</a>
+				<td><a href="view_course_evaluations.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title'] ?>" class="btn btn-success">View Evaluations</a>
 			</tr>
 			<?php endforeach ?>
 		</tbody>
-		<nav aria-label="Page navigation example">
+		<nav aria-label="Page navigation">
 			<ul class="pagination">
 				<li class="page-item">
 					<a class="page-link" href="?page=<?php echo ($page - 1 == 0) ? $page : $page - 1?>" aria-label="Previous">

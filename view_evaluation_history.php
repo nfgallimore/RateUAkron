@@ -93,7 +93,7 @@ mysqli_close($link);
 				<td><?= $eval["Grade"]?></td>
 				<td><?= $eval["GPA"]?></td>
 				<td><?= $eval["Comment"]?></td>
-				<td><a href="delete_evaluation.php/q?id=<?php echo $eval['Eid']?>" class="btn btn-danger">Delete</a></td>
+				<td><a href="delete_evaluation.php?id=<?php echo $eval['Eid']?>" class="btn btn-danger">Delete</a></td>
 			</tr>
 			<?php endforeach ?>
 		</tbody

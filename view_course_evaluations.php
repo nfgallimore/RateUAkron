@@ -7,7 +7,8 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 }
 
 require_once 'includes/config.php';
-$cid = $_GET['id'];
+$cid = htmlspecialchars($_GET['id']);
+$courseTitle = htmlspecialchars($_GET['title']);
 
 $sql = 'SELECT Title, Instructor, Description, CourseID, UserId, Comment, Recommended, TimeSpent, Reason, Grade, GPA, Created_At, Evaluations.Id as Eid FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE CourseID = ' . $cid;
 $evals = [];
@@ -83,21 +84,21 @@ if ($RecommendedCount > 0) {
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
-	<title>Evaluations for <?php echo $title ?></title>
+	<title><?php echo $courseTitle ?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css" />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
 
 	<!-- Favicons -->
-	<link rel="icon"  type="image/png"  href="../favicons/favicon.png" />
-	<link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16x16.png">
-	<link rel="icon" type="image/png" sizes="192x192" href="../favicons/android-chrome-192x192.png">
-	<link rel="manifest" href="../favicons/site.webmanifest">
-	<link rel="mask-icon" href="../favicons/safari-pinned-tab.svg" color="#0a1f41">
+	<link rel="icon"  type="image/png"  href="favicons/favicon.png" />
+	<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="favicons/android-chrome-192x192.png">
+	<link rel="manifest" href="favicons/site.webmanifest">
+	<link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#0a1f41">
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
 	<!-- Favicons -->
@@ -106,13 +107,13 @@ if ($RecommendedCount > 0) {
 <body>
 <body>
 	<div class="page-header">
-		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br> <span> Welcome </span> to the University of Akron Course Catalog</h1>
+		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br><span> <?php echo $courseTitle?> </span> course evaluations</h1>
 	</div>
 	<div class="nav-bar">
-		<a href="../index.php" class="btn btn-info">Home</a>
-		<a href="../view_evaluation_history.php" class="btn btn-info">View Evaluation History</a>
-		<a href="../help.php" class="btn btn-info">Help</a>
-		<a href="../logout.php" class="btn btn-danger">Sign Out</a>
+		<a href="index.php" class="btn btn-info">Home</a>
+		<a href="view_evaluation_history.php" class="btn btn-info">View Evaluation History</a>
+		<a href="help.php" class="btn btn-info">Help</a>
+		<a href="logout.php" class="btn btn-danger">Sign Out</a>
 	</div>
 	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 		<thead>
@@ -140,7 +141,7 @@ if ($RecommendedCount > 0) {
 				<td><?= $eval["Comment"]?></td>
 				<?php if($eval["Userid"] == $check) : ?>
 					<td>
-						<a href="../delete_evaluation.php/q?id=<?php echo $eval['Eds']?>" class="btn btn-danger">X</a>
+						<a href="delete_evaluation.php?id=<?php echo $eval['Eds']?>" class="btn btn-danger">X</a>
 					</td>
 				<?php endif; ?>
 			</tr>
