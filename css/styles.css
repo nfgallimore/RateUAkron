@@ -131,3 +131,16 @@ table th {
 .nav-bar {
     padding-top: 0;
 }
+
+.search {
+    width: 100%;
+    display: inline-block;
+    float-left: auto;
+}
+.search-box {
+    width: 80%;
+}
+
+.inline-block {
+    display: inline-block;
+}

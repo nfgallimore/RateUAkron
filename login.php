@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
 	<!-- Favicons -->
-	
+
 </head>
 <body>
 	<div class="wrapper">
@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<span class="help-block"><?php echo $password_err; ?></span>
 			</div>
 			<div class="form-group">
-				<input type="submit" class="btn btn-primary" value="Submit">
+				<input type="submit" class="btn btn-info" value="Submit">
 			</div>
 			<p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
 		</form>
