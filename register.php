@@ -81,6 +81,8 @@ mysqli_close($link);
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Sign Up</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+	<link rel="stylesheet" href="css/styles.css">
+
 	<!-- Favicons -->
 	<link rel="icon"  type="image/png"  href="favicons/favicon.png" />
 	<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
@@ -94,9 +96,18 @@ mysqli_close($link);
 	<!-- Favicons -->
 </head>
 <body>
+	<div class="page-header">
+		<h1><span> Welcome </span> to the University of Akron Course Catalog!</h1>
+	</div>
+	<div class="nav-bar">
+		<a href="index.php" class="btn btn-info">Home</a>
+		<a href="view_evaluation_history.php" class="btn btn-info">View Evaluation History</a>
+		<a href="help.php" class="btn btn-info">Help</a>
+		<a href="logout.php" class="btn btn-danger">Sign Out</a>
+	</div>
 	<div class="wrapper">
-		<h2>Sign Up</h2>
-		<p>Please fill this form to create an account.</p>
+		<h2>Register</h2>
+		<p>Please fill out this form to create an account.</p>
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 			<div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
 				<label>Username:<sup>*</sup></label>

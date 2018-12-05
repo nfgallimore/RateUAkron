@@ -76,10 +76,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<meta name="theme-color" content="#ffffff">
 	<!-- Favicons -->
 
+	<div class="page-header">
+		<h1><span> Welcome </span> to the University of Akron Course Catalog!</h1>
+	</div>
+	<div class="nav-bar">
+		<a href="index.php" class="btn btn-info">Home</a>
+		<a href="view_evaluation_history.php" class="btn btn-info">View Evaluation History</a>
+		<a href="help.php" class="btn btn-info">Help</a>
+		<a href="logout.php" class="btn btn-danger">Sign Out</a>
+	</div>
 </head>
 <body>
 	<div class="wrapper">
-		<a href="help.html">Click here for Online Help</a>
 		<h2>Login</h2>
 		<p>Please fill in your credentials to login.</p>
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
