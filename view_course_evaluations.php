@@ -13,14 +13,14 @@ else {
 $cid = htmlspecialchars($_GET['id']);
 $courseTitle = htmlspecialchars($_GET['title']);
 
-$sql = 'SELECT Evaluations.Id, Title, Instructor, Description, CourseID, UserId, Comment, Recommended, TimeSpent, Reason, Grade, GPA, Created_At, Evaluations.Id as Eid FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE CourseID = ' . $cid;
+$sql = 'SELECT Evaluations.Id as Eid, Title, Instructor, Description, CourseID, UserId, Comment, Recommended, TimeSpent, Reason, Grade, GPA, Created_At, Evaluations.Id as Eid FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE CourseID = ' . $cid;
 $evals = [];
 
 if ($result = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($result) > 0) {
 		while($row = mysqli_fetch_array($result)){
 		    $evals[] = [
-		        'Id' => $row['Id'],
+		        'Eid' => $row['Id'],
 		        'CourseId' => $row['CourseID'],
 		        'Recommended' => $row['Recommended'],
 		        'TimeSpent' => $row['TimeSpent'],
@@ -31,7 +31,7 @@ if ($result = mysqli_query($link, $sql)) {
 		        'Title' => $row['Title'],
 		        'Instructor' => $row['Instructor'],
 		        'Description' => $row['Description'],
-				'Userid' => $row['UserId'],
+				'UserId' => $row['UserId'],
 				'Eds' => $row['Eid'],
 				'Comment' => $row['Comment']
 		    ];
@@ -122,7 +122,7 @@ if ($RecommendedCount > 0) {
 				<td><?= $eval["Comment"]?></td>
 				<?php if($eval["Userid"] == $check) : ?>
 					<td>
-						<a href="delete_evaluation.php?id=<?php echo $eval['Eds']?>" class="btn btn-danger">X</a>
+						<a href="delete_evaluation.php?id=<?php echo $eval['Eid']?>" class="btn btn-danger">Delete</a>
 					</td>
 				<?php endif; ?>
 			</tr>
