@@ -50,9 +50,6 @@ if($result = mysqli_query($link, $sqe)) {
         }
 	    mysqli_free_result($result);
     }
-    else {
-		echo "No records matching your query were found.";
-    }
 }
 else {
 	echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
@@ -106,11 +103,11 @@ if ($RecommendedCount > 0) {
 <body>
 <body>
 	<div class="page-header">
-		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br><span> <?php echo $courseTitle?> </span> course evaluations</h1>
+		<h1><span> <?php echo $courseTitle?> </span> course evaluations</h1>
 	</div>
 	<div class="nav-bar">
 		<a href="index.php" class="btn btn-info">Home</a>
-		<a href="view_evaluation_history.php" class="btn btn-info">View Evaluation History</a>
+		<a href="view_evaluation_history.php" class="btn btn-info">View Your Evaluation History</a>
 		<a href="help.php" class="btn btn-info">Help</a>
 		<a href="<?php echo ($loggedIn) ? 'logout.php' : 'login.php' ?>" class="btn btn-danger"><?php echo ($loggedIn) ? 'Sign Out' : 'Log in' ?></a>
 	</div>

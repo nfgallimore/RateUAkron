@@ -111,7 +111,6 @@ mysqli_close($link);
 	</div>
 	<div class="nav-bar">
 		<a href="index.php" class="btn btn-info">Home</a>
-		<a href="view_evaluation_history.php" class="btn btn-info">View Evaluation History</a>
 		<a href="help.php" class="btn btn-info">Help</a>
 	</div>
 	<div class="wrapper">

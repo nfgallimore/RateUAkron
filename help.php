@@ -37,7 +37,7 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
     </div>
     <div class="nav-bar">
         <a href="index.php" class="btn btn-info">Home</a>
-        <a href="view_evaluation_history.php" class="btn btn-info">View Evaluation History</a>
+        <a href="view_evaluation_history.php" class="btn btn-info">View Your Evaluation History</a>
         <a href="help.php" class="btn btn-info">Help</a>
         <a href="logout.php" class="btn btn-danger">Sign Out</a>
     </div>

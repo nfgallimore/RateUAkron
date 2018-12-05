@@ -80,11 +80,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 	<div class="page-header">
-		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br> <span> Evaluate </span> <?php echo $title?></h1>
+		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b><br> <span> Evaluate </span> <?php echo $title?></h1>
 	</div>
 	<div class="nav-bar">
 		<a href="index.php" class="btn btn-info">Home</a>
-		<a href="view_evaluation_history.php" class="btn btn-info">View Evaluation History</a>
+		<a href="view_evaluation_history.php" class="btn btn-info">View Your Evaluation History</a>
 		<a href="help.php" class="btn btn-info">Help</a>
 		<a href="logout.php" class="btn btn-danger">Sign Out</a>
 	</div>
