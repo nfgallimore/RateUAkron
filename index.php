@@ -134,20 +134,22 @@ mysqli_close($link);
 						</a>
 					</li>
 					<li class="page-item">
-						<a class="page-link" href="?page=<?php echo $page?>"><?php echo $page?></a>
+						<a class="page-link" href="?page=<?php echo $page?>&search=<?php echo $search ?>"><?php echo $page?></a>
 					</li>
-					<li class="page-item">
-						<a class="page-link" href="?page=<?php echo $page + 1?>"><?php echo $page + 1?></a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="?page=<?php echo $page + 2?>"><?php echo $page + 2?></a>
-					</li>				
-					<li class="page-item">
-						<a class="page-link" href="?page=<?php echo $page + 1?>" aria-label="Next">
-							<span aria-hidden="true">&raquo;</span>
-							<span class="sr-only">Next</span>
-						</a>
-					</li>
+					<?php if(count($courses) >= 25) : ?>
+						<li class="page-item">
+							<a class="page-link" href="?page=<?php echo $page + 1?>&search=<?php echo $search ?>"><?php echo $page + 1?></a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="?page=<?php echo $page + 2?>&search=<?php echo $search ?>"><?php echo $page + 2?></a>
+						</li>				
+						<li class="page-item">
+							<a class="page-link" href="?page=<?php echo $page + 1?>&search=<?php echo $search ?>" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+								<span class="sr-only">Next</span>
+							</a>
+						</li>
+					<?php endif; ?>
 				</ul>
 			</nav>
 		</table>

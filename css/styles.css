@@ -116,6 +116,9 @@ table th {
     margin-bottom: 10px;
 }
 
+.pagination > li > a {
+    color: #041e42;
+}
 #evalformbtn {
     float: none;
 }
