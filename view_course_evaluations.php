@@ -13,7 +13,7 @@ else {
 $cid = htmlspecialchars($_GET['id']);
 $courseTitle = htmlspecialchars($_GET['title']);
 
-$sql = 'SELECT Title, Instructor, Description, CourseID, UserId, Comment, Recommended, TimeSpent, Reason, Grade, GPA, Created_At, Evaluations.Id as Eid FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE CourseID = ' . $cid;
+$sql = 'SELECT Evaluations.Id, Title, Instructor, Description, CourseID, UserId, Comment, Recommended, TimeSpent, Reason, Grade, GPA, Created_At, Evaluations.Id as Eid FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE CourseID = ' . $cid;
 $evals = [];
 
 if ($result = mysqli_query($link, $sql)) {
@@ -21,7 +21,7 @@ if ($result = mysqli_query($link, $sql)) {
 		while($row = mysqli_fetch_array($result)){
 		    $evals[] = [
 		        'Id' => $row['Id'],
-		        'CourseId' => $row['CourseId'],
+		        'CourseId' => $row['CourseID'],
 		        'Recommended' => $row['Recommended'],
 		        'TimeSpent' => $row['TimeSpent'],
 		        'Reason' => $row['Reason'],
