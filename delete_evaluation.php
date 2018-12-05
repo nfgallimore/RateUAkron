@@ -1,12 +1,11 @@
 <?php
-session_start();
+require_once 'includes/config.php';
 
 if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 	header("location: login.php");
     exit;
 }
 
-require_once 'includes/config.php';
 $id = $_GET['id'];
 $sql = "DELETE FROM Evaluations WHERE Id = " . $id . ";";
 

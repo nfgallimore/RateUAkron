@@ -1,10 +1,10 @@
 <?php
-    session_start();
+require_once 'includes/config.php';
 
-    if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
-        header("location: login.php");
-        exit;
-    }
+$loggedIn = true;
+if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
+    $loggedIn = false;
+}
 ?>
 
 <!DOCTYPE html>

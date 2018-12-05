@@ -4,6 +4,16 @@ require_once 'includes/config.php';
 $username = $password = $userid = "";
 $username_err = $password_err = "";
 
+$loggedIn = true;
+if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
+	$loggedIn = false;
+}
+
+if ($loggedIn) {
+	header("location: index.php");
+	exit;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	if (empty(trim($_POST["username"]))) {
@@ -83,7 +93,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<a href="index.php" class="btn btn-info">Home</a>
 		<a href="view_evaluation_history.php" class="btn btn-info">View Evaluation History</a>
 		<a href="help.php" class="btn btn-info">Help</a>
-		<a href="logout.php" class="btn btn-danger">Sign Out</a>
 	</div>
 </head>
 <body>

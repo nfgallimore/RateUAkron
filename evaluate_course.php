@@ -1,5 +1,6 @@
 <?php
-session_start();
+
+require_once 'includes/config.php';
 
 if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
   	header("location: login.php");
@@ -9,7 +10,6 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 $courseid = htmlspecialchars($_GET['id']);
 $title = htmlspecialchars($_GET['title']);
 
-require_once 'includes/config.php';
 
 $recommended = $timespent = $reason = $grade = $gpa = $comment = "";
 $recommended_err = $timespent_err = $reason_err = $grade_err = $gpa_err = $comment_err = "";

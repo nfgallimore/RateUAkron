@@ -1,12 +1,11 @@
 <?php
-session_start();
+require_once 'includes/config.php';
 
-if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
-	header("location: login.php");
-    exit;
+$loggedIn = true;
+if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
+	$loggedIn = false;
 }
 
-require_once 'includes/config.php';
 $cid = htmlspecialchars($_GET['id']);
 $courseTitle = htmlspecialchars($_GET['title']);
 
@@ -113,7 +112,7 @@ if ($RecommendedCount > 0) {
 		<a href="index.php" class="btn btn-info">Home</a>
 		<a href="view_evaluation_history.php" class="btn btn-info">View Evaluation History</a>
 		<a href="help.php" class="btn btn-info">Help</a>
-		<a href="logout.php" class="btn btn-danger">Sign Out</a>
+		<a href="<?php echo ($loggedIn) ? 'logout.php' : 'login.php' ?>" class="btn btn-danger"><?php echo ($loggedIn) ? 'Sign Out' : 'Log in' ?></a>
 	</div>
 	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 		<thead>

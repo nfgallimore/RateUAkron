@@ -1,12 +1,11 @@
 <?php
-session_start();
+require_once 'includes/config.php';
 
 if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
-  header("location: login.php");
+  	header("location: login.php");
     exit;
 }
 
-require_once 'includes/config.php';
 
 $sql = 'SELECT Courses.Title as Title, Evaluations.Id as Eid, Recommended, TimeSpent, Reason, Grade, GPA, Comment FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE UserID = ' . $_SESSION["userid"] . ' ORDER BY Created_At DESC;';
 

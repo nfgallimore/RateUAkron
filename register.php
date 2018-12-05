@@ -1,8 +1,18 @@
 <?php
+
 require_once 'includes/config.php';
 
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
+
+$loggedIn = true;
+if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
+	$loggedIn = false;
+}
+
+if ($loggedIn) {
+	header("location: index.php");
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (empty(trim($_POST["username"]))) {
@@ -103,7 +113,6 @@ mysqli_close($link);
 		<a href="index.php" class="btn btn-info">Home</a>
 		<a href="view_evaluation_history.php" class="btn btn-info">View Evaluation History</a>
 		<a href="help.php" class="btn btn-info">Help</a>
-		<a href="logout.php" class="btn btn-danger">Sign Out</a>
 	</div>
 	<div class="wrapper">
 		<h2>Register</h2>

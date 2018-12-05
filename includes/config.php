@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 define('DB_SERVER', 'db1.cs.uakron.edu:3306');
 define('DB_USERNAME', 'nfg3');
 define('DB_PASSWORD', 'ohNooy1H');
