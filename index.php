@@ -135,7 +135,7 @@ mysqli_close($link);
 			<nav aria-label="Page navigation">
 				<ul class="pagination">
 					<li class="page-item">
-						<a class="page-link" href="?page=<?php echo ($page - 1 == 0) ? $page : $page - 1?>" aria-label="Previous">
+						<a class="page-link" href="?page=<?php echo ($page - 1 == 0) ? $page : $page - 1?>&search=<?php echo $search ?>" aria-label="Previous">
 							<span aria-hidden="true">&laquo;</span>
 							<span class="sr-only">Previous</span>
 						</a>
