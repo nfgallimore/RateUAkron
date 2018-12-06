@@ -69,10 +69,10 @@ mysqli_close($link);
 		<thead>
 			<tr>
 				<th data-field="name" data-sortable="true" class="col-md-2 col-xs-2"> Course Name </th>
-				<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2"> Recommend </th>
-				<th data-field="description" data-sortable="true" class="col-md-2 col-xs-2"> Time Spent </th>
-				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Grade </th>
-				<th data-field="reason" data-sortable="true" class ="col-md-2 col-xs-2"> Reason </th>
+				<th data-field="Rating" data-sortable="true" class="col-md-2 col-xs-2"> Rating </th>
+				<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2"> Instructor </th>
+				<th data-field="reason" data-sortable="true" class="col-md-2 col-xs-2"> Reason </th>
+				<th data-field="grade" data-sortable="true" class ="col-md-2 col-xs-2"> Grade </th>
 				<th data-field="gpa" data-sortable="true" class ="col-md-2 col-xs-2"> GPA </th>
 				<th data-field="comment" data-sortable="true" class ="col-md-2 col-xs-2"> Comment </th>
 				<th data-field="delete" data-sortable="false" class ="col-md-2 col-xs-2"> Delete </th>
