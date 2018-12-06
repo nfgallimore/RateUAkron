@@ -1,1 +1,1 @@
-<script>location.href='welcome.php';</script>
+<script>location.href='index.php';</script>
