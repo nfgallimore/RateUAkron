@@ -1,10 +1,10 @@
-USE ISP_nfg3;
+USE rateuakron
 
 CREATE TABLE Courses(
     Cid varchar(100) NOT NULL UNIQUE,
     Id varchar(100) NOT NULL,
     End_Date varchar(100),
-    Term varchar(100),
+    Term varchar(3000),
     Description varchar(1000),
     Title varchar(100),
     Career varchar(100),

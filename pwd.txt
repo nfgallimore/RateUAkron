@@ -1,0 +1,4 @@
+universityofakron2019
+ec2-52-91-5-119.compute-1.amazonaws.com
+
+GRANT ALL PRIVILEGES ON *.* TO 'db_user'@'%' IDENTIFIED BY 'universityofakron2019' WITH GRANT OPTION;

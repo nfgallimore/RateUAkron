@@ -108,7 +108,7 @@ if ($loggedIn) {
 				<th data-field="description" data-sortable="true" class="col-md-2 col-xs-2"> Time Spent </th>
 				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Grade </th>
 				<th data-field="gpa" data-sortable="true" class ="col-md-2 col-xs-2"> GPA </th>
-				<th data-field="comment" data-sortable="true" class ="col-md-2 col-xs-2"> Comment </th>
+				<th data-field="comment" data-sortable="true" class ="col-md-4 col-xs-4"> Comment </th>
 				<?php if($loggedIn) : ?>
 					<th data-field="del" data-sortable="false" class ="col-md-2 col-xs-2"> Delete </th>
 				<?php endif; ?>

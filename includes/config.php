@@ -1,10 +1,11 @@
 <?php
 
 session_start();
-define('DB_SERVER', 'db1.cs.uakron.edu:3306');
-define('DB_USERNAME', 'nfg3');
-define('DB_PASSWORD', 'ohNooy1H');
-define('DB_NAME', 'ISP_nfg3');
+
+define('DB_SERVER', '52.91.5.119');
+define('DB_USERNAME', 'db_user');
+define('DB_PASSWORD', 'universityofakron2019');
+define('DB_NAME', 'rateuakron');
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 if($link === false){
