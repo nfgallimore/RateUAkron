@@ -1,4 +1,4 @@
-USE rateuakron
+USE rateuakron;
 
 CREATE TABLE Courses(
     Cid varchar(100) NOT NULL UNIQUE,
