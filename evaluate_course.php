@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (empty(trim($_POST["comment"]))) {
 		$comment_err = "Please enter a commment.";
 	}
-	if (empty($recommended_err) && empty($timespent_err) && empty($reason_err) && empty($grade_err) && empty($gpa_err)) {
+	if (empty($recommended_err) && empty($timespent_err) && empty($reason_err) && empty($grade_err) && empty($gpa_err) && empty($comment_err)) {
 		$sql = 'INSERT INTO Evaluations (CourseID, UserID, Recommended, TimeSpent, Reason, Grade, GPA, Comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
 		$userid = $_SESSION["userid"];
 		$recommended = trim($_POST['recommended']);
