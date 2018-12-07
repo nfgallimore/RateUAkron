@@ -31,7 +31,15 @@ body {
     width: 100%;
 }
 
+.mobile-tbody {
+    margin-bottom: 50px;
+}
 
+
+.blank-row {
+    margin-bottom: 20px;
+    border: none;
+}
 
 .page-header {
 	margin-top: 0;

@@ -6,7 +6,7 @@ $loggedIn = true;
 if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 	$loggedIn = false;
 }
-else {
+else {	
 	$username = $_SESSION['username'];
 }
 
@@ -54,7 +54,15 @@ else {
 }
 
 mysqli_close($link);
+
+$detect = new Mobile_Detect();
+$mobile = false;
+if ($detect->isMobile()) {
+	$mobile = true;
+}
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -88,20 +96,51 @@ mysqli_close($link);
 			<?php if($loggedIn) : ?>
 				Hi, <b><?php echo $username; ?></b>.<br>
 			<?php endif; ?>
-			<span> Welcome </span> to the University of Akron Course Catalog
+			<span> Welcome </span> to Rate UAkron!
 		</h1>
 	</div>
 	<div class="nav-bar">
 		<a href="index.php" class="btn btn-info">Home</a>
-		<a href="view_evaluation_history.php" class="btn btn-info">View Your Evaluation History</a>
+		<?php if($loggedIn): ?>
+			<a href="view_evaluation_history.php" class="btn btn-info">View Your Evaluation History</a>
+		<?php endif; ?>
 		<a href="help.php" class="btn btn-info">Help</a>
 		<a href="<?php echo ($loggedIn) ? 'logout.php' : 'login.php' ?>" class="btn btn-danger"><?php echo ($loggedIn) ? 'Sign Out' : 'Log in' ?></a>
 	</div>
 	<form class="search form-group" action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="GET">
-		<input type="text" name="search" class="inline-block search-box form-control" placeholder="What you looking for?">
+		<input type="text" name="search" class="inline-block search-box form-control" placeholder="Enter a course to search for">
 		<input type="submit" class="inline-block btn btn-info" value="Submit">
 	</form>
-	<span class="counter pull-right"></span>
+
+	<nav aria-label="Page navigation">
+		<ul class="pagination">
+			<li class="page-item">
+				<a class="page-link" href="?page=<?php echo ($page - 1 == 0) ? $page : $page - 1?>&search=<?php echo $search ?>" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+					<span class="sr-only">Previous</span>
+				</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="?page=<?php echo $page?>&search=<?php echo $search ?>"><?php echo $page?></a>
+			</li>
+			<?php if(count($courses) >= 25) : ?>
+				<li class="page-item">
+					<a class="page-link" href="?page=<?php echo $page + 1?>&search=<?php echo $search ?>"><?php echo $page + 1?></a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="?page=<?php echo $page + 2?>&search=<?php echo $search ?>"><?php echo $page + 2?></a>
+				</li>				
+				<li class="page-item">
+					<a class="page-link" href="?page=<?php echo $page + 1?>&search=<?php echo $search ?>" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+						<span class="sr-only">Next</span>
+					</a>
+				</li>
+			<?php endif; ?>
+		</ul>
+	</nav>
+
+	<?php if(!$mobile): ?>
 		<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 			<thead>
 				<tr>
@@ -120,45 +159,45 @@ mysqli_close($link);
 			</thead>
 			<tbody>
 				<?php foreach ($courses as $course): ?>
-				<tr>
-					<td><?= $course["Id"]?></td>
-					<td><?= $course["Title"]?></td>
-					<td><?= $course["Instructor"]?></td>
-					<td><?= $course["Description"]?></td>
-					<td><?= $course["Start_Time"]?></td>
-					<td><?= $course["End_Time"]?></td>
-					<td><a href="evaluate_course.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title']?>" class="btn btn-success">Evaluate</a></td>
-					<td><a href="view_course_evaluations.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title'] ?>" class="btn btn-success">View Evaluations</a></td>
-				</tr>
+					<tr>
+						<td><?= $course["Id"]?></td>
+						<td><?= $course["Title"]?></td>
+						<td><?= $course["Instructor"]?></td>
+						<td><?= $course["Description"]?></td>
+						<td><?= $course["Start_Time"]?></td>
+						<td><?= $course["End_Time"]?></td>
+						<td><a href="evaluate_course.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title']?>" class="btn btn-success">Evaluate</a></td>
+						<td><a href="view_course_evaluations.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title'] ?>" class="btn btn-success">View Evaluations</a></td>
+					</tr>
 				<?php endforeach ?>
 			</tbody>
-			<nav aria-label="Page navigation">
-				<ul class="pagination">
-					<li class="page-item">
-						<a class="page-link" href="?page=<?php echo ($page - 1 == 0) ? $page : $page - 1?>&search=<?php echo $search ?>" aria-label="Previous">
-							<span aria-hidden="true">&laquo;</span>
-							<span class="sr-only">Previous</span>
-						</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="?page=<?php echo $page?>&search=<?php echo $search ?>"><?php echo $page?></a>
-					</li>
-					<?php if(count($courses) >= 25) : ?>
-						<li class="page-item">
-							<a class="page-link" href="?page=<?php echo $page + 1?>&search=<?php echo $search ?>"><?php echo $page + 1?></a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="?page=<?php echo $page + 2?>&search=<?php echo $search ?>"><?php echo $page + 2?></a>
-						</li>				
-						<li class="page-item">
-							<a class="page-link" href="?page=<?php echo $page + 1?>&search=<?php echo $search ?>" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-								<span class="sr-only">Next</span>
-							</a>
-						</li>
-					<?php endif; ?>
-				</ul>
-			</nav>
 		</table>
+
+	<?php else: ?>
+		<?php foreach ($courses as $course): ?>
+			<table class="table text-align:left table-hover table-bordered results">
+				<thead>
+					<tr>
+						<th class="col-md-2 col-xs-2"> <?php echo $course["Title"] ?> </th>
+					</tr>
+					<tr class="warning no-result">
+						<td colspan="4"><i class="fa fa-warning"></i> No result</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td><?= $course["Id"]?></td></tr>
+					<tr><td><?= $course["Title"]?></td></tr>
+					<tr><td><?= $course["Instructor"]?></td></tr>
+					<tr><td><?= $course["Description"]?></td></tr>
+					<tr><td><?= $course["Start_Time"]?></td></tr>
+					<tr><td><?= $course["End_Time"]?></td></tr>
+					<tr><td><a href="evaluate_course.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title']?>" class="btn btn-success">Evaluate</a></td></tr>
+					<tr><td><a href="view_course_evaluations.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title'] ?>" class="btn btn-success">View Evaluations</a></td></tr>
+				</tbody>
+			</table>
+		<?php endforeach ?>
+
+	<?php endif; ?>
+
 </body>
 </html>

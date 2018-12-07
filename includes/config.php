@@ -22,4 +22,6 @@ foreach ($_SERVER as $key => $value) {
     ChromePhp::log($key, $value);
 }
 
+require_once 'Mobile_Detect.php'
+
 ?>
