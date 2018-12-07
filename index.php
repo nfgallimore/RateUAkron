@@ -186,7 +186,6 @@ if ($detect->isMobile()) {
 				</thead>
 				<tbody>
 					<tr><td><?= $course["Id"]?></td></tr>
-					<tr><td><?= $course["Title"]?></td></tr>
 					<tr><td><?= $course["Instructor"]?></td></tr>
 					<tr><td><?= $course["Description"]?></td></tr>
 					<tr><td><?= $course["Start_Time"]?></td></tr>
@@ -198,6 +197,8 @@ if ($detect->isMobile()) {
 		<?php endforeach ?>
 
 	<?php endif; ?>
-
+	<footer>
+	 	The University of Akron trademarks and logos are property of The University of Akron. RateUAkron is not an affiliate of The University of Akron.
+	</footer>
 </body>
 </html>
