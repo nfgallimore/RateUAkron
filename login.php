@@ -115,7 +115,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		</form>
 		<br />
 		<a href="report.docx">Click here to download report.</a><br /><br />
-		<a href="presentation.pptx">Click here to download presentation.</a>
+		<a href="presentation.pptx">Click here to download presentation.</a><br /><br />
+		<a href="techreport.pdf">Click here to download technical report.</a>
 	</div>
 </body>
 </html>
