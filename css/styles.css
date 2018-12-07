@@ -5,14 +5,6 @@ body {
     color: #041e42;
 }
 
-
-@media only screen and (max-width: 480px) {
-    .tablemobile {
-        overflow-x: auto;
-        display: block;
-    }
-}
-
 .display-block {
     display: block;
 }
@@ -39,14 +31,16 @@ body {
     width: 100%;
 }
 
+
+
 .page-header {
 	margin-top: 0;
-    padding-top: 25px;
-    padding-left: 72px;
-    background-color: #041e42;
-    border-radius: 5px;
-    height:200px;
-    color: white;
+	padding-top: 25px;
+	padding-left: 72px;
+	background-color: #041e42;
+	border-radius: 5px;
+	height:200px;
+	color: white;
 }
 
 .page-header span {
@@ -82,7 +76,6 @@ table th {
     border-color: #ae9c6e;
 }
 
-
 .btn-success:hover, .btn-success:active:focus, .btn-success:focus {
     background-color: #041e42;
     border-color: #041e42;
@@ -92,7 +85,6 @@ table th {
     width: 500px;
     padding: 20px;
 }
-
 
 .input-container {
     width: 30%;
@@ -104,16 +96,13 @@ table th {
     display: block;
 }
 
-.left
-{
+.left {
     float: left;
 }
 
-.right 
-{
+.right {
     float: right;
 }
-
 
 .error {
     color: #a94442;
@@ -151,4 +140,25 @@ table th {
 
 .inline-block {
     display: inline-block;
+}
+
+@media only screen and (max-width: 480px) {
+    .tablemobile {
+        overflow-x: auto;
+        display: block;
+    }
+
+    .search .btn {
+        margin-top: 15px;
+    }
+    
+    .nav-bar a {
+        margin-top: 10px;
+    }
+
+    .page-header {
+        height: 100%;
+        padding-left: 25px;
+        padding-bottom: 25px;
+    }
 }
