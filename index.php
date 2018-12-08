@@ -23,7 +23,7 @@ if (!isset($_GET['search']) || empty($_GET['search'])) {
 }
 else {
 	$search = htmlspecialchars($_GET['search']);
-	$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses WHERE Title LIKE '%{$search}%' OR Description LIKE '%{$search}%' OR Course LIKE '%{$search}%' OR Department LIKE '%{$search}%' OR Instructor LIKE '%{$search}%' OR Id LIKE '%{$search}%' LIMIT " . ($page - 1) * 25 . "," . (($page - 1) * 25 + 25);
+	$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time, Location, Start_Date, End_Date, Credit, Term, Campus FROM Courses WHERE Title LIKE '%{$search}%' OR Description LIKE '%{$search}%' OR Course LIKE '%{$search}%' OR Department LIKE '%{$search}%' OR Instructor LIKE '%{$search}%' OR Id LIKE '%{$search}%' LIMIT " . ($page - 1) * 25 . "," . (($page - 1) * 25 + 25);
 }
 
 $courses = [];
@@ -37,7 +37,13 @@ if($result = mysqli_query($link, $sql)) {
 				'Description' => $row['Description'],
 				'Instructor' => $row['Instructor'],
 				'Start_Time' => $row['Start_Time'],
-				'End_Time' => $row['End_Time']
+				'End_Time' => $row['End_Time'],
+				'Location' => $row['Location'],
+				'Start_Date' => $row['Start_Date'],
+				'End_Date' => $row['End_Date'],
+				'Credit' => $row['Credit'],
+				'Term' => $row['Term'],
+				'Campus' => $row['Campus']
 			];
 		}
 		mysqli_free_result($result);
@@ -110,6 +116,69 @@ if ($detect->isMobile()) {
 		<input type="submit" class="inline-block btn btn-info" value="Submit">
 	</form>
 
+	<?php if(!$mobile): ?>
+		<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
+			<thead>
+				<tr>
+					<th data-field="id" data-sortable="true" class="col-md-2 col-xs-2"> Course ID </th>
+					<th data-field="name" data-sortable="true" class="col-md-3 col-xs-3"> Name </th>
+					<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2"> Instructor </th>
+					<th data-field="description" data-sortable="true" class="col-md-5 col-xs-5"> Description </th>
+					<th data-field="start-time" data-sortable="true" class="col-md-5 col-xs-5"> Time </th>
+					<th data-field="evaluations" data-sortable="false" class="col-md-2 col-xs-2"> Evaluate Course </th>
+					<th data-field="viewevals" data-sortable="false" class ="col-md-2 col-xs-2"> View Evaluations </th>
+				</tr>
+				<tr class="warning no-result">
+					<td colspan="4"><i class="fa fa-warning"></i> No result</td>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($courses as $course): ?>
+					<tr>
+						<td><?= $course["Id"]?></td>
+						<td><?= $course["Title"]?></td>
+						<td><?= $course["Instructor"]?></td>
+						<td><?= $course["Description"]?></td>
+						<?php if($course["Start_Time"] != "T.B.A."): ?>
+							<td><?= $course["Start_Time"] . " - " . $course["End_Time"]?></td>
+						<?php endif; ?>
+						<td><a href="evaluate_course.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title']?>" class="btn btn-success">Evaluate</a></td>
+						<td><a href="view_course_evaluations.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title'] ?>" class="btn btn-success">View Evaluations</a></td>
+					</tr>
+				<?php endforeach ?>
+			</tbody>
+		</table>
+
+	<?php else: ?>
+		<?php foreach ($courses as $course): ?>
+			<table class="table text-align:left table-hover table-bordered results">
+				<thead>
+					<tr>
+						<th class="col-md-2 col-xs-2"> <?php echo $course["Title"] ?> </th>
+					</tr>
+					<tr class="warning no-result">
+						<td colspan="4"><i class="fa fa-warning"></i> No result</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td><?= $course["Id"]?></td></tr>
+					<tr><td><?= $course["Instructor"]?></td></tr>
+					<tr><td><?= $course["Description"]?></td></tr>
+					<?php if($course["Start_Time"] != "T.B.A."): ?>
+						<tr><td><?= $course["Start_Time"] . " - " . $course["End_Time"]?></td></tr>
+					<?php endif; ?>
+					<tr>
+						<td>
+							<a href="evaluate_course.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title']?>" class="btn btn-success">Evaluate</a>
+							<a href="view_course_evaluations.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title'] ?>" class="btn btn-success">View Evaluations</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		<?php endforeach ?>
+
+	<?php endif; ?>
+
 	<nav aria-label="Page navigation">
 		<ul class="pagination">
 			<li class="page-item">
@@ -138,63 +207,7 @@ if ($detect->isMobile()) {
 		</ul>
 	</nav>
 
-	<?php if(!$mobile): ?>
-		<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
-			<thead>
-				<tr>
-					<th data-field="id" data-sortable="true" class="col-md-2 col-xs-2"> Course ID </th>
-					<th data-field="name" data-sortable="true" class="col-md-3 col-xs-3"> Name </th>
-					<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2"> Instructor </th>
-					<th data-field="description" data-sortable="true" class="col-md-5 col-xs-5"> Description </th>
-					<th data-field="start-time" data-sortable="true" class="col-md-5 col-xs-5"> Start Time </th>
-					<th data-field="end-time" data-sortable="true" class="col-md-5 col-xs-5"> End Time </th>
-					<th data-field="evaluations" data-sortable="false" class="col-md-2 col-xs-2"> Evaluate Course </th>
-					<th data-field="viewevals" data-sortable="false" class ="col-md-2 col-xs-2"> View Evaluations </th>
-				</tr>
-				<tr class="warning no-result">
-					<td colspan="4"><i class="fa fa-warning"></i> No result</td>
-				</tr>
-			</thead>
-			<tbody>
-				<?php foreach ($courses as $course): ?>
-					<tr>
-						<td><?= $course["Id"]?></td>
-						<td><?= $course["Title"]?></td>
-						<td><?= $course["Instructor"]?></td>
-						<td><?= $course["Description"]?></td>
-						<td><?= $course["Start_Time"]?></td>
-						<td><?= $course["End_Time"]?></td>
-						<td><a href="evaluate_course.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title']?>" class="btn btn-success">Evaluate</a></td>
-						<td><a href="view_course_evaluations.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title'] ?>" class="btn btn-success">View Evaluations</a></td>
-					</tr>
-				<?php endforeach ?>
-			</tbody>
-		</table>
 
-	<?php else: ?>
-		<?php foreach ($courses as $course): ?>
-			<table class="table text-align:left table-hover table-bordered results">
-				<thead>
-					<tr>
-						<th class="col-md-2 col-xs-2"> <?php echo $course["Title"] ?> </th>
-					</tr>
-					<tr class="warning no-result">
-						<td colspan="4"><i class="fa fa-warning"></i> No result</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr><td><?= $course["Id"]?></td></tr>
-					<tr><td><?= $course["Instructor"]?></td></tr>
-					<tr><td><?= $course["Description"]?></td></tr>
-					<tr><td><?= $course["Start_Time"]?></td></tr>
-					<tr><td><?= $course["End_Time"]?></td></tr>
-					<tr><td><a href="evaluate_course.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title']?>" class="btn btn-success">Evaluate</a></td></tr>
-					<tr><td><a href="view_course_evaluations.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title'] ?>" class="btn btn-success">View Evaluations</a></td></tr>
-				</tbody>
-			</table>
-		<?php endforeach ?>
-
-	<?php endif; ?>
 	<footer>
 	 	The University of Akron trademarks and logos are property of The University of Akron. RateUAkron is not an affiliate of The University of Akron.
 	</footer>
