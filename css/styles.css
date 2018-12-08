@@ -169,3 +169,11 @@ table th {
         padding-bottom: 25px;
     }
 }
+
+table {
+    table-layout: fixed;
+}
+
+td {
+    word-wrap: break-word;
+}

@@ -25,4 +25,22 @@ foreach ($_SERVER as $key => $value) {
 require_once 'Mobile_Detect.php'
 
 
+// if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
+//     $logged_in = false;
+// }
+// else {
+// 	$logged_in = true;
+// 	$username = $_SESSION['username'];
+// }
+
+// $detect = new Mobile_Detect();
+// if ($detect->isMobile()) {
+// 	$mobile = true;
+// }
+// else {
+// 	$mobile = false;
+// }
+
+
+
 ?>

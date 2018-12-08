@@ -1,13 +1,10 @@
 <?php
 require_once 'includes/config.php';
 
-$loggedIn = true;
+$logged_in = true;
 
 if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
-	$loggedIn = false;
-}
-else {
-	$username = $_SESSION['username'];
+	$logged_in = false;
 }
 
 $cid = htmlspecialchars($_GET['id']);
@@ -40,8 +37,8 @@ if ($result = mysqli_query($link, $sql)) {
 	}
 }
 
-if ($loggedIn) {
-	$loggedInUsersId = $_SESSION['userid'];
+if ($logged_in) {
+	$user_id = $_SESSION['userid'];
 }
 
 // $RecommendedSum = 0;
@@ -104,7 +101,7 @@ if ($loggedIn) {
 				<tr><td>Grade Recieved: <?= $eval["Grade"]?></td></tr>
 				<tr><td>GPA: <?= $eval["GPA"]?></td></tr>
 				<tr><td><span><?= $eval["Comment"]?></span></td></tr>
-					<?php if($eval["UserId"] == $loggedInUsersId) : ?>
+					<?php if($eval["UserId"] == $user_id) : ?>
 						<tr><td><a href="delete_evaluation.php?id=<?php echo $eval['Eds']?>" class="btn btn-danger">Delete</a></td></tr>
 					<?php endif; ?>
 				</tr>
