@@ -87,7 +87,7 @@ mysqli_close($link);
 				</tr>
 			</thead>
 			<tbody>
-				
+
 				<tr><td><?= $course["Id"] . " - " . $course["Term"]?></td></tr>
 
 
@@ -96,7 +96,7 @@ mysqli_close($link);
 				<?php endif; ?>
 
 				<?php if(!empty($course["Description"]) && $course["Description"] != " "): ?>
-					<tr><td><?= $course["Description"] . " " . ($course["Credit"]) . " Credits."?></td></tr>
+					<tr><td><?= $course["Description"] . " " . intval($course["Credit"]) . " Credits."?></td></tr>
 				<?php endif; ?>
 
 				<?php if($course["Location"] != "T.B.A." && $course["Start_Time"] != "T.B.A."): ?>
