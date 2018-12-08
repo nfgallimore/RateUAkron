@@ -80,25 +80,43 @@ mysqli_close($link);
 		<table class="table text-align:left table-hover table-bordered results">
 			<thead>
 				<tr>
-					<th> <?php echo $course["Title"] ?> </th>
+					<th> <?php echo $course["Title"]?> </th>
 				</tr>
 				<tr class="warning no-result">
 					<td><i class="fa fa-warning"></i> No result</td>
 				</tr>
 			</thead>
 			<tbody>
-				<tr><td><?= $course["Id"]?></td></tr>
-				<tr><td><?= $course["Instructor"]?></td></tr>
-				<tr><td><?= $course["Description"]?></td></tr>
-				<?php if($course["Start_Time"] != "T.B.A."): ?>
-					<tr><td><?= $course["Start_Time"] . " - " . $course["End_Time"]?></td></tr>
+				
+				<tr><td><?= $course["Id"] . " - " . $course["Term"]?></td></tr>
+
+
+				<?php if(!empty($course["Instructor"]) && $course["Instructor"] != " "): ?>
+					<tr><td><?= $course["Instructor"]?></td></tr>
 				<?php endif; ?>
+
+				<?php if(!empty($course["Description"]) && $course["Description"] != " "): ?>
+					<tr><td><?= $course["Description"] . " " . ($course["Credit"]) . " Credits."?></td></tr>
+				<?php endif; ?>
+
+				<?php if($course["Location"] != "T.B.A." && $course["Start_Time"] != "T.B.A."): ?>
+					<tr><td><?= $course["Start_Time"] . " - " . $course["End_Time"] . " at " . $course["Location"]?></td></tr>
+
+				<?php elseif($course["Start_Time"] != "T.B.A."): ?>
+					<tr><td><?= $course["Start_Time"] . " - " . $course["End_Time"]?></td></tr>
+
+				<?php elseif($course["Location"] != "T.B.A."): ?>
+					<tr><td><?= $course["Location"]?></td></tr>
+				<?php endif; ?>
+
+
 				<tr>
 					<td>
 						<a href="evaluate_course.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title']?>" class="btn btn-success">Evaluate</a>
 						<a href="view_course_evaluations.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title'] ?>" class="btn btn-success">View Evaluations</a>
 					</td>
 				</tr>
+
 			</tbody>
 		</table>
 	<?php endforeach ?>
@@ -132,9 +150,7 @@ mysqli_close($link);
 		</ul>
 	</nav>
 
+	<?php include("includes/footer.php"); ?>
 
-	<footer>
-	 	The University of Akron trademarks and logos are property of The University of Akron. RateUAkron is not an affiliate of The University of Akron.
-	</footer>
 </body>
 </html>

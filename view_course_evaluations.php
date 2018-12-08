@@ -84,6 +84,8 @@ if ($count > 0) {
 			</tbody>
 		</table>
 	<?php endforeach ?>
+	
+	<?php include("includes/footer.php"); ?>
 
 </body>
 </html>

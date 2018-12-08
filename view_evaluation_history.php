@@ -42,7 +42,7 @@ mysqli_close($link);
 <body>
 
 	<div class="page-header">
-		<h1><span> Welcome </span> to your course evaluation history!</h1>
+		<h1><?php echo $username . "'s <br />" ?><span class="smaller">Course Evaluation History</span></h1>
 	</div>
 
 	<?php include("includes/nav_bar.php") ?>
@@ -64,5 +64,8 @@ mysqli_close($link);
 			</tbody>
 		</table>
 	<?php endforeach ?>
-	
+
+	<?php include("includes/footer.php"); ?>
+
 </body>
+</html>

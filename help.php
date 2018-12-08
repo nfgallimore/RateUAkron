@@ -34,5 +34,8 @@ require_once 'includes/config.php';
 		You can delete the evaluations if necessary/wanted by click on red <bold> X </bold>. In order to return back to the welcome page, you would need to click on Home button from your current page.<br>
 		When you are done using the webpage, you can click on <em> Sign Out of Your Account </em> to log out. Moreover, it will save all of your information to the database.
 	</p>
+
+	<?php include("includes/footer.php"); ?>
+
 </body>
 </html>

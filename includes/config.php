@@ -13,9 +13,9 @@ if($link === false){
 }
 
 include 'ChromePhp.php';
-ChromePhp::log('This is just a log message');
-ChromePhp::warn("This is a warning message " ) ;
-ChromePhp::error("This is an error message" ) ;
+// ChromePhp::log('This is just a log message');
+// ChromePhp::warn("This is a warning message " ) ;
+// ChromePhp::error("This is an error message" ) ;
 ChromePhp::log($_SERVER);
  
 foreach ($_SERVER as $key => $value) {

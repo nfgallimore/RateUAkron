@@ -43,6 +43,7 @@ body {
 
 footer {
     margin-top: 25px;
+    color: #45494f;
 }
 .page-header {
 	margin-top: 0;
@@ -50,7 +51,7 @@ footer {
 	padding-left: 72px;
 	background-color: #041e42;
 	border-radius: 5px;
-	height: 150px;
+	height: 175px;
 	color: white;
 }
 
@@ -58,6 +59,10 @@ footer {
     color: #ae9c6e;
     font-size: 50px;
     font-weight: bold;
+}
+
+.page-header .smaller {
+    font-size: inherit;
 }
 
 .course-table {
