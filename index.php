@@ -96,12 +96,19 @@ mysqli_close($link);
 				<?php endif; ?>
 
 				<?php if(!empty($course["Description"]) && $course["Description"] != " "): ?>
+
 						<?php if(intval($course["Credit"]) > 1): ?>
-							<tr><td><?= $course["Description"] . " " . intval($course["Credit"]) . " Credits." ?>
+							<tr>
+								<td><?= $course["Description"] . " " . intval($course["Credit"]) . " Credits." ?></td>
+							</tr>
+
 						<?php else: ?>
-							<tr><td><?= $course["Description"] . " " . intval($course["Credit"]) . " Credit." ?>
+							<tr>
+								<td><?= $course["Description"] . " " . intval($course["Credit"]) . " Credit." ?></td>
+							</tr>
+
 						<?php endif; ?>
-					</td></tr>
+
 				<?php endif; ?>
 
 				<?php if($course["Location"] != "T.B.A." && $course["Start_Time"] != "T.B.A."): ?>
