@@ -22,25 +22,26 @@ foreach ($_SERVER as $key => $value) {
     ChromePhp::log($key, $value);
 }
 
+if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
+	$logged_in = false;
+}
+else {
+	$logged_in = true;
+	$username = $_SESSION['username'];
+	$user_id = $_SESSION['userid'];
+}
+
+
 require_once 'Mobile_Detect.php'
 
 
-// if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
-//     $logged_in = false;
-// }
-// else {
-// 	$logged_in = true;
-// 	$username = $_SESSION['username'];
-// }
+// For using Mobile_Detect:
 
 // $detect = new Mobile_Detect();
+// $mobile = false;
 // if ($detect->isMobile()) {
 // 	$mobile = true;
 // }
-// else {
-// 	$mobile = false;
-// }
-
 
 
 ?>

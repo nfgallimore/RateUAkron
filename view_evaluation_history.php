@@ -1,12 +1,10 @@
 <?php
 require_once 'includes/config.php';
 
-if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
+if(!$logged_in) {
   	header("location: login.php");
     exit;
 }
-else
-	$logged_in = true;
 
 $sql = 'SELECT Courses.Title as Title, Evaluations.Id as Eid, Recommended, TimeSpent, Reason, Grade, GPA, Comment FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE UserID = ' . $_SESSION["userid"] . ' ORDER BY Created_At DESC;';
 
@@ -30,6 +28,7 @@ if ($result = mysqli_query($link, $sql)) {
 	}
 }
 mysqli_close($link);
+
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +40,7 @@ mysqli_close($link);
 
 </head>
 <body>
+
 	<div class="page-header">
 		<h1><span> Welcome </span> to your course evaluation history!</h1>
 	</div>
@@ -64,4 +64,5 @@ mysqli_close($link);
 			</tbody>
 		</table>
 	<?php endforeach ?>
+	
 </body>

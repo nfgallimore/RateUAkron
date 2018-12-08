@@ -1,8 +1,5 @@
 <?php
 
-$logged_in = true;
-$username = "";
-
 require_once 'includes/config.php';
 
 ?>

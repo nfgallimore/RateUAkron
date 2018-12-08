@@ -1,14 +1,6 @@
 <?php
 require_once 'includes/config.php';
 
-$logged_in = true;
-
-if (!isset($_SESSION['username']) || empty($_SESSION['username']))
-	$logged_in = false;
-else
-	$username = $_SESSION['username'];
-
-
 // Get page number
 if (!isset($_GET['page']) || empty($_GET['page']))
 	$page = 1;
@@ -48,18 +40,12 @@ if($result = mysqli_query($link, $sql)) {
 		mysqli_free_result($result);
 	}
 }
-else
-
+else {
 	echo "ERROR: Could not execute $sql. ";
+}
 
 
 mysqli_close($link);
-
-$detect = new Mobile_Detect();
-$mobile = false;
-if ($detect->isMobile()) {
-	$mobile = true;
-}
 
 ?>
 
