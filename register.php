@@ -108,10 +108,9 @@ mysqli_close($link);
 	<div class="page-header">
 		<h1><span> Welcome </span> to the University of Akron Course Catalog!</h1>
 	</div>
-	<div class="nav-bar">
-		<a href="index.php" class="btn btn-info">Home</a>
-		<a href="help.php" class="btn btn-info">Help</a>
-	</div>
+
+	<?php include("includes/nav_bar.php") ?>
+
 	<div class="wrapper">
 		<h2>Register</h2>
 		<p>Please fill out this form to create an account.</p>

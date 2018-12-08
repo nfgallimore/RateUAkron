@@ -1,13 +1,15 @@
 <?php
 require_once 'includes/config.php';
 
-$loggedIn = true;
+$logged_in = true;
 
-if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
-	$loggedIn = false;
-}
-else {	
+if (!isset($_SESSION['username']) || empty($_SESSION['username']))
+	$logged_in = false;
+else
 	$username = $_SESSION['username'];
+
+if (isset($_SESSION['view']) && !empty($_SESSION['view'])) {
+	$view = $_SESSION['view'];
 }
 
 // Get page number
@@ -19,7 +21,7 @@ else
 // Get search parameters
 if (!isset($_GET['search']) || empty($_GET['search'])) {
 	$search = "";
-	$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses LIMIT " . ($page - 1) * 25 . "," . (($page - 1) * 25 + 25);
+	$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time, Location, Start_Date, End_Date, Credit, Term, Campus FROM Courses LIMIT " . ($page - 1) * 25 . "," . (($page - 1) * 25 + 25);
 }
 else {
 	$search = htmlspecialchars($_GET['search']);
@@ -89,95 +91,52 @@ if ($detect->isMobile()) {
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
+
 </head>
 <body>
 	<div class="page-header">
 		<h1>
-			<?php if($loggedIn) : ?>
+			<?php if($logged_in) : ?>
 				Hi, <b><?php echo $username; ?></b>.<br>
 			<?php endif; ?>
 			<span> Welcome </span> to Rate UAkron!
 		</h1>
 	</div>
-	<div class="nav-bar">
-		<a href="index.php" class="btn btn-info">Home</a>
-		<?php if($loggedIn): ?>
-			<a href="view_evaluation_history.php" class="btn btn-info">View Your Evaluation History</a>
-		<?php endif; ?>
-		<a href="help.php" class="btn btn-info">Help</a>
-		<?php if($loggedIn): ?>
-			<a href="logout.php" class="btn btn-danger">Sign Out</a>
-		<?php else: ?>
-			<a href="logout.php" class="btn btn-danger">Log In</a>
-		<?php endif; ?>
-	</div>
+
+	<?php include("includes/nav_bar.php"); ?>
+
 	<form class="search form-group" action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="GET">
 		<input type="text" name="search" class="inline-block search-box form-control" placeholder="Enter a course to search for">
 		<input type="submit" class="inline-block btn btn-info" value="Submit">
 	</form>
 
-	<?php if(!$mobile): ?>
-		<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
+	<?php foreach ($courses as $course): ?>
+		<table class="table text-align:left table-hover table-bordered results">
 			<thead>
 				<tr>
-					<th data-field="id" data-sortable="true" class="col-md-2 col-xs-2"> Course ID </th>
-					<th data-field="name" data-sortable="true" class="col-md-3 col-xs-3"> Name </th>
-					<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2"> Instructor </th>
-					<th data-field="description" data-sortable="true" class="col-md-5 col-xs-5"> Description </th>
-					<th data-field="start-time" data-sortable="true" class="col-md-5 col-xs-5"> Time </th>
-					<th data-field="evaluations" data-sortable="false" class="col-md-2 col-xs-2"> Evaluate Course </th>
-					<th data-field="viewevals" data-sortable="false" class ="col-md-2 col-xs-2"> View Evaluations </th>
+					<th> <?php echo $course["Title"] ?> </th>
 				</tr>
 				<tr class="warning no-result">
-					<td colspan="4"><i class="fa fa-warning"></i> No result</td>
+					<td><i class="fa fa-warning"></i> No result</td>
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($courses as $course): ?>
-					<tr>
-						<td><?= $course["Id"]?></td>
-						<td><?= $course["Title"]?></td>
-						<td><?= $course["Instructor"]?></td>
-						<td><?= $course["Description"]?></td>
-						<?php if($course["Start_Time"] != "T.B.A."): ?>
-							<td><?= $course["Start_Time"] . " - " . $course["End_Time"]?></td>
-						<?php endif; ?>
-						<td><a href="evaluate_course.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title']?>" class="btn btn-success">Evaluate</a></td>
-						<td><a href="view_course_evaluations.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title'] ?>" class="btn btn-success">View Evaluations</a></td>
-					</tr>
-				<?php endforeach ?>
+				<tr><td><?= $course["Id"]?></td></tr>
+				<tr><td><?= $course["Instructor"]?></td></tr>
+				<tr><td><?= $course["Description"]?></td></tr>
+				<?php if($course["Start_Time"] != "T.B.A."): ?>
+					<tr><td><?= $course["Start_Time"] . " - " . $course["End_Time"]?></td></tr>
+				<?php endif; ?>
+				<tr>
+					<td>
+						<a href="evaluate_course.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title']?>" class="btn btn-success">Evaluate</a>
+						<a href="view_course_evaluations.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title'] ?>" class="btn btn-success">View Evaluations</a>
+					</td>
+				</tr>
 			</tbody>
 		</table>
+	<?php endforeach ?>
 
-	<?php else: ?>
-		<?php foreach ($courses as $course): ?>
-			<table class="table text-align:left table-hover table-bordered results">
-				<thead>
-					<tr>
-						<th class="col-md-2 col-xs-2"> <?php echo $course["Title"] ?> </th>
-					</tr>
-					<tr class="warning no-result">
-						<td colspan="4"><i class="fa fa-warning"></i> No result</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr><td><?= $course["Id"]?></td></tr>
-					<tr><td><?= $course["Instructor"]?></td></tr>
-					<tr><td><?= $course["Description"]?></td></tr>
-					<?php if($course["Start_Time"] != "T.B.A."): ?>
-						<tr><td><?= $course["Start_Time"] . " - " . $course["End_Time"]?></td></tr>
-					<?php endif; ?>
-					<tr>
-						<td>
-							<a href="evaluate_course.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title']?>" class="btn btn-success">Evaluate</a>
-							<a href="view_course_evaluations.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title'] ?>" class="btn btn-success">View Evaluations</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		<?php endforeach ?>
-
-	<?php endif; ?>
 
 	<nav aria-label="Page navigation">
 		<ul class="pagination">

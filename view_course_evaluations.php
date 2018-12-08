@@ -88,58 +88,29 @@ if ($loggedIn) {
 <body>
 	<div class="page-header">
 		<h1>
-			<?php if($loggedIn) : ?>
-				Hi, <b><?php echo $username; ?></b><br>
-			<?php endif; ?>
-			<span> <?php echo $courseTitle?> </span> course evaluations		
+			<?php echo $courseTitle?>
 		</h1>
 	</div>
-	<div class="nav-bar">
-		<a href="index.php" class="btn btn-info">Home</a>
-		<?php if($loggedIn): ?>
-			<a href="view_evaluation_history.php" class="btn btn-info">View Your Evaluation History</a>
-		<?php endif; ?>
-		<a href="help.php" class="btn btn-info">Help</a>
-		<?php if($loggedIn): ?>
-			<a href="logout.php" class="btn btn-danger">Sign Out</a>
-		<?php else: ?>
-			<a href="logout.php" class="btn btn-danger">Log In</a>
-		<?php endif; ?>
-	</div>
-	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
-		<thead>
-			<tr>
-				<th data-field="name" data-sortable="true" class="col-md-2 col-xs-2"> Course Name </th>
-				<th data-field="instructor" data-sortable="true" class="col-md-2 col-xs-2"> Recommend </th>
-				<th data-field="description" data-sortable="true" class="col-md-2 col-xs-2"> Time Spent </th>
-				<th data-field="evaluations" data-sortable="true" class="col-md-2 col-xs-2"> Grade </th>
-				<th data-field="gpa" data-sortable="true" class ="col-md-2 col-xs-2"> GPA </th>
-				<th data-field="comment" data-sortable="true" class ="col-md-4 col-xs-4"> Comment </th>
-				<?php if($loggedIn) : ?>
-					<th data-field="del" data-sortable="false" class ="col-md-2 col-xs-2"> Delete </th>
-				<?php endif; ?>
-			</tr>
-			<tr class="warning no-result">
-				<td colspan="4"><i class="fa fa-warning"></i> No result</td>
-			</tr>
-		</thead>
-		<tbody>
-			<?php foreach ($evals as $eval): ?>
-			<tr>
-				<td><?= $eval["Title"]?></td>
-				<td><?= $eval["Recommended"]?></td>
-				<td><?= $eval["TimeSpent"]?></td>
-				<td><?= $eval["Grade"]?></td>
-				<td><?= $eval["GPA"]?></td>
-				<td><?= $eval["Comment"]?></td>
-				<?php if($loggedIn && $eval["UserId"] == $loggedInUsersId) : ?>
-					<td>
-						<a href="delete_evaluation.php?id=<?php echo $eval['Eds']?>" class="btn btn-danger">Delete</a>
-					</td>
-				<?php endif; ?>
-			</tr>
-			<?php endforeach ?>
-		</tbody>
-	</table>
+
+	<?php include("includes/nav_bar.php"); ?>
+	
+	<?php foreach ($evals as $eval): ?>
+		<table class="table text-align:left table-hover table-bordered results">
+			<thead>
+				<tr><th>Rating: <?= intval($eval["Recommended"])?> / 5</th></tr>
+			</thead>
+			<tbody>
+				<tr><td>Time spent per week: <?= $eval["TimeSpent"]?></td></tr>
+				<tr><td>Grade Recieved: <?= $eval["Grade"]?></td></tr>
+				<tr><td>GPA: <?= $eval["GPA"]?></td></tr>
+				<tr><td><span><?= $eval["Comment"]?></span></td></tr>
+					<?php if($eval["UserId"] == $loggedInUsersId) : ?>
+						<tr><td><a href="delete_evaluation.php?id=<?php echo $eval['Eds']?>" class="btn btn-danger">Delete</a></td></tr>
+					<?php endif; ?>
+				</tr>
+			</tbody>
+		</table>
+	<?php endforeach ?>
+
 </body>
 </html>

@@ -86,12 +86,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<!-- Favicons -->
 
 	<div class="page-header">
-		<h1><span> Welcome </span> to the University of Akron Course Catalog!</h1>
+		<h1><span> Welcome </span> to RateUAkron!</h1>
 	</div>
-	<div class="nav-bar">
-		<a href="index.php" class="btn btn-info">Home</a>
-		<a href="help.php" class="btn btn-info">Help</a>
-	</div>
+
+	<?php include("includes/nav_bar.php") ?>
+
 </head>
 <body>
 	<div class="wrapper">
@@ -114,9 +113,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
 		</form>
 		<br />
-		<a href="report.pdf">Click here to download report.</a><br /><br />
-		<a href="presentation.pptx">Click here to download presentation.</a><br /><br />
-		<a href="techreport.pdf">Click here to download technical report.</a>
 	</div>
 </body>
 </html>

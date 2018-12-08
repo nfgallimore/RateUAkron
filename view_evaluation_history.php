@@ -59,18 +59,9 @@ mysqli_close($link);
 	<div class="page-header">
 		<h1>Hi, <b><?php echo $_SESSION['username']; ?></b>.<br> <span> Welcome </span> to your course evaluation history!</h1>
 	</div>
-	<div class="nav-bar">
-		<a href="index.php" class="btn btn-info">Home</a>
-		<?php if($loggedIn): ?>
-			<a href="view_evaluation_history.php" class="btn btn-info">View Your Evaluation History</a>
-		<?php endif; ?>
-		<a href="help.php" class="btn btn-info">Help</a>
-		<?php if($loggedIn): ?>
-			<a href="logout.php" class="btn btn-danger">Sign Out</a>
-		<?php else: ?>
-			<a href="logout.php" class="btn btn-danger">Log In</a>
-		<?php endif; ?>
-	</div>
+
+	<?php include("includes/nav_bar.php") ?>
+
 	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 		<thead>
 			<tr>
