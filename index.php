@@ -10,25 +10,19 @@ else {
 	$username = $_SESSION['username'];
 }
 
-if (!isset($_GET['page']) || empty($_GET['page'])) {
+// Get page number
+if (!isset($_GET['page']) || empty($_GET['page']))
 	$page = 1;
-}
-else {
+else
 	$page = htmlspecialchars($_GET['page']);
-}
 
+// Get search parameters
 if (!isset($_GET['search']) || empty($_GET['search'])) {
 	$search = "";
-}
-else {
-	$search = htmlspecialchars($_GET['search']);
-}
-
-
-if (!isset($_GET['search']) || empty($_GET['search'])) {
 	$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses LIMIT " . ($page - 1) * 25 . "," . (($page - 1) * 25 + 25);
 }
 else {
+	$search = htmlspecialchars($_GET['search']);
 	$sql = "SELECT Cid, Id, Title, Description, Instructor, Start_Time, End_Time FROM Courses WHERE Title LIKE '%{$search}%' OR Description LIKE '%{$search}%' OR Course LIKE '%{$search}%' OR Department LIKE '%{$search}%' OR Instructor LIKE '%{$search}%' OR Id LIKE '%{$search}%' LIMIT " . ($page - 1) * 25 . "," . (($page - 1) * 25 + 25);
 }
 
@@ -55,11 +49,6 @@ else {
 
 mysqli_close($link);
 
-$detect = new Mobile_Detect();
-$mobile = false;
-if ($detect->isMobile()) {
-	$mobile = true;
-}
 
 ?>
 
@@ -105,7 +94,11 @@ if ($detect->isMobile()) {
 			<a href="view_evaluation_history.php" class="btn btn-info">View Your Evaluation History</a>
 		<?php endif; ?>
 		<a href="help.php" class="btn btn-info">Help</a>
-		<a href="<?php echo ($loggedIn) ? 'logout.php' : 'login.php' ?>" class="btn btn-danger"><?php echo ($loggedIn) ? 'Sign Out' : 'Log in' ?></a>
+		<?php if($loggedIn): ?>
+			<a href="logout.php" class="btn btn-danger">Sign Out</a>
+		<?php else: ?>
+			<a href="logout.php" class="btn btn-danger">Log In</a>
+		<?php endif; ?>
 	</div>
 	<form class="search form-group" action="<?php echo ($_SERVER["PHP_SELF"]); ?>" method="GET">
 		<input type="text" name="search" class="inline-block search-box form-control" placeholder="Enter a course to search for">

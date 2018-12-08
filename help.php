@@ -45,12 +45,18 @@ else {
         </h1>
     </div>
     </div>
-    <div class="nav-bar">
-        <a href="index.php" class="btn btn-info">Home</a>
-        <a href="view_evaluation_history.php" class="btn btn-info">View Your Evaluation History</a>
-        <a href="help.php" class="btn btn-info">Help</a>
-        <a href="logout.php" class="btn btn-danger">Sign Out</a>
-    </div>
+	<div class="nav-bar">
+		<a href="index.php" class="btn btn-info">Home</a>
+		<?php if($loggedIn): ?>
+			<a href="view_evaluation_history.php" class="btn btn-info">View Your Evaluation History</a>
+		<?php endif; ?>
+		<a href="help.php" class="btn btn-info">Help</a>
+		<?php if($loggedIn): ?>
+			<a href="logout.php" class="btn btn-danger">Sign Out</a>
+		<?php else: ?>
+			<a href="logout.php" class="btn btn-danger">Log In</a>
+		<?php endif; ?>
+	</div>
 		<ul>
 			<li>If you have not created an account, please create an account before using this webpage.</li>
 			<li>You can do so by clicking on Sign up now link which will prompt you to the page to create an account.</li>

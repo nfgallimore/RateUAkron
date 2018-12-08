@@ -24,4 +24,6 @@ foreach ($_SERVER as $key => $value) {
 
 require_once 'Mobile_Detect.php'
 
+
+
 ?>

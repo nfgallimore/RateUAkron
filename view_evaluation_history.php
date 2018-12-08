@@ -61,9 +61,15 @@ mysqli_close($link);
 	</div>
 	<div class="nav-bar">
 		<a href="index.php" class="btn btn-info">Home</a>
-		<a href="view_evaluation_history.php" class="btn btn-info">View Your Evaluation History</a>
+		<?php if($loggedIn): ?>
+			<a href="view_evaluation_history.php" class="btn btn-info">View Your Evaluation History</a>
+		<?php endif; ?>
 		<a href="help.php" class="btn btn-info">Help</a>
-		<a href="logout.php" class="btn btn-danger">Sign Out</a>
+		<?php if($loggedIn): ?>
+			<a href="logout.php" class="btn btn-danger">Sign Out</a>
+		<?php else: ?>
+			<a href="logout.php" class="btn btn-danger">Log In</a>
+		<?php endif; ?>
 	</div>
 	<table data-toggle="table" data-sort-name="stargazers_count" data-sort-order="desc" class="table text-align:left table-hover table-bordered results">
 		<thead>
