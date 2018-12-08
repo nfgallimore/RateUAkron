@@ -49,6 +49,11 @@ else {
 
 mysqli_close($link);
 
+$detect = new Mobile_Detect();
+$mobile = false;
+if ($detect->isMobile()) {
+	$mobile = true;
+}
 
 ?>
 
