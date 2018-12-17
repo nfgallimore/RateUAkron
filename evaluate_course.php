@@ -122,13 +122,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<input type="text" name="gpa" class="form-control bfh-number" data-min="1" data-max="10" value="<?php echo $gpa; ?>">
 				<span class="help-block"><?php echo $gpa_err; ?></span>
 			</div>
-		</div>
-		<div class="left rt-textarea <?php echo (!empty($gpa_err)) ? 'has-error' : ''; ?>">
-			<div class="inline-block">
+			<div class="left rt-textarea <?php echo (!empty($comment_err)) ? 'has-error' : ''; ?>">
 				<textarea name="comment" cols="70" rows="15" form="evalform" placeholder="Please enter a comment.*"></textarea>
 				<div class="error"><?php echo $comment_err; ?></div>
 			</div>
-			<div class="buttons">
+			 <div class="buttons">
 				<input type="submit" class="btn btn-primary" value="Submit">
 				<input type="reset" class="btn btn-default" value="Reset">
 			</div>

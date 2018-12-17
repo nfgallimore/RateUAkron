@@ -2,12 +2,11 @@
 require_once 'includes/config.php';
 
 $cid = htmlspecialchars($_GET['id']);
-$courseTitle = htmlspecialchars($_GET['title']);
 
-$sql = 'SELECT Title, Instructor, Description, CourseID, UserId, Comment, Recommended, TimeSpent, Reason, Grade, GPA, Created_At, Evaluations.Id as Eid FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE CourseID = ' . $cid;
+$evalsql = 'SELECT Title, Instructor, Description, CourseID, UserId, Comment, Recommended, TimeSpent, Reason, Grade, GPA, Created_At, Evaluations.Id as Eid FROM Evaluations INNER JOIN Courses ON Evaluations.CourseID = Courses.Cid WHERE CourseID = ' . $cid;
 $evals = [];
 
-if ($result = mysqli_query($link, $sql)) {
+if ($result = mysqli_query($link, $evalsql)) {
     if (mysqli_num_rows($result) > 0) {
 		while($row = mysqli_fetch_array($result)){
 		    $evals[] = [
@@ -58,9 +57,9 @@ if ($count > 0) {
 	<div class="page-header">
 		<h2>
 			<?php if(!empty($evals[0]['Instructor'])): ?>
-				<?php echo $evals[0]['Instructor'] . "'s <i>" . $courseTitle . "</i><br /><span>" . $avg . "</span> average rating.<br />" ?>
+				<?php echo $evals[0]['Instructor'] . "'s <i>" . $evals[0]['Title'] . "</i><br /><span>" . $avg . "</span> average rating.<br />" ?>
 			<?php else: ?>
-				<?php echo "<i>" . $courseTitle . "</i><br /><span>" . $avg . "</span> average rating.<br />" ?>
+				<?php echo "<i>" . $evals[0]['Title'] . "</i><br /><span>" . $avg . "</span> average rating.<br />" ?>
 			<?php endif; ?>
 		</h2>
 	</div>
