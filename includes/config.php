@@ -2,7 +2,7 @@
 
 session_start();
 
-define('DB_SERVER', '52.91.5.119');
+define('DB_SERVER', '54.221.4.186');
 define('DB_USERNAME', 'db_user');
 define('DB_PASSWORD', 'universityofakron2019');
 define('DB_NAME', 'rateuakron');
