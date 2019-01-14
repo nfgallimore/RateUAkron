@@ -124,8 +124,8 @@ mysqli_close($link);
 
 				<tr>
 					<td>
-						<a href="evaluate_course.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title']?>" class="btn btn-success">Evaluate</a>
-						<a href="view_course_evaluations.php?id=<?php echo $course['Cid'] . "&title=" . $course['Title'] ?>" class="btn btn-success">View Evaluations</a>
+						<a href="evaluate_course.php?id=<?php echo $course['Cid'] ?>" class="btn btn-success">Evaluate</a>
+						<a href="view_course_evaluations.php?id=<?php echo $course['Cid'] ?>" class="btn btn-success">View Evaluations</a>
 					</td>
 				</tr>
 
